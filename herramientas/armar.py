@@ -178,6 +178,10 @@ def fecha_texto(fecha, idioma):
     return f"{MESES[idioma][mes - 1]} {anio}"
 
 
+# Novedades que se ven sin abrir «Ver las novedades anteriores»
+A_LA_VISTA = 3
+
+
 def novedades_html(novedades, idioma):
     if idioma is None:
         dos = lambda f: "".join(f'<span class="{i}">{html.escape(f(i))}</span>' for i in IDIOMAS)
@@ -242,13 +246,17 @@ def con_legal(sitio):
 
 def cuerpo(idioma, sitio, novedades, otro_enlace, raiz=""):
     fuente = (RAIZ / "fuente" / "pagina.html").read_text(encoding="utf-8")
-    condiciones = dict(sitio["enlaces"], analitica=sitio.get("analiticaCloudflare", ""),
-                       legal="si" if sitio["_legal"]["listo"] else "")
+    enlaces = sitio["enlaces"]
+    condiciones = dict(enlaces, analitica=sitio.get("analiticaCloudflare", ""),
+                       legal="si" if sitio["_legal"]["listo"] else "",
+                       aportes="si" if enlaces.get("kofi") or enlaces.get("sponsors") else "",
+                       masNovedades="si" if len(novedades) > A_LA_VISTA else "")
     filtro = Filtro(idioma, condiciones)
     filtro.feed(fuente)
     filtro.close()
     texto = "".join(filtro.salida)
-    texto = texto.replace("<!--NOVEDADES-->", novedades_html(novedades, idioma))
+    texto = texto.replace("<!--NOVEDADES-->", novedades_html(novedades[:A_LA_VISTA], idioma))
+    texto = texto.replace("<!--NOVEDADES-RESTO-->", novedades_html(novedades[A_LA_VISTA:], idioma))
 
     def poner(m):
         clave = m.group(1)
@@ -279,7 +287,7 @@ def preguntas(contenido):
     if not seccion:
         return []
     limpiar = lambda s: html.unescape(re.sub(r"<[^>]+>", "", s)).strip()
-    return [(limpiar(q), limpiar(a)) for q, a in re.findall(r"<h3>(.*?)</h3><p>(.*?)</p>", seccion.group(0), re.S)]
+    return [(limpiar(q), limpiar(a)) for q, a in re.findall(r"<h3>(.*?)</h3>(?:</summary>)?<p>(.*?)</p>", seccion.group(0), re.S)]
 
 
 def datos_estructurados(idioma, sitio, url, contenido):
