@@ -505,15 +505,50 @@
       lista.append(b);
       return b;
     });
+    const indicador = document.createElement('span');
+    indicador.className = 'tab-indicador';
+    indicador.setAttribute('aria-hidden', 'true');
+    lista.append(indicador);
+    const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let actual = -1;
+    const mover = () => {
+      const b = botones[actual];
+      if (!b) return;
+      indicador.style.width = b.offsetWidth + 'px';
+      indicador.style.transform = 'translateX(' + b.offsetLeft + 'px)';
+    };
     const elegir = (i, foco) => {
+      if (i === actual) { if (foco) botones[i].focus(); return; }
+      const antes = actual;
+      const alto0 = pilares.offsetHeight;
       botones.forEach((b, j) => {
         const si = i === j;
         b.setAttribute('aria-selected', si);
         b.tabIndex = si ? 0 : -1;
         paneles[j].hidden = !si;
       });
+      actual = i;
+      mover();
+      if (antes >= 0 && !calmo) {
+        const panel = paneles[i];
+        panel.style.setProperty('--dir', i > antes ? 1 : -1);
+        panel.classList.remove('entra');
+        void panel.offsetWidth;
+        panel.classList.add('entra');
+        const alto1 = pilares.offsetHeight;
+        clearTimeout(pilares.temporizador);
+        pilares.style.transition = 'none';
+        pilares.style.overflow = 'clip';
+        pilares.style.height = alto0 + 'px';
+        void pilares.offsetHeight;
+        pilares.style.transition = 'height 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
+        pilares.style.height = alto1 + 'px';
+        pilares.temporizador = setTimeout(() => { pilares.style.height = ''; pilares.style.overflow = ''; pilares.style.transition = ''; }, 480);
+      }
       if (foco) botones[i].focus();
     };
+    addEventListener('resize', mover);
+    if (document.fonts) document.fonts.ready.then(mover);
     botones.forEach((b, i) => b.addEventListener('click', () => elegir(i)));
     lista.addEventListener('keydown', e => {
       const i = botones.indexOf(document.activeElement);
@@ -528,6 +563,20 @@
   }
 
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (matchMedia('(hover: hover)').matches && !quieto) {
+    document.querySelectorAll('.diff, .edition, .way, .con-pestanas .feat, .captura-marco, .captura a, .perfil').forEach(el => {
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        el.style.setProperty('--ry', ((x - 0.5) * 5).toFixed(2) + 'deg');
+        el.style.setProperty('--rx', ((0.5 - y) * 5).toFixed(2) + 'deg');
+        el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+        el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      });
+      el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+    });
+  }
 
   const carrusel = document.querySelector('.pantallas-grid');
   if (carrusel) {
