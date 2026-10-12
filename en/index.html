@@ -17,12 +17,14 @@
 <meta property="og:image" content="https://dwladimirl.github.io/irondeck/og-en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Claude Code orchestrator for Windows | IronDeck">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="es_LA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Claude Code orchestrator for Windows | IronDeck">
 <meta name="twitter:description" content="Run several Claude Code tasks at once with your own account, and keep your plan limits and extra spend under control. A Windows desktop app in development.">
 <meta name="twitter:image" content="https://dwladimirl.github.io/irondeck/og-en.png">
+<meta name="twitter:image:alt" content="Claude Code orchestrator for Windows | IronDeck">
 <meta name="theme-color" content="#151b23">
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../marca/irondeck-icono-simple.svg" type="image/svg+xml">
@@ -213,28 +215,29 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 /* Hero */
 .hero { padding-block: 56px 64px; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 56px; align-items: center; }
-.kicker {
-  display: inline-grid;
-  gap: 2px;
-  font-family: var(--f-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  text-decoration: none;
-}
-.kicker:hover { color: var(--ink); }
-.kicker:hover .kicker-note { text-decoration: underline; text-underline-offset: 0.25em; }
-.kicker-note { color: var(--straw); }
 .hero h1 {
   font-family: var(--f-display);
   font-weight: 800;
   font-size: clamp(2.75rem, 4.2vw + 1.2rem, 5rem);
   line-height: 0.95;
   letter-spacing: 0.002em;
-  margin-block: 20px 22px;
+  margin-block: 0 22px;
 }
+/* The keyword line sits inside the H1, styled as the small mono kicker above the promise */
+.h1-kicker {
+  display: block;
+  margin-block-end: 20px;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.cta-nota { margin-block-start: 12px; font-size: 0.875rem; color: var(--ink-2); }
+.cta-nota a { color: inherit; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .h1-end {
   display: table;
   margin-block-start: 0.08em;
@@ -266,7 +269,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 @media (max-width: 600px) {
   .hero { padding-block: 24px 40px; }
   .hero-grid { gap: 32px; }
-  .hero h1 { font-size: 2.375rem; line-height: 1; margin-block: 14px 16px; }
+  .hero h1 { font-size: 2.375rem; line-height: 1; margin-block: 0 16px; }
+  .h1-kicker { margin-block-end: 14px; font-size: 0.6875rem; }
   .lede { font-size: 1.0625rem; line-height: 1.5; max-width: none; }
   .ctas { gap: 10px; margin-block-start: 24px; }
   .ctas .btn { flex: 1 1 100%; justify-content: center; }
@@ -700,7 +704,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   .final-inner { grid-template-columns: minmax(0, 1fr); padding-block: 52px; }
   .final-copy { flex-direction: column; align-items: flex-start; gap: 16px; }
   .final-icono { width: 56px; height: 56px; }
-  .final h2 { font-size: min(2.125rem, 7.8vw); white-space: nowrap; }
+  .final h2 { font-size: min(2.125rem, 7.6vw); text-wrap: balance; }
   .final .btn { justify-content: center; }
 }
 
@@ -836,7 +840,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .pillar > h3 { display: flex; align-items: center; gap: 12px; }
 .pillar > h3 .ico { width: 26px; height: 26px; }
 .con-pestanas .pillar { border-top: 0; padding-block-start: 20px; }
-.con-pestanas .pillar > h3 { display: none; }
+.con-pestanas .pillar > h3 { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .con-pestanas .pillar { grid-template-columns: minmax(0, 1fr); }
 .con-pestanas .feats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .con-pestanas .feat { padding: 18px; background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--r); }
@@ -854,7 +858,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 
 /* Motion: one moment on load (the deck comes alive), tactile buttons, and scroll-linked details where the browser supports them. Everything is readable without it. */
 @media (prefers-reduced-motion: no-preference) {
-  .btn, .lang-link, .kicker {
+  .btn, .lang-link {
     transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
                 color var(--dur-fast) var(--ease), filter var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
   }
@@ -874,7 +878,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     animation: llena 1.4s var(--ease) 0.5s both;
   }
   .step[data-s="run"] .dot { animation: brillo 2.4s ease-in-out 3; }
-  .deck-shell::after { opacity: 1; animation: giro 7s linear infinite; }
+  .deck-shell::after { opacity: 1; animation: giro 7s linear 3; }
   @keyframes giro { to { --giro: 360deg; } }
   .menu-ico::before, .menu-ico::after { transition: transform var(--dur-fast) var(--ease), top var(--dur-fast) var(--ease); }
   @keyframes llena { from { transform: scaleX(0); } }
@@ -920,7 +924,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 }
 
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dwladimirl.github.io/irondeck/#sitio","url":"https://dwladimirl.github.io/irondeck/","name":"IronDeck","inLanguage":["es","en"],"image":"https://dwladimirl.github.io/irondeck/marca/png/irondeck-512.png"},{"@type":"SoftwareApplication","name":"IronDeck","url":"https://dwladimirl.github.io/irondeck/en/","inLanguage":"en","applicationCategory":"DeveloperApplication","operatingSystem":"Windows","description":"Run several Claude Code tasks at once with your own account, and keep your plan limits and extra spend under control. A Windows desktop app in development.","image":"https://dwladimirl.github.io/irondeck/marca/png/irondeck-512.png","author":{"@type":"Person","name":"DwladimirL","url":"https://github.com/DwladimirL"},"sameAs":["https://github.com/DwladimirL/irondeck"]},{"@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"What do I need to use it?","acceptedAnswer":{"@type":"Answer","text":"A Windows PC, Claude Code installed with your account, and a Claude plan that includes it: Pro or Max, or a Team or Enterprise plan. Also Git and Node.js. The final list ships with the first release."}},{"@type":"Question","name":"Do I need to know how to code?","acceptedAnswer":{"@type":"Answer","text":"Not to use it: you describe the work and approve the result. It does help when reviewing what it delivers, just as with Claude Code on its own."}},{"@type":"Question","name":"Can it break something on my PC?","acceptedAnswer":{"@type":"Answer","text":"Each task works in a copy of your project and can only use the tools its step allows. Its changes reach your project when you approve them, but commands you allow, such as publishing or installing packages, act outside that copy. It's a version in development: use it with Git and backups."}},{"@type":"Question","name":"Which account does it use?","acceptedAnswer":{"@type":"Answer","text":"Yours. IronDeck runs your own Claude Code installation on your PC. It doesn't ask you to sign in, doesn't store your password, and doesn't route your session through any server. What it uses comes out of your plan and, only if you turn it on, your account's extra usage."}},{"@type":"Question","name":"Can it spend beyond my plan?","acceptedAnswer":{"@type":"Answer","text":"Only if extra usage is turned on in your Anthropic account; without it, it can't. If it is on, IronDeck stops a task by default as soon as Claude Code reports extra usage, and what was used up to that point is billed. If you'd rather it not stop, you'll be able to turn on your account's extra usage with a spending cap; that mode arrives before launch. You also decide how much of your week IronDeck uses."}},{"@type":"Question","name":"What leaves my PC?","acceptedAnswer":{"@type":"Answer","text":"IronDeck has no server on the internet: its server runs only on your PC. What leaves is what Claude Code sends to Anthropic while working, checks to GitHub for updates, whatever your tasks do with the permissions you grant them, and the backup of your library to your own GitHub account. None of it goes through me."}},{"@type":"Question","name":"Is IronDeck made by Anthropic?","acceptedAnswer":{"@type":"Answer","text":"No. It's an independent project that works with Claude Code. Anthropic doesn't sponsor or endorse it."}},{"@type":"Question","name":"When does it ship, and what does it cost?","acceptedAnswer":{"@type":"Answer","text":"There's no date or price yet. I don't charge anything in advance, and the waitlist hears first."}},{"@type":"Question","name":"Does it run on Mac or Linux?","acceptedAnswer":{"@type":"Answer","text":"For now, Windows only."}},{"@type":"Question","name":"Is the code open source?","acceptedAnswer":{"@type":"Answer","text":"It's private for now. This site and its repository show the progress, the guides and the updates."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dwladimirl.github.io/irondeck/#sitio","url":"https://dwladimirl.github.io/irondeck/","name":"IronDeck","inLanguage":["es","en"],"image":"https://dwladimirl.github.io/irondeck/marca/png/irondeck-512.png"},{"@type":"SoftwareApplication","name":"IronDeck","url":"https://dwladimirl.github.io/irondeck/en/","inLanguage":"en","applicationCategory":"DeveloperApplication","operatingSystem":"Windows","description":"Run several Claude Code tasks at once with your own account, and keep your plan limits and extra spend under control. A Windows desktop app in development.","image":"https://dwladimirl.github.io/irondeck/marca/png/irondeck-512.png","author":{"@type":"Person","name":"DwladimirL","url":"https://github.com/DwladimirL"},"sameAs":["https://github.com/DwladimirL/irondeck"]},{"@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"What do I need to use it?","acceptedAnswer":{"@type":"Answer","text":"A Windows PC, Claude Code installed with your account, and a Claude plan that includes it: Pro or Max, or a Team or Enterprise plan. Also Git and Node.js. The final list ships with the first release."}},{"@type":"Question","name":"Do I need to know how to code?","acceptedAnswer":{"@type":"Answer","text":"Not to use it: you describe the work and approve the result. It does help when reviewing what it delivers, just as with Claude Code on its own."}},{"@type":"Question","name":"Can it break something on my PC?","acceptedAnswer":{"@type":"Answer","text":"Each task works in a copy of your project and can only use the tools its step allows. Its changes reach your project when you approve them, but commands you allow, such as publishing or installing packages, act outside that copy. It's a version in development: use it with Git and backups."}},{"@type":"Question","name":"Which account does it use?","acceptedAnswer":{"@type":"Answer","text":"Yours. IronDeck runs your own Claude Code installation on your PC. It doesn't ask you to sign in, doesn't store your password, and doesn't route your session through any server. What it uses comes out of your plan and, only if you turn it on, your account's extra usage."}},{"@type":"Question","name":"Does using IronDeck go against Anthropic's terms?","acceptedAnswer":{"@type":"Answer","text":"IronDeck doesn't change how you use Claude Code: it runs your own official installation, with your account, on your PC. It doesn't share accounts, doesn't resell access, and respects your plan's limits: when it hits one, it pauses. Your Claude plan's terms still apply as always; check them if you have questions about your case."}},{"@type":"Question","name":"Can it spend beyond my plan?","acceptedAnswer":{"@type":"Answer","text":"Only if extra usage is turned on in your Anthropic account; without it, it can't. If it is on, IronDeck stops a task by default as soon as Claude Code reports extra usage, and what was used up to that point is billed. If you'd rather it not stop, you'll be able to turn on your account's extra usage with a spending cap; that mode arrives before launch. You also decide how much of your week IronDeck uses."}},{"@type":"Question","name":"What leaves my PC?","acceptedAnswer":{"@type":"Answer","text":"IronDeck has no server on the internet: its server runs only on your PC. What leaves is what Claude Code sends to Anthropic while working, checks to GitHub for updates, whatever your tasks do with the permissions you grant them, and the backup of your library to your own GitHub account. None of it goes through me."}},{"@type":"Question","name":"Is IronDeck made by Anthropic?","acceptedAnswer":{"@type":"Answer","text":"No. It's an independent project that works with Claude Code. Anthropic doesn't sponsor or endorse it."}},{"@type":"Question","name":"When does it ship, and what does it cost?","acceptedAnswer":{"@type":"Answer","text":"There's no date or price yet. I don't charge anything in advance, and the waitlist hears first."}},{"@type":"Question","name":"Does it run on Mac or Linux?","acceptedAnswer":{"@type":"Answer","text":"For now, Windows only."}},{"@type":"Question","name":"Is the code open source?","acceptedAnswer":{"@type":"Answer","text":"It's private for now. This site and its repository show the progress, the guides and the updates."}}]}]}</script>
 </head>
 <body>
 <a class="skip" href="#contenido">Skip to content</a>
@@ -929,7 +933,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 <header class="top">
   <div class="frame top-inner">
     <a class="mark" href="#inicio" aria-label="IronDeck"><img class="mark-icono" src="../marca/irondeck-icono-simple.svg" alt="" width="28" height="28">IRONDECK</a>
-    <nav class="nav" aria-label="Secciones">
+    <span class="sr-only" id="nav-nombre">Sections</span>
+    <nav class="nav" aria-labelledby="nav-nombre">
       <a href="#como">How it works</a>
       <a href="#funciones">Features</a>
       <a href="#tecnico">Technical details</a>
@@ -940,8 +945,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     <a class="lang-link" href="../index.html" hreflang="es" lang="es">Español</a>
     <a class="btn btn-primary top-cta" href="https://forms.gle/tQ1iFgbb9cCuQJkF8" target="_blank" rel="noopener">Waitlist</a>
     <details class="menu">
-      <summary aria-label="Secciones"><span class="menu-ico" aria-hidden="true"></span></summary>
-      <nav class="menu-panel" aria-label="Secciones">
+      <summary><span class="menu-ico" aria-hidden="true"></span><span class="sr-only">Sections</span></summary>
+      <nav class="menu-panel" aria-labelledby="nav-nombre">
         <a href="#como">How it works</a>
         <a href="#funciones">Features</a>
         <a href="#tecnico">Technical details</a>
@@ -960,14 +965,14 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   <section class="hero" id="inicio">
     <div class="frame hero-grid">
       <div class="hero-copy">
-        <a class="kicker" href="#novedades">Claude Code orchestrator for Windows</a>
-        <h1>Leave <span class="nw">Claude Code</span> working. <span class="h1-end">You make the calls.</span></h1>
+        <h1><span class="h1-kicker">Claude Code orchestrator for Windows</span>Leave <span class="nw">Claude Code</span> working. <span class="h1-end">You make the calls.</span></h1>
         <p class="lede">A Windows program that drives Claude Code for you: it runs several tasks at once, picks up after interruptions, and only calls you in to decide.</p>
         <div class="ctas">
           <a class="btn btn-primary btn-lg" href="https://forms.gle/tQ1iFgbb9cCuQJkF8" target="_blank" rel="noopener">Notify me at launch</a>
 
           <a class="btn btn-lg" href="#como">See how it works</a>
         </div>
+        <p class="cta-nota">Just your email and language · unsubscribe any time · <a href="privacy.html">Privacy</a></p>
         <ul class="proof">
           <li>Already running real Claude Code tasks on Windows</li>
           <li>4 of 6 phases done</li>
@@ -1018,8 +1023,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   <div class="strip">
     <dl class="frame strip-grid">
       <div><dt>Who it's for</dt><dd>Anyone running Claude Code on Windows, or about to</dd></div>
-      <div><dt>Your account</dt><dd>Your Claude Code and your Pro or Max plan, no middleman server</dd></div>
-      <div><dt>Spend</dt><dd>Plan only, or plan plus capped extra usage</dd></div>
+      <div><dt>Your account</dt><dd>Your Claude Code and your Claude plan (Pro, Max, Team or Enterprise), no middleman server</dd></div>
+      <div><dt>Spend</dt><dd>Plan only; capped extra usage arrives before launch</dd></div>
       <div><dt>Status</dt><dd>In development, no date or price yet</dd></div>
     </dl>
   </div>
@@ -1038,7 +1043,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
       <p class="answer">IronDeck takes care of that part.</p>
       <div class="diffs">
         <div class="diff"><span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5" /><path d="M8 21h8M12 17v4" /></svg></span><h3>Built for Windows</h3><p>Runs natively, no WSL. Alerts arrive as system notifications.</p></div>
-        <div class="diff diff-key"><span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0" /><path d="M12 16l4.5-5" /><circle cx="12" cy="16" r="1.2" /></svg></span><h3>Built around your plan</h3><p>It knows how much plan you have left, and at the limit it does what you chose: wait for the reset, or keep going on extra usage up to your cap.</p></div>
+        <div class="diff diff-key"><span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0" /><path d="M12 16l4.5-5" /><circle cx="12" cy="16" r="1.2" /></svg></span><h3>Built around your plan</h3><p>It knows how much plan you have left, and at the limit it does what you chose: wait for the reset or, once it lands before launch, keep going on extra usage up to your cap.</p></div>
         <div class="diff"><span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><circle cx="5" cy="6" r="2" /><circle cx="5" cy="18" r="2" /><circle cx="19" cy="12" r="2" /><path d="M7 6h4a3 3 0 0 1 3 3v0a3 3 0 0 0 3 3M7 18h4a3 3 0 0 0 3-3v0a3 3 0 0 1 3-3" /></svg></span><h3>Works in flows</h3><p>Each step with its own model and effort, decisions that wait for you, and a record of what happened.</p></div>
         <div class="diff"><span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z" /><path d="M3 13l9 5 9-5" /><path d="M3 17.5l9 5 9-5" /></svg></span><h3>A skill workshop included</h3><p>Versions, A/B comparisons and export for your skills, in the same app that runs them.</p></div>
       </div>
@@ -1069,7 +1074,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     <div class="frame">
       <div class="section-head">
         <p class="label">Features</p>
-        <h2>Three jobs in one app</h2>
+        <h2 id="funciones-titulo">Three jobs in one app</h2>
         <p>All of this is already in the code, with automated tests, and is being tested on a real PC. Where something is still missing, I say so right there.</p>
       </div>
       <div class="pillars">
@@ -1088,7 +1093,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
             <div class="feat"><h4>Limits in view</h4><p>Your 5-hour and weekly limits, with the same numbers you see on claude.ai.</p></div>
             <div class="feat"><h4>Pause and resume</h4><p>At the limit it pauses without burning retries, and resumes on its own after the reset.</p></div>
             <div class="feat"><h4>Weekly cap</h4><p>You decide how much of your week IronDeck may use. When it gets there, it asks before going on.</p></div>
-            <div class="feat"><h4>You choose how it's paid</h4><p>Plan only, or your plan plus your account's extra usage, up to the cap you set. In plan-only mode, it stops the task as soon as Claude Code reports a separate charge.</p></div>
+            <div class="feat"><h4>You choose how it's paid</h4><p>Plan only or, once it lands before launch, your plan plus your account's extra usage up to the cap you set. In plan-only mode, it stops the task as soon as Claude Code reports a separate charge.</p></div>
           </div>
         </div>
         <div class="pillar">
@@ -1236,7 +1241,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
           <p class="label">The maker</p>
           <h2>Who's behind it</h2>
         </div>
-        <p>I'm DwladimirL, an independent maker. The code is private for now, but every step forward, and every failure, goes in the log and on the channel.</p>
+        <p>I'm DwladimirL, an independent maker. The code is private for now, but every step forward, and every failure, goes in the log.</p>
         <p>I build it for my own projects, and every phase is tested on my Windows PC before it counts as done.</p>
       </div>
       <div class="about-links">
@@ -1258,6 +1263,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
         <details><summary><h3>Do I need to know how to code?</h3></summary><p>Not to use it: you describe the work and approve the result. It does help when reviewing what it delivers, just as with Claude Code on its own.</p></details>
         <details><summary><h3>Can it break something on my PC?</h3></summary><p>Each task works in a copy of your project and can only use the tools its step allows. Its changes reach your project when you approve them, but commands you allow, such as publishing or installing packages, act outside that copy. It's a version in development: use it with Git and backups.</p></details>
         <details><summary><h3>Which account does it use?</h3></summary><p>Yours. IronDeck runs your own Claude Code installation on your PC. It doesn't ask you to sign in, doesn't store your password, and doesn't route your session through any server. What it uses comes out of your plan and, only if you turn it on, your account's extra usage.</p></details>
+        <details><summary><h3>Does using IronDeck go against Anthropic's terms?</h3></summary><p>IronDeck doesn't change how you use Claude Code: it runs your own official installation, with your account, on your PC. It doesn't share accounts, doesn't resell access, and respects your plan's limits: when it hits one, it pauses. Your Claude plan's terms still apply as always; check them if you have questions about your case.</p></details>
         <details><summary><h3>Can it spend beyond my plan?</h3></summary><p>Only if extra usage is turned on in your Anthropic account; without it, it can't. If it is on, IronDeck stops a task by default as soon as Claude Code reports extra usage, and what was used up to that point is billed. If you'd rather it not stop, you'll be able to turn on your account's extra usage with a spending cap; that mode arrives before launch. You also decide how much of your week IronDeck uses.</p></details>
         <details><summary><h3>What leaves my PC?</h3></summary><p>IronDeck has no server on the internet: its server runs only on your PC. What leaves is what Claude Code sends to Anthropic while working, checks to GitHub for updates, whatever your tasks do with the permissions you grant them, and the backup of your library to your own GitHub account. None of it goes through me.</p></details>
         <details><summary><h3>Is IronDeck made by Anthropic?</h3></summary><p>No. It's an independent project that works with Claude Code. Anthropic doesn't sponsor or endorse it.</p></details>
@@ -1385,6 +1391,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     const lista = document.createElement('div');
     lista.className = 'tabs';
     lista.setAttribute('role', 'tablist');
+    lista.setAttribute('aria-labelledby', 'funciones-titulo');
     const botones = paneles.map((panel, i) => {
       const b = document.createElement('button');
       b.type = 'button';

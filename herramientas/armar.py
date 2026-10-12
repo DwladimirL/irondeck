@@ -354,12 +354,14 @@ def pagina_completa(idioma, sitio, novedades, css, otro_enlace=None):
 <meta property="og:image" content="{imagen}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{e(seo["titulo"])}">
 <meta property="og:locale" content="{LOCALE_OG[idioma]}">
 <meta property="og:locale:alternate" content="{LOCALE_OG[otro_idioma]}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{e(seo["titulo"])}">
 <meta name="twitter:description" content="{e(seo["descripcion"])}">
 <meta name="twitter:image" content="{imagen}">
+<meta name="twitter:image:alt" content="{e(seo["titulo"])}">
 <meta name="theme-color" content="#151b23">{verificacion}
 <link rel="icon" href="{prefijo}favicon.ico" sizes="32x32">
 <link rel="icon" href="{prefijo}marca/irondeck-icono-simple.svg" type="image/svg+xml">
@@ -535,18 +537,21 @@ def fragmento(sitio, novedades, css):
             f"<style>\n{css}\n</style>\n{CAMBIO_IDIOMA}\n{cuerpo(None, sitio, novedades, '#idioma')}\n")
 
 
-def sitemap(sitio):
+def sitemap(sitio, novedades):
     base = sitio["base"]
-    hoy = datetime.date.today().isoformat()
-    grupos = [(base, base + "en/")]
+    # lastmod real: la portada cambia con cada novedad; las páginas legales, con su vigencia
+    fechas = [str(n["fecha"]) for n in novedades if re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(n["fecha"]))]
+    portada = max(fechas) if fechas else datetime.date.today().isoformat()
+    grupos = [(base, base + "en/", portada)]
     if sitio["_legal"]["listo"]:
-        grupos += [(base + LEGALES[c]["es"][0], base + "en/" + LEGALES[c]["en"][0]) for c in LEGALES]
+        grupos += [(base + LEGALES[c]["es"][0], base + "en/" + LEGALES[c]["en"][0], sitio["_legal"]["vigencia"])
+                   for c in LEGALES]
     urls = ""
-    for es, en in grupos:
+    for es, en, fecha in grupos:
         alternos = (f'    <xhtml:link rel="alternate" hreflang="es" href="{es}"/>\n'
                     f'    <xhtml:link rel="alternate" hreflang="en" href="{en}"/>\n'
                     f'    <xhtml:link rel="alternate" hreflang="x-default" href="{en}"/>\n')
-        urls += "".join(f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{hoy}</lastmod>\n{alternos}  </url>\n"
+        urls += "".join(f"  <url>\n    <loc>{u}</loc>\n    <lastmod>{fecha}</lastmod>\n{alternos}  </url>\n"
                         for u in (es, en))
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
@@ -581,7 +586,7 @@ def main():
                 escribir(ruta, pagina_legal(clave, idioma, sitio, css))
             elif ruta.exists():
                 ruta.unlink()  # una página legal publicada antes no puede quedar con datos viejos
-    escribir(RAIZ / "sitemap.xml", sitemap(sitio))
+    escribir(RAIZ / "sitemap.xml", sitemap(sitio, novedades))
     if legal["listo"]:
         print("Listo: index.html, en/index.html, las 6 páginas legales y sitemap.xml")
     else:

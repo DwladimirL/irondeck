@@ -4,7 +4,8 @@
 <header class="top">
   <div class="frame top-inner">
     <a class="mark" href="#inicio" aria-label="IronDeck"><img class="mark-icono" src="{{raiz}}marca/irondeck-icono-simple.svg" alt="" width="28" height="28">IRONDECK</a>
-    <nav class="nav" aria-label="Secciones">
+    <span class="sr-only" id="nav-nombre"><span class="es">Secciones</span><span class="en">Sections</span></span>
+    <nav class="nav" aria-labelledby="nav-nombre">
       <a href="#como"><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
       <a href="#funciones"><span class="es">Funciones</span><span class="en">Features</span></a>
       <a href="#tecnico"><span class="es">Detalles técnicos</span><span class="en">Technical details</span></a>
@@ -15,8 +16,8 @@
     <a class="lang-link en" href="{{otro}}" hreflang="es" lang="es">Español</a>
     <a class="btn btn-primary top-cta" data-si="listaEspera" href="{{url:listaEspera}}" target="_blank" rel="noopener"><span class="es">Lista de espera</span><span class="en">Waitlist</span></a>
     <details class="menu">
-      <summary aria-label="Secciones"><span class="menu-ico" aria-hidden="true"></span></summary>
-      <nav class="menu-panel" aria-label="Secciones">
+      <summary><span class="menu-ico" aria-hidden="true"></span><span class="sr-only"><span class="es">Secciones</span><span class="en">Sections</span></span></summary>
+      <nav class="menu-panel" aria-labelledby="nav-nombre">
         <a href="#como"><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
         <a href="#funciones"><span class="es">Funciones</span><span class="en">Features</span></a>
         <a href="#tecnico"><span class="es">Detalles técnicos</span><span class="en">Technical details</span></a>
@@ -36,14 +37,14 @@
   <section class="hero" id="inicio">
     <div class="frame hero-grid">
       <div class="hero-copy">
-        <a class="kicker" href="#novedades"><span class="es">Orquestador de Claude Code para Windows</span><span class="en">Claude Code orchestrator for Windows</span></a>
-        <h1><span class="es">Deja a <span class="nw">Claude Code</span> trabajando. <span class="h1-end">Tú solo decides.</span></span><span class="en">Leave <span class="nw">Claude Code</span> working. <span class="h1-end">You make the calls.</span></span></h1>
+        <h1><span class="h1-kicker"><span class="es">Orquestador de Claude Code para Windows</span><span class="en">Claude Code orchestrator for Windows</span></span><span class="es">Deja a <span class="nw">Claude Code</span> trabajando. <span class="h1-end">Tú solo decides.</span></span><span class="en">Leave <span class="nw">Claude Code</span> working. <span class="h1-end">You make the calls.</span></span></h1>
         <p class="lede"><span class="es">Un programa para Windows que dirige a Claude Code por ti: corre varias tareas a la vez, retoma cuando algo se corta y solo te llama para decidir.</span><span class="en">A Windows program that drives Claude Code for you: it runs several tasks at once, picks up after interruptions, and only calls you in to decide.</span></p>
         <div class="ctas">
           <a class="btn btn-primary btn-lg" data-si="listaEspera" href="{{url:listaEspera}}" target="_blank" rel="noopener"><span class="es">Avísame cuando salga</span><span class="en">Notify me at launch</span></a>
           <a class="btn btn-primary btn-lg" data-no="listaEspera" href="{{url:github}}" target="_blank" rel="noopener"><span class="es">Seguir el avance en GitHub</span><span class="en">Follow progress on GitHub</span></a>
           <a class="btn btn-lg" href="#como"><span class="es">Ver cómo funciona</span><span class="en">See how it works</span></a>
         </div>
+        <p class="cta-nota" data-si="listaEspera"><span class="es">Te pido el correo y el idioma · te das de baja cuando quieras · <a href="privacidad.html">Privacidad</a></span><span class="en">Just your email and language · unsubscribe any time · <a href="privacy.html">Privacy</a></span></p>
         <ul class="proof">
           <li><span class="es">Ya corre tareas reales de Claude Code en Windows</span><span class="en">Already running real Claude Code tasks on Windows</span></li>
           <li><span class="es">4 de 6 fases listas</span><span class="en">4 of 6 phases done</span></li>
@@ -94,8 +95,8 @@
   <div class="strip">
     <dl class="frame strip-grid">
       <div><dt><span class="es">Para quién</span><span class="en">Who it's for</span></dt><dd><span class="es">Quien usa Claude Code en Windows, o quiere empezar</span><span class="en">Anyone running Claude Code on Windows, or about to</span></dd></div>
-      <div><dt><span class="es">Tu cuenta</span><span class="en">Your account</span></dt><dd><span class="es">Tu Claude Code y tu plan Pro o Max, sin servidor intermedio</span><span class="en">Your Claude Code and your Pro or Max plan, no middleman server</span></dd></div>
-      <div><dt><span class="es">Gasto</span><span class="en">Spend</span></dt><dd><span class="es">Solo tu plan, o tu plan más uso extra con tope</span><span class="en">Plan only, or plan plus capped extra usage</span></dd></div>
+      <div><dt><span class="es">Tu cuenta</span><span class="en">Your account</span></dt><dd><span class="es">Tu Claude Code y tu plan de Claude (Pro, Max, Team o Enterprise), sin servidor intermedio</span><span class="en">Your Claude Code and your Claude plan (Pro, Max, Team or Enterprise), no middleman server</span></dd></div>
+      <div><dt><span class="es">Gasto</span><span class="en">Spend</span></dt><dd><span class="es">Solo tu plan; con uso extra y tope, antes del lanzamiento</span><span class="en">Plan only; capped extra usage arrives before launch</span></dd></div>
       <div><dt><span class="es">Estado</span><span class="en">Status</span></dt><dd><span class="es">En desarrollo, todavía sin fecha ni precio</span><span class="en">In development, no date or price yet</span></dd></div>
     </dl>
   </div>
@@ -114,7 +115,7 @@
       <p class="answer"><span class="es">IronDeck se encarga de esa parte.</span><span class="en">IronDeck takes care of that part.</span></p>
       <div class="diffs">
         <div class="diff"><span class="diff-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg></span><h3><span class="es">Hecho para Windows</span><span class="en">Built for Windows</span></h3><p><span class="es">Corre nativo, sin WSL. Los avisos llegan como notificaciones del sistema.</span><span class="en">Runs natively, no WSL. Alerts arrive as system notifications.</span></p></div>
-        <div class="diff diff-key"><span class="diff-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l4.5-5"/><circle cx="12" cy="16" r="1.2"/></svg></span><h3><span class="es">Pensado alrededor de tu plan</span><span class="en">Built around your plan</span></h3><p><span class="es">Sabe cuánto plan te queda y, al llegar al límite, hace lo que elegiste: esperar al reinicio o seguir con uso extra hasta tu tope.</span><span class="en">It knows how much plan you have left, and at the limit it does what you chose: wait for the reset, or keep going on extra usage up to your cap.</span></p></div>
+        <div class="diff diff-key"><span class="diff-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l4.5-5"/><circle cx="12" cy="16" r="1.2"/></svg></span><h3><span class="es">Pensado alrededor de tu plan</span><span class="en">Built around your plan</span></h3><p><span class="es">Sabe cuánto plan te queda y, al llegar al límite, hace lo que elegiste: esperar al reinicio o, cuando llegue antes del lanzamiento, seguir con uso extra hasta tu tope.</span><span class="en">It knows how much plan you have left, and at the limit it does what you chose: wait for the reset or, once it lands before launch, keep going on extra usage up to your cap.</span></p></div>
         <div class="diff"><span class="diff-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h4a3 3 0 0 1 3 3v0a3 3 0 0 0 3 3M7 18h4a3 3 0 0 0 3-3v0a3 3 0 0 1 3-3"/></svg></span><h3><span class="es">Trabaja en flujos</span><span class="en">Works in flows</span></h3><p><span class="es">Cada paso con su modelo y su esfuerzo, decisiones que te esperan y un registro de lo que pasó.</span><span class="en">Each step with its own model and effort, decisions that wait for you, and a record of what happened.</span></p></div>
         <div class="diff"><span class="diff-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 5 9-5"/></svg></span><h3><span class="es">Un taller de skills incluido</span><span class="en">A skill workshop included</span></h3><p><span class="es">Versiones, comparaciones A/B y exportación de tus skills, en el mismo programa que las usa.</span><span class="en">Versions, A/B comparisons and export for your skills, in the same app that runs them.</span></p></div>
       </div>
@@ -145,7 +146,7 @@
     <div class="frame">
       <div class="section-head">
         <p class="label"><span class="es">Funciones</span><span class="en">Features</span></p>
-        <h2><span class="es">Tres trabajos en un solo programa</span><span class="en">Three jobs in one app</span></h2>
+        <h2 id="funciones-titulo"><span class="es">Tres trabajos en un solo programa</span><span class="en">Three jobs in one app</span></h2>
         <p><span class="es">Todo esto ya está en el código, con pruebas automáticas, y se está probando en una PC real. Donde algo todavía falta, lo digo en la misma línea.</span><span class="en">All of this is already in the code, with automated tests, and is being tested on a real PC. Where something is still missing, I say so right there.</span></p>
       </div>
       <div class="pillars">
@@ -164,7 +165,7 @@
             <div class="feat"><h4><span class="es">Límites a la vista</span><span class="en">Limits in view</span></h4><p><span class="es">Tu límite de 5 horas y el de la semana, con las mismas cifras que ves en claude.ai.</span><span class="en">Your 5-hour and weekly limits, with the same numbers you see on claude.ai.</span></p></div>
             <div class="feat"><h4><span class="es">Pausa y sigue</span><span class="en">Pause and resume</span></h4><p><span class="es">Al llegar al límite pausa sin gastar reintentos, y retoma sola después del reinicio.</span><span class="en">At the limit it pauses without burning retries, and resumes on its own after the reset.</span></p></div>
             <div class="feat"><h4><span class="es">Tope semanal</span><span class="en">Weekly cap</span></h4><p><span class="es">Decides cuánto de tu semana puede usar IronDeck. Al llegar, pregunta antes de seguir.</span><span class="en">You decide how much of your week IronDeck may use. When it gets there, it asks before going on.</span></p></div>
-            <div class="feat"><h4><span class="es">Tú eliges cómo se paga</span><span class="en">You choose how it's paid</span></h4><p><span class="es">Solo con tu plan, o también con el uso extra de tu cuenta, hasta el tope que fijes. En «solo plan», corta la tarea en cuanto Claude Code informa un cobro aparte.</span><span class="en">Plan only, or your plan plus your account's extra usage, up to the cap you set. In plan-only mode, it stops the task as soon as Claude Code reports a separate charge.</span></p></div>
+            <div class="feat"><h4><span class="es">Tú eliges cómo se paga</span><span class="en">You choose how it's paid</span></h4><p><span class="es">Solo con tu plan o, cuando llegue antes del lanzamiento, también con el uso extra de tu cuenta hasta el tope que fijes. En «solo plan», corta la tarea en cuanto Claude Code informa un cobro aparte.</span><span class="en">Plan only or, once it lands before launch, your plan plus your account's extra usage up to the cap you set. In plan-only mode, it stops the task as soon as Claude Code reports a separate charge.</span></p></div>
           </div>
         </div>
         <div class="pillar">
@@ -307,7 +308,7 @@
           <p class="label"><span class="es">Autor</span><span class="en">The maker</span></p>
           <h2><span class="es">Quién está detrás</span><span class="en">Who's behind it</span></h2>
         </div>
-        <p><span class="es">Soy DwladimirL, un creador independiente. El código es privado por ahora, pero cada avance, y cada fallo, sale en la bitácora y en el canal.</span><span class="en">I'm DwladimirL, an independent maker. The code is private for now, but every step forward, and every failure, goes in the log and on the channel.</span></p>
+        <p><span class="es">Soy DwladimirL, un creador independiente. El código es privado por ahora, pero cada avance, y cada fallo, sale en la bitácora<span data-si="canal"> y en el canal</span>.</span><span class="en">I'm DwladimirL, an independent maker. The code is private for now, but every step forward, and every failure, goes in the log<span data-si="canal"> and on the channel</span>.</span></p>
         <p><span class="es">Lo construyo para mis propios proyectos, y cada fase se prueba en mi PC con Windows antes de darla por terminada.</span><span class="en">I build it for my own projects, and every phase is tested on my Windows PC before it counts as done.</span></p>
       </div>
       <div class="about-links">
@@ -330,6 +331,7 @@
         <details><summary><h3><span class="es">¿Necesito saber programar?</span><span class="en">Do I need to know how to code?</span></h3></summary><p><span class="es">No para usarlo: describes el trabajo y apruebas el resultado. Sí ayuda para revisar lo que entrega, igual que con Claude Code solo.</span><span class="en">Not to use it: you describe the work and approve the result. It does help when reviewing what it delivers, just as with Claude Code on its own.</span></p></details>
         <details><summary><h3><span class="es">¿Puede romper algo en mi PC?</span><span class="en">Can it break something on my PC?</span></h3></summary><p><span class="es">Cada tarea trabaja en una copia de tu proyecto y solo puede usar las herramientas que permite su paso. Sus cambios entran a tu proyecto cuando los apruebas, pero los comandos que permitas, como publicar o instalar paquetes, actúan fuera de esa copia. Es una versión en desarrollo: úsala con Git y copias de seguridad.</span><span class="en">Each task works in a copy of your project and can only use the tools its step allows. Its changes reach your project when you approve them, but commands you allow, such as publishing or installing packages, act outside that copy. It's a version in development: use it with Git and backups.</span></p></details>
         <details><summary><h3><span class="es">¿Qué cuenta usa?</span><span class="en">Which account does it use?</span></h3></summary><p><span class="es">La tuya. IronDeck lanza tu propia instalación de Claude Code en tu PC. No te pide iniciar sesión, no guarda tu contraseña y no pasa tu sesión por ningún servidor. Lo que gasta sale de tu plan y, solo si lo activas, del uso extra de tu cuenta.</span><span class="en">Yours. IronDeck runs your own Claude Code installation on your PC. It doesn't ask you to sign in, doesn't store your password, and doesn't route your session through any server. What it uses comes out of your plan and, only if you turn it on, your account's extra usage.</span></p></details>
+        <details><summary><h3><span class="es">¿Usar IronDeck va contra los términos de Anthropic?</span><span class="en">Does using IronDeck go against Anthropic's terms?</span></h3></summary><p><span class="es">IronDeck no cambia cómo usas Claude Code: lanza tu propia instalación oficial, con tu cuenta y en tu PC. No comparte cuentas, no revende acceso y respeta los límites de tu plan: al llegar a uno, pausa. Los términos de tu plan de Claude siguen aplicando igual que siempre; revísalos si tienes dudas sobre tu caso.</span><span class="en">IronDeck doesn't change how you use Claude Code: it runs your own official installation, with your account, on your PC. It doesn't share accounts, doesn't resell access, and respects your plan's limits: when it hits one, it pauses. Your Claude plan's terms still apply as always; check them if you have questions about your case.</span></p></details>
         <details><summary><h3><span class="es">¿Puede gastar más allá de mi plan?</span><span class="en">Can it spend beyond my plan?</span></h3></summary><p><span class="es">Solo si tienes activado el uso extra en tu cuenta de Anthropic; sin él, no puede. Si lo tienes activado, por defecto IronDeck detiene la tarea en cuanto Claude Code informa uso extra, y lo consumido hasta ese aviso se cobra. Si prefieres que no se detenga, podrás activar el uso extra de tu cuenta con un tope en dinero; ese modo llega antes del lanzamiento. Además decides cuánto de tu semana usa IronDeck.</span><span class="en">Only if extra usage is turned on in your Anthropic account; without it, it can't. If it is on, IronDeck stops a task by default as soon as Claude Code reports extra usage, and what was used up to that point is billed. If you'd rather it not stop, you'll be able to turn on your account's extra usage with a spending cap; that mode arrives before launch. You also decide how much of your week IronDeck uses.</span></p></details>
         <details><summary><h3><span class="es">¿Qué sale de mi PC?</span><span class="en">What leaves my PC?</span></h3></summary><p><span class="es">IronDeck no tiene un servidor en internet: su servidor corre solo en tu PC. Sale lo que Claude Code envía a Anthropic al trabajar, las consultas a GitHub para buscar actualizaciones, lo que hagan tus tareas con los permisos que les des y el respaldo de tu biblioteca en tu propia cuenta de GitHub. Nada de eso pasa por mí.</span><span class="en">IronDeck has no server on the internet: its server runs only on your PC. What leaves is what Claude Code sends to Anthropic while working, checks to GitHub for updates, whatever your tasks do with the permissions you grant them, and the backup of your library to your own GitHub account. None of it goes through me.</span></p></details>
         <details><summary><h3><span class="es">¿IronDeck es de Anthropic?</span><span class="en">Is IronDeck made by Anthropic?</span></h3></summary><p><span class="es">No. Es un proyecto independiente que trabaja con Claude Code. Anthropic no lo patrocina ni lo respalda.</span><span class="en">No. It's an independent project that works with Claude Code. Anthropic doesn't sponsor or endorse it.</span></p></details>
@@ -457,6 +459,7 @@
     const lista = document.createElement('div');
     lista.className = 'tabs';
     lista.setAttribute('role', 'tablist');
+    lista.setAttribute('aria-labelledby', 'funciones-titulo');
     const botones = paneles.map((panel, i) => {
       const b = document.createElement('button');
       b.type = 'button';
