@@ -221,9 +221,17 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
 }
 @media (max-width: 600px) {
+  .hero { padding-block: 24px 40px; }
+  .hero-grid { gap: 32px; }
+  .hero h1 { font-size: 2.375rem; line-height: 1; margin-block: 14px 16px; }
+  .lede { font-size: 1.0625rem; line-height: 1.5; max-width: none; }
+  .ctas { gap: 10px; margin-block-start: 24px; }
   .ctas .btn { flex: 1 1 100%; justify-content: center; }
-  .proof { gap: 8px; }
+  .ctas .btn-lg { padding: 13px 18px; font-size: 1rem; }
+  .ctas .btn-lg:not(.btn-primary) { border-color: var(--line); font-weight: 500; }
+  .proof { gap: 6px; margin-block-start: 18px; font-size: 0.75rem; }
   .proof li { width: 100%; }
+  .proof li:nth-child(3) { display: none; }
 }
 
 /* Deck panel (sample) */
