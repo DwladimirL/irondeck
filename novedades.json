@@ -1,0 +1,81 @@
+{
+  "novedades": [
+    {
+      "fecha": "2026-10-11",
+      "titulo": {
+        "es": "IronDeck tiene nombre y página",
+        "en": "IronDeck has a name and a home"
+      },
+      "texto": {
+        "es": "El proyecto que mostré en el video como «Herrería de Claude» ahora se llama IronDeck. Desde aquí puedes seguir el avance, leer las guías y apuntarte a la lista de espera.",
+        "en": "The project I showed in the video as “Herrería de Claude” is now called IronDeck. From here you can follow the progress, read the guides and join the waitlist."
+      }
+    },
+    {
+      "fecha": "2026-10-11",
+      "titulo": {
+        "es": "Empieza la fase 04: primero, ver cada proyecto",
+        "en": "Phase 04 begins: first, seeing each project"
+      },
+      "texto": {
+        "es": "Antes de dejar que IronDeck trabaje solo en un proyecto, vas a poder ver en él cómo va cada uno: sus fases, sus tareas y lo que espera por ti. Es lo primero que construyo de la fase 04.",
+        "en": "Before IronDeck works on a project on its own, you'll be able to see how each one is going: its phases, its tasks and what's waiting on you. It's the first thing I'm building in phase 04."
+      }
+    },
+    {
+      "fecha": "2026-10-10",
+      "titulo": {
+        "es": "Una prueba sobre un proyecto real",
+        "en": "A test on a real project"
+      },
+      "texto": {
+        "es": "IronDeck lanzó ocho tareas de Claude Code sobre una copia de un juego que estoy haciendo. Una escribió código con todas sus pruebas en verde, y la acepté. Otra, que tenía que repartir el trabajo, se detuvo a preguntarme en vez de inventar lo que faltaba.",
+        "en": "IronDeck ran eight Claude Code tasks on a copy of a game I'm making. One wrote code with all its tests passing, and I accepted it. Another, which had to split up the work, stopped to ask me instead of making up what was missing."
+      }
+    },
+    {
+      "fecha": "2026-10-09",
+      "titulo": {
+        "es": "Las actualizaciones ya salen bien, y la biblioteca se respalda sola",
+        "en": "Updates now go through, and the library backs itself up"
+      },
+      "texto": {
+        "es": "La segunda prueba del arreglo también falló, por otra causa, y también volvió atrás sola. Con los dos arreglos, las cuatro actualizaciones siguientes salieron bien. Y ahora cada cambio en tu biblioteca de skills se sube solo a tu GitHub, sin forzar nunca.",
+        "en": "The second test of the fix also failed, for a different reason, and also rolled back on its own. With both fixes in, the next four updates went through. And now every change to your skill library is pushed to your GitHub automatically, never forced."
+      }
+    },
+    {
+      "fecha": "2026-10",
+      "titulo": {
+        "es": "Una actualización falló, y IronDeck se recuperó solo",
+        "en": "An update failed, and IronDeck recovered on its own"
+      },
+      "texto": {
+        "es": "Al actualizar en una PC real, la versión nueva no arrancó. IronDeck volvió por su cuenta a la versión anterior en 28 segundos, sin perder nada. El arreglo ya está integrado y espera su segunda prueba.",
+        "en": "When updating on a real PC, the new version didn't start. IronDeck went back to the previous version on its own in 28 seconds, without losing anything. The fix is merged and waiting for its second test."
+      }
+    },
+    {
+      "fecha": "2026-10-07",
+      "titulo": {
+        "es": "Primera instalación real",
+        "en": "First real install"
+      },
+      "texto": {
+        "es": "IronDeck quedó instalado en Windows con su acceso directo y una biblioteca de skills reales. Una tarea real esperó una decisión en la bandeja y siguió sola al responder, y el uso de la semana coincidió con el de claude.ai.",
+        "en": "IronDeck is installed on Windows with its shortcut and a library of real skills. A real task waited for a decision in the inbox and carried on by itself once answered, and the weekly usage matched claude.ai."
+      }
+    },
+    {
+      "fecha": "2026-10",
+      "titulo": {
+        "es": "Primeras tareas con el Claude Code de verdad",
+        "en": "First tasks with the real Claude Code"
+      },
+      "texto": {
+        "es": "Hasta aquí todo se probaba con un Claude Code simulado. Esta vez IronDeck lanzó el de verdad: afinó una skill y corrió una evaluación completa, sin un solo corte.",
+        "en": "Until now everything was tested against a simulated Claude Code. This time IronDeck ran the real one: it tuned a skill and ran a full evaluation without a single interruption."
+      }
+    }
+  ]
+}

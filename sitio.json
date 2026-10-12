@@ -1,0 +1,33 @@
+{
+  "base": "https://dwladimirl.github.io/irondeck/",
+  "enlaces": {
+    "listaEspera": "https://forms.gle/tQ1iFgbb9cCuQJkF8",
+    "kofi": "",
+    "sponsors": "",
+    "video": "",
+    "canal": "",
+    "github": "https://github.com/DwladimirL/irondeck",
+    "autor": "https://github.com/DwladimirL"
+  },
+  "googleVerificacion": "",
+  "analiticaCloudflare": "",
+  "legal": {
+    "titular": "Wladimir Diaz",
+    "correo": "irondeck.app@gmail.com",
+    "vigencia": "2026-10-11"
+  },
+  "seo": {
+    "es": {
+      "titulo": "Orquestador de Claude Code para Windows | IronDeck",
+      "descripcion": "Corre varias tareas de Claude Code a la vez con tu propia cuenta y controla los límites de tu plan y el gasto extra. App para Windows, en desarrollo.",
+      "imagen": "og-es.png",
+      "avance": "4 de 6 fases terminadas y la quinta en curso"
+    },
+    "en": {
+      "titulo": "Claude Code orchestrator for Windows | IronDeck",
+      "descripcion": "Run several Claude Code tasks at once with your own account, and keep your plan limits and extra spend under control. A Windows desktop app in development.",
+      "imagen": "og-en.png",
+      "avance": "4 of 6 phases done and the fifth in progress"
+    }
+  }
+}

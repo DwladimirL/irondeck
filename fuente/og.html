@@ -1,0 +1,40 @@
+<!doctype html>
+<!-- Plantilla de las imágenes para redes (og-es.png y og-en.png, 1200×630).
+     Se capturan con un navegador a 1200×630; ver «Sobre este repositorio» en README.es.md. -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face{font-family:"BSD";font-weight:800;src:url("../fuentes/big-shoulders-display-latin-800-normal.woff2") format("woff2")}
+@font-face{font-family:"BSS";font-weight:800;src:url("../fuentes/big-shoulders-stencil-display-latin-800-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter Tight";font-weight:500;src:url("../fuentes/inter-tight-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Plex";font-weight:500;src:url("../fuentes/ibm-plex-mono-latin-500-normal.woff2") format("woff2")}
+html,body{margin:0}
+body{width:1200px;height:630px;background:#151b23;color:#dce3eb;font-family:"Inter Tight",Arial,sans-serif;position:relative;overflow:hidden}
+.edge{position:absolute;inset:0 0 auto 0;height:10px;background:linear-gradient(90deg,#ead18a,#cf9f3e 22%,#9e5e2e 42%,#6e4b9e 62%,#2e5eae 82%,#7ea8de)}
+.wrap{position:absolute;inset:70px 80px 64px 80px;display:flex;flex-direction:column}
+.mark{font-family:"BSS";font-weight:800;font-size:44px;letter-spacing:.05em}
+.eyebrow{margin-top:44px;font-family:"Plex";font-size:22px;letter-spacing:.08em;text-transform:uppercase;color:#e4c06a}
+h1{margin:18px 0 0;font-family:"BSD";font-weight:800;font-size:100px;line-height:.92;max-width:720px}
+.icono{position:absolute;right:86px;top:150px;width:300px;height:300px}
+.foot{margin-top:auto;display:flex;gap:34px;font-family:"Plex";font-size:22px;color:#8e9aa9}
+.foot span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:12px;background:#e4c06a;border-radius:2px;vertical-align:middle}
+[data-l]{display:none}
+body[data-lang="es"] [data-l="es"],body[data-lang="en"] [data-l="en"]{display:revert}
+</style>
+</head>
+<body data-lang="es">
+<div class="edge"></div>
+<img class="icono" src="../marca/irondeck-icono.svg" alt="">
+<div class="wrap">
+  <div class="mark">IRONDECK</div>
+  <div class="eyebrow"><span data-l="es">Orquestador de Claude Code para Windows</span><span data-l="en">Claude Code orchestrator for Windows</span></div>
+  <h1><span data-l="es">Deja a Claude Code trabajando. Tú solo decides.</span><span data-l="en">Leave Claude Code working. You make the calls.</span></h1>
+  <div class="foot">
+    <span data-l="es">Tareas en paralelo</span><span data-l="en">Parallel tasks</span>
+    <span data-l="es">Control del gasto</span><span data-l="en">Spend control</span>
+    <span data-l="es">En desarrollo</span><span data-l="en">In development</span>
+  </div>
+</div>
+</body>
+</html>
