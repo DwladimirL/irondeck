@@ -170,16 +170,19 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   display: inline-flex;
   align-items: center;
   min-height: 38px;
-  font-family: var(--f-mono);
-  font-size: 0.8125rem;
-  color: var(--ink-2);
+  font-family: var(--f-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--ink);
   text-decoration: none;
+  background: var(--bg-raised);
   border: 1px solid var(--line);
-  border-radius: var(--r);
-  padding: 6px 10px;
+  border-block-end-color: color-mix(in srgb, var(--ink) 22%, var(--line));
+  border-radius: 4px;
+  padding: 0 14px;
 }
-.lang-link:hover { color: var(--ink); border-color: var(--ink-2); }
-.top .btn { min-height: 38px; padding: 8px 14px; font-size: 0.9375rem; }
+.lang-link:hover { background: color-mix(in srgb, var(--ink) 5%, var(--bg-raised)); }
+.top .btn { min-height: 38px; padding: 0 16px; font-size: 0.875rem; }
 @media (max-width: 960px) {
   .nav { display: none; }
   .lang-link { margin-inline-start: auto; }
@@ -187,28 +190,46 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 @media (max-width: 400px) {
   .top-inner { gap: 10px; }
   .mark { font-size: 1.35rem; }
-  .top .btn { padding: 8px 10px; font-size: 0.875rem; }
+  .top .btn { padding: 0 12px; font-size: 0.8125rem; }
 }
 
 /* Buttons */
+/* Buttons follow the standard Windows control shape: 4px corners, a quiet fill, a slightly darker bottom edge,
+   medium-weight label. Pressing one flattens it instead of bouncing. */
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding: 12px 18px;
-  border-radius: var(--r);
-  border: 1px solid var(--ink);
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  border-block-end-color: color-mix(in srgb, var(--ink) 22%, var(--line));
+  background: var(--bg-raised);
   color: var(--ink);
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
   line-height: 1.2;
+  letter-spacing: 0.002em;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 1px 1px color-mix(in srgb, var(--sombra) 6%, transparent);
 }
-.btn:hover { text-decoration: none; background: var(--bg-raised); }
-.btn-lg { padding: 14px 22px; font-size: 1.0625rem; }
-.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.btn-primary:hover { background: var(--accent); filter: brightness(1.08); }
+.btn:hover { text-decoration: none; background: color-mix(in srgb, var(--ink) 5%, var(--bg-raised)); }
+.btn:active { background: var(--bg); color: var(--ink-2); box-shadow: none; }
+.btn-lg { min-height: 46px; padding: 0 24px; font-size: 1rem; }
+.btn-primary {
+  background: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 82%, #000);
+  border-block-end-color: color-mix(in srgb, var(--accent) 60%, #000);
+  color: var(--accent-ink);
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 1px 2px color-mix(in srgb, var(--sombra) 14%, transparent);
+}
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 90%, #fff); }
+.btn-primary:active { background: color-mix(in srgb, var(--accent) 88%, #000); color: var(--accent-ink); }
 .soon {
   font-family: var(--f-mono);
   font-size: 0.75rem;
@@ -283,7 +304,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   .lede { font-size: 1.0625rem; line-height: 1.5; max-width: none; }
   .ctas { gap: 10px; margin-block-start: 24px; }
   .ctas .btn { flex: 1 1 100%; justify-content: center; }
-  .ctas .btn-lg { padding: 13px 18px; font-size: 1rem; }
+  .ctas .btn-lg { padding: 0 18px; font-size: 1rem; }
   .ctas .btn-lg:not(.btn-primary) { border-color: var(--line); font-weight: 500; }
   .proof { gap: 6px; margin-block-start: 18px; font-size: 0.75rem; }
   .proof li { width: 100%; }
@@ -511,13 +532,16 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .plegable > summary::-webkit-details-marker,
 .faq summary::-webkit-details-marker { display: none; }
 .plegable > summary {
-  padding: 14px 18px;
+  min-height: 50px;
+  padding: 0 18px;
   border: 1px solid var(--line);
-  border-radius: var(--r);
-  background: var(--surface);
-  font-weight: 600;
+  border-block-end-color: color-mix(in srgb, var(--ink) 18%, var(--line));
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ink) 3%, var(--surface));
+  font-weight: 500;
+  transition: background-color 0.2s var(--ease);
 }
-.plegable > summary:hover { border-color: var(--ink-2); }
+.plegable > summary:hover { background: color-mix(in srgb, var(--ink) 6%, var(--surface)); }
 .plegable > summary::after,
 .faq summary::after {
   content: "";
@@ -725,9 +749,9 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .final-icono { width: 96px; height: 96px; flex: none; }
 .final h2 { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.125rem, 2.6vw + 1.2rem, 3.125rem); line-height: 1; }
 .final p { color: var(--deck-muted); margin-block-start: 10px; max-width: 52ch; }
-.final .btn-primary { background: var(--deck-blue); border-color: var(--deck-blue); color: var(--deck-bg); }
-.final .btn-primary:hover { background: var(--deck-blue); }
-.final .btn:not(.btn-primary) { border-color: var(--deck-ink); color: var(--deck-ink); }
+.final .btn-primary { --accent: var(--deck-blue); background: var(--deck-blue); border-color: color-mix(in srgb, var(--deck-blue) 80%, #000); color: var(--deck-bg); }
+.final .btn-primary:hover { background: color-mix(in srgb, var(--deck-blue) 88%, #fff); }
+.final .btn:not(.btn-primary) { background: transparent; border-color: var(--deck-line); color: var(--deck-ink); }
 .final .btn:not(.btn-primary):hover { background: var(--deck-raised); }
 @media (max-width: 900px) {
   .final-inner { grid-template-columns: minmax(0, 1fr); padding-block: 52px; }
@@ -788,7 +812,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 
 /* Section menu for widths without the nav bar */
 .menu { display: none; position: relative; }
-.menu > summary { list-style: none; cursor: pointer; display: grid; place-items: center; width: 40px; height: 38px; border: 1px solid var(--line); border-radius: var(--r); }
+.menu > summary { list-style: none; cursor: pointer; display: grid; place-items: center; width: 40px; height: 38px; background: var(--bg-raised); border: 1px solid var(--line); border-block-end-color: color-mix(in srgb, var(--ink) 22%, var(--line)); border-radius: 4px; }
 .menu > summary::-webkit-details-marker { display: none; }
 .menu > summary:hover { border-color: var(--ink-2); }
 .menu-ico, .menu-ico::before, .menu-ico::after { display: block; width: 16px; height: 2px; border-radius: 1px; background: var(--ink); }
@@ -871,11 +895,11 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .tab[aria-selected="true"] .ico { transform: scale(1.18) rotate(-6deg); }
 .tab-indicador {
   position: absolute; z-index: 0; top: 5px; bottom: 5px; left: 0; width: 0;
-  border: 1px solid var(--line); border-radius: var(--r); background: var(--bg-raised);
+  border: 1px solid var(--line); border-radius: 6px; background: var(--bg-raised);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 18px -10px color-mix(in srgb, var(--sombra) 45%, transparent);
   transition: transform 0.5s cubic-bezier(0.34, 1.3, 0.64, 1), width 0.5s cubic-bezier(0.34, 1.3, 0.64, 1);
 }
-.tab-indicador::after { content: ""; position: absolute; left: 22%; right: 22%; bottom: -1px; height: 2px; border-radius: 2px; background: var(--temper); }
+.tab-indicador::after { content: ""; position: absolute; left: 14px; right: 14px; bottom: -1px; height: 3px; border-radius: 3px 3px 0 0; background: var(--straw); }
 /* the incoming area: its cards arrive from the side you moved toward, one after another */
 @media (prefers-reduced-motion: no-preference) {
   .pillar.entra .feat { animation: feat-entra 0.55s var(--ease) both; }
@@ -1022,13 +1046,63 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 @media (min-width: 861px) { .pantallas-puntos { display: none; }
 }
 
+/* Support options: each icon has its own small act on hover (the coffee steams, the heart beats, the star turns and sparks) */
+.way .diff-ico { position: relative; transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.way .diff-ico svg * { transform-box: fill-box; transform-origin: center; }
+.way .taza { transform-origin: 50% 100%; }
+.way .vapor { stroke-dasharray: 4 6; opacity: 0.55; }
+.way-sponsors .diff-ico::after,
+.way-gratis .diff-ico::after { content: ""; position: absolute; pointer-events: none; opacity: 0; }
+.way-sponsors .diff-ico::after { inset: -1px; border-radius: inherit; border: 1px solid var(--straw); }
+.way-gratis .diff-ico::after {
+  left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px; border-radius: 50%;
+  box-shadow: 0 -22px 0 var(--straw), 19px -11px 0 var(--accent), 19px 11px 0 var(--straw), 0 22px 0 var(--accent), -19px 11px 0 var(--straw), -19px -11px 0 var(--accent);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .way:hover .diff-ico { background: color-mix(in srgb, var(--straw) 14%, transparent); border-color: color-mix(in srgb, var(--straw) 55%, var(--line)); transform: translateY(-2px) scale(1.08); }
+  .way-kofi:hover .taza { animation: brindis 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .way-kofi:hover .vapor { animation: vapor 1.3s ease-in-out infinite; }
+  .way-kofi:hover .vapor.v2 { animation-delay: 0.35s; }
+  .way-sponsors:hover .corazon { fill: var(--straw); animation: latido 1.1s ease-in-out infinite; }
+  .way-sponsors:hover .diff-ico::after { animation: onda-ico 1.1s ease-out infinite; }
+  .way-gratis:hover .estrella { fill: var(--straw); animation: giro-estrella 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+  .way-gratis:hover .diff-ico::after { animation: chispas 0.75s ease-out both; }
+  @keyframes brindis { 30% { transform: rotate(-14deg); } 60% { transform: rotate(6deg); } }
+  @keyframes vapor { 0% { stroke-dashoffset: 10; opacity: 0; transform: translateY(2px); } 40% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; transform: translateY(-3px); } }
+  @keyframes latido { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.24); } 28% { transform: scale(1); } 42% { transform: scale(1.14); } 60% { transform: scale(1); } }
+  @keyframes onda-ico { from { opacity: 0.8; transform: scale(1); } to { opacity: 0; transform: scale(1.7); } }
+  @keyframes giro-estrella { from { transform: rotate(-144deg) scale(0.6); } }
+  @keyframes chispas { 0% { opacity: 0; transform: scale(0.3); } 35% { opacity: 1; } 100% { opacity: 0; transform: scale(1.25) rotate(20deg); } }
+}
+
+/* Waitlist button: a light sweeps across and it lifts on hover; a click sends a ripple and sparks */
+.btn-avisame { overflow: hidden; isolation: isolate; }
+.btn-avisame::after {
+  content: ""; position: absolute; z-index: -1; inset: 0 auto 0 -60%; width: 50%; pointer-events: none;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.38), transparent);
+  transform: skewX(-18deg) translateX(0); opacity: 0;
+}
+.btn-onda { position: absolute; z-index: -1; border-radius: 50%; pointer-events: none; background: rgba(255, 255, 255, 0.35); transform: scale(0); animation: onda-btn 0.6s ease-out forwards; }
+.btn-chispa { position: fixed; z-index: 50; width: 7px; height: 7px; border-radius: 2px; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .btn-avisame { transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background-color 0.2s var(--ease); }
+  .btn-avisame.disparo { animation: disparo 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  @keyframes onda-btn { to { transform: scale(1); opacity: 0; } }
+  @keyframes disparo { 0% { transform: scale(0.95); } 45% { transform: scale(1.05); } 100% { transform: scale(1); } }
+  @keyframes barrido { from { transform: skewX(-18deg) translateX(0); opacity: 1; } to { transform: skewX(-18deg) translateX(420%); opacity: 1; } }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn-avisame:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 10px 24px -10px color-mix(in srgb, var(--accent) 70%, transparent), 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .btn-avisame:hover::after { animation: barrido 0.9s var(--ease) both; }
+  .btn-avisame:active { transform: translateY(0) scale(0.98); }
+}
+
 /* Motion: one moment on load (the deck comes alive), tactile buttons, and scroll-linked details where the browser supports them. Everything is readable without it. */
 @media (prefers-reduced-motion: no-preference) {
   .btn, .lang-link {
     transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
                 color var(--dur-fast) var(--ease), filter var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
   }
-  .btn:active { transform: translateY(1px); }
   body > .temper-edge { transform-origin: left; animation: llena 0.9s var(--ease) both; }
   .bar i { transform-origin: left; animation: llena 0.9s var(--ease) 0.2s both; }
   .gauge:nth-child(2) .bar i { animation-delay: 0.28s; }
@@ -1109,7 +1183,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     </nav>
 
     <a class="lang-link" href="../index.html" hreflang="es" lang="es">Español</a>
-    <a class="btn btn-primary top-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Waitlist</a>
+    <a class="btn btn-primary btn-avisame top-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Waitlist</a>
     <details class="menu">
       <summary><span class="menu-ico" aria-hidden="true"></span><span class="sr-only">Sections</span></summary>
       <nav class="menu-panel" aria-labelledby="nav-nombre">
@@ -1119,7 +1193,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
         <a href="#avance">Progress</a>
         <a href="#novedades">Updates</a>
         <a href="#preguntas">FAQ</a>
-        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Notify me at launch</a>
+        <a class="btn btn-primary btn-avisame" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Notify me at launch</a>
       </nav>
     </details>
 
@@ -1138,7 +1212,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
         <h1><span class="h1-kicker">Claude Code orchestrator for Windows</span>Your projects move forward. <span class="h1-end">You make the calls.</span></h1>
         <p class="lede">A Windows program that drives Claude Code for you: it runs several tasks at once, picks up after interruptions, and only calls you in to decide.</p>
         <div class="ctas">
-          <a class="btn btn-primary btn-lg" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Notify me at launch</a>
+          <a class="btn btn-primary btn-avisame btn-lg" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Notify me at launch</a>
 
           <a class="btn btn-lg" href="#como">See how it works</a>
         </div>
@@ -1472,28 +1546,28 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
           <p>I'll write to you about IronDeck's progress, the beta, the launch, and its editions and kits, and tell you first when it ships. I ask for your email and, if you like, three short questions.</p>
           <p class="join-nota">Details in the <a href="privacy.html">Privacy notice</a>.</p>
         </div>
-        <a class="btn btn-primary btn-lg" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Notify me at launch</a>
+        <a class="btn btn-primary btn-avisame btn-lg" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Notify me at launch</a>
 
       </div>
       <div class="aportes">
         <p class="support-intro">If you'd like to help finish it: a contribution isn't a purchase, it doesn't buy access or set dates. It pays for development time and testing with the real Claude Code, so IronDeck ships sooner.</p>
         <div class="ways">
-          <div class="way">
-            <span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z" /><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16" /><path d="M8 3.5c0 1 1 1.5 1 2.5M12 3.5c0 1 1 1.5 1 2.5" /></svg></span>
+          <div class="way way-kofi">
+            <span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><g class="taza"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z" /><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16" /></g><path class="vapor" d="M8 3.5c0 1 1 1.5 1 2.5" /><path class="vapor v2" d="M12 3.5c0 1 1 1.5 1 2.5" /></svg></span>
             <h3>Ko-fi</h3>
             <p>One-time or monthly, no account needed. When the kits come out, they'll be sold separately on the same page.</p>
             <a class="btn" href="https://ko-fi.com/irondeck" target="_blank" rel="noopener">Support on Ko-fi</a>
 
           </div>
-          <div class="way">
-            <span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg></span>
+          <div class="way way-sponsors">
+            <span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path class="corazon" d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg></span>
             <h3>GitHub Sponsors</h3>
             <p>If you have a GitHub account, you can sponsor from there, one-time or monthly.</p>
 
             <span class="soon">Opens soon</span>
           </div>
           <div class="way way-gratis">
-            <span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z" /></svg></span>
+            <span class="diff-ico" aria-hidden="true"><svg viewbox="0 0 24 24"><path class="estrella" d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z" /></svg></span>
             <h3>Free, right now</h3>
             <p>Star the repository, follow it with “Watch”, and share it. It helps more people find it.</p>
             <a class="btn" href="https://github.com/DwladimirL/irondeck" target="_blank" rel="noopener">Star on GitHub</a>
@@ -1514,7 +1588,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 
         </div>
       </div>
-      <a class="btn btn-primary btn-lg" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Notify me at launch</a>
+      <a class="btn btn-primary btn-avisame btn-lg" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Notify me at launch</a>
 
     </div>
   </section>
@@ -1665,6 +1739,40 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
         el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
       });
       el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+    });
+  }
+
+  if (!quieto) {
+    const colores = ['var(--straw)', 'var(--accent)', 'var(--t1)', 'var(--t5)'];
+    document.querySelectorAll('.btn-avisame').forEach(btn => {
+      btn.addEventListener('pointerdown', e => {
+        const r = btn.getBoundingClientRect();
+        const onda = document.createElement('span');
+        const lado = Math.max(r.width, r.height) * 2.2;
+        onda.className = 'btn-onda';
+        onda.style.cssText = `width:${lado}px;height:${lado}px;left:${e.clientX - r.left - lado / 2}px;top:${e.clientY - r.top - lado / 2}px`;
+        btn.append(onda);
+        onda.addEventListener('animationend', () => onda.remove());
+      });
+      btn.addEventListener('click', e => {
+        btn.classList.remove('disparo');
+        void btn.offsetWidth;
+        btn.classList.add('disparo');
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX || r.left + r.width / 2, y = e.clientY || r.top + r.height / 2;
+        for (let k = 0; k < 14; k++) {
+          const c = document.createElement('span');
+          c.className = 'btn-chispa';
+          const ang = (Math.PI * 2 * k) / 14 + Math.random() * 0.4;
+          const dist = 36 + Math.random() * 46;
+          c.style.cssText = `left:${x}px;top:${y}px;background:${colores[k % colores.length]}`;
+          document.body.append(c);
+          c.animate([
+            { transform: 'translate(-50%,-50%) scale(1)', opacity: 1 },
+            { transform: `translate(calc(-50% + ${Math.cos(ang) * dist}px), calc(-50% + ${Math.sin(ang) * dist}px)) scale(0.2)`, opacity: 0 }
+          ], { duration: 650 + Math.random() * 250, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }).onfinish = () => c.remove();
+        }
+      });
     });
   }
 
