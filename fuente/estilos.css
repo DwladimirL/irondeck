@@ -680,9 +680,10 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .final .btn:not(.btn-primary):hover { background: var(--deck-raised); }
 @media (max-width: 900px) {
   .final-inner { grid-template-columns: minmax(0, 1fr); padding-block: 52px; }
-  .final-copy { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .final-icono { width: 56px; height: 56px; }
-  .final h2 { font-size: min(2.125rem, 7.6vw); text-wrap: balance; }
+  /* the icon stays beside the title: on a phone the title takes two lines, the icon matches their height */
+  .final-copy { align-items: flex-start; gap: 16px; }
+  .final-icono { width: 68px; height: 68px; }
+  .final h2 { font-size: clamp(1.875rem, 8.8vw, 2.5rem); line-height: 1; text-wrap: balance; padding-block-start: 2px; }
   .final .btn { justify-content: center; }
 }
 
