@@ -30,12 +30,14 @@
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="marca/irondeck-icono-simple.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preload" href="fuentes/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fuentes/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/big-shoulders-display-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fuentes/inter-tight-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url("fuentes/instrument-sans-latin-wght-normal.woff2") format("woff2")}
-@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;src:url("fuentes/instrument-serif-latin-400-normal.woff2") format("woff2")}
-@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;src:url("fuentes/instrument-serif-latin-400-italic.woff2") format("woff2")}
+@font-face{font-family:"Inter Tight";font-style:normal;font-weight:400;font-display:swap;src:url("fuentes/inter-tight-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter Tight";font-style:normal;font-weight:500;font-display:swap;src:url("fuentes/inter-tight-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter Tight";font-style:normal;font-weight:600;font-display:swap;src:url("fuentes/inter-tight-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:700;font-display:swap;src:url("fuentes/big-shoulders-display-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:800;font-display:swap;src:url("fuentes/big-shoulders-display-latin-800-normal.woff2") format("woff2")}
 @font-face{font-family:"Big Shoulders Stencil Display";font-style:normal;font-weight:800;font-display:swap;src:url("fuentes/big-shoulders-stencil-display-latin-800-normal.woff2") format("woff2")}
 @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url("fuentes/ibm-plex-mono-latin-400-normal.woff2") format("woff2")}
 @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url("fuentes/ibm-plex-mono-latin-500-normal.woff2") format("woff2")}
@@ -63,9 +65,9 @@
   --t1: #ead18a; --t2: #cf9f3e; --t3: #9e5e2e; --t4: #6e4b9e; --t5: #2e5eae; --t6: #7ea8de;
   --temper: linear-gradient(90deg, var(--t1), var(--t2) 22%, var(--t3) 42%, var(--t4) 62%, var(--t5) 82%, var(--t6));
 
-  --f-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --f-stencil: "Big Shoulders Stencil Display", "Arial Narrow", Arial, sans-serif;
-  --f-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-display: "Big Shoulders Display", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-stencil: "Big Shoulders Stencil Display", "Big Shoulders Display", "Arial Narrow", Arial, sans-serif;
+  --f-body: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 
   --dur-fast: 0.18s;
@@ -95,7 +97,6 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-t
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   margin: 0;
-  font-synthesis: none;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--f-body);
@@ -223,7 +224,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 56px; align-items: center; }
 .hero h1 {
   font-family: var(--f-display);
-  font-weight: 400;
+  font-weight: 800;
   font-size: clamp(2.75rem, 3.4vw + 1.2rem, 4.25rem);
   line-height: 0.95;
   letter-spacing: 0.002em;
@@ -334,7 +335,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .gauges { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .gauge { background: var(--deck-raised); border-radius: 4px; padding: 10px; min-width: 0; }
 .gauge p { font-family: var(--f-mono); font-size: 0.625rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--deck-muted); }
-.gauge strong { display: block; font-family: var(--f-mono); font-weight: 500; font-size: 1.375rem; line-height: 1.1; margin-block: 2px 6px; font-variant-numeric: tabular-nums; }
+.gauge strong { display: block; font-family: var(--f-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; margin-block: 2px 6px; font-variant-numeric: tabular-nums; }
 .bar { height: 4px; background: var(--deck-line); border-radius: 2px; overflow: hidden; }
 .bar i { display: block; height: 100%; background: var(--deck-blue); }
 .bar i.warm { background: var(--deck-straw); }
@@ -381,7 +382,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .section-head { display: grid; gap: 12px; margin-block-end: 36px; }
 .section h2 {
   font-family: var(--f-display);
-  font-weight: 400;
+  font-weight: 800;
   font-size: clamp(2.375rem, 3.2vw + 1.2rem, 3.75rem);
   line-height: 0.95;
   letter-spacing: -0.005em;
@@ -393,11 +394,11 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .pains { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px 40px; }
 .pains li { border-top: 2px solid var(--ink); padding-block-start: 14px; }
 .pains li:first-child { grid-row: span 2; }
-.pains li:first-child h3 { font-family: var(--f-display); font-weight: 400; font-size: 2rem; line-height: 1; margin-block-end: 12px; }
+.pains li:first-child h3 { font-family: var(--f-display); font-weight: 800; font-size: 2rem; line-height: 1; margin-block-end: 12px; }
 .pains li:first-child p { font-size: 1.1875rem; max-width: 34ch; }
 .pains h3 { font-size: 1.125rem; font-weight: 600; margin-block-end: 6px; }
 .pains p { color: var(--ink-2); }
-.answer { margin-block-start: 44px; font-family: var(--f-display); font-weight: 400; font-size: clamp(1.75rem, 1.6vw + 1.1rem, 2.375rem); line-height: 1.05; }
+.answer { margin-block-start: 44px; font-family: var(--f-display); font-weight: 800; font-size: clamp(1.75rem, 1.6vw + 1.1rem, 2.375rem); line-height: 1.05; }
 @media (max-width: 820px) {
   .pains { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .pains li:first-child { grid-row: auto; }
@@ -459,7 +460,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   padding-block: 28px;
   border-top: 2px solid var(--ink);
 }
-.pillar > h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.875rem; line-height: 1; }
+.pillar > h3 { font-family: var(--f-display); font-weight: 800; font-size: 1.875rem; line-height: 1; }
 .feats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 36px; }
 .feat h4 { margin-block-end: 4px; font-size: 1.125rem; font-weight: 600; }
 .feat p { color: var(--ink-2); font-size: 0.9375rem; }
@@ -563,7 +564,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 /* Progress */
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-block-end: 40px; }
 .stat { border-top: 1px solid var(--ink); padding-block-start: 12px; min-width: 0; }
-.stat strong { display: block; font-family: var(--f-display); font-weight: 400; font-size: clamp(2.75rem, 3vw + 1rem, 3.75rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat strong { display: block; font-family: var(--f-display); font-weight: 800; font-size: clamp(2.25rem, 2.4vw + 1rem, 3rem); line-height: 1; font-variant-numeric: tabular-nums; }
 .stat > span { display: block; margin-block-start: 6px; color: var(--ink-2); font-size: 0.9375rem; }
 @media (max-width: 820px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
@@ -639,7 +640,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 }
 .edition-main { border-top: 3px solid var(--accent); }
 .edition-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
-.edition h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.75rem; line-height: 1; }
+.edition h3 { font-family: var(--f-display); font-weight: 800; font-size: 1.75rem; line-height: 1; }
 .edition-main h3 { font-size: 2.25rem; }
 .edition .pill { justify-self: auto; }
 .edition .for { font-weight: 500; }
@@ -655,7 +656,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .perfil::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--temper); }
 .perfil-cabeza { display: flex; align-items: center; gap: 16px; }
 .perfil-icono { width: 64px; height: 64px; flex: none; }
-.perfil-nombre { font-family: var(--f-display); font-weight: 400; font-size: 1.75rem; line-height: 1; }
+.perfil-nombre { font-family: var(--f-display); font-weight: 800; font-size: 1.75rem; line-height: 1; }
 .perfil-alias { margin-block-start: 6px; font-family: var(--f-mono); font-size: 0.8125rem; color: var(--ink-2); }
 .perfil-datos { display: grid; gap: 8px; padding-block: 16px; border-block: 1px solid var(--line); font-size: 0.9375rem; color: var(--ink-2); }
 .perfil-datos strong { color: var(--ink); font-weight: 600; }
@@ -674,7 +675,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   border: 1px solid var(--line);
   border-radius: var(--r);
 }
-.join h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.875rem; line-height: 1; margin-block-end: 8px; }
+.join h3 { font-family: var(--f-display); font-weight: 800; font-size: 1.875rem; line-height: 1; margin-block-end: 8px; }
 .join p { color: var(--ink-2); max-width: 54ch; }
 .support-intro { margin-block: 36px 18px; color: var(--ink-2); max-width: 66ch; }
 .ways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -718,7 +719,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .final-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px 40px; align-items: center; padding-block: 64px; }
 .final-copy { display: flex; align-items: center; gap: 26px; }
 .final-icono { width: 96px; height: 96px; flex: none; }
-.final h2 { font-family: var(--f-display); font-weight: 400; font-size: clamp(2.125rem, 2.6vw + 1.2rem, 3.125rem); line-height: 1; }
+.final h2 { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.125rem, 2.6vw + 1.2rem, 3.125rem); line-height: 1; }
 .final p { color: var(--deck-muted); margin-block-start: 10px; max-width: 52ch; }
 .final .btn-primary { background: var(--deck-blue); border-color: var(--deck-blue); color: var(--deck-bg); }
 .final .btn-primary:hover { background: var(--deck-blue); }
@@ -756,14 +757,14 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .legal-volver { margin-block-end: 22px; font-family: var(--f-mono); font-size: 0.8125rem; }
 .legal-volver a { color: var(--ink-2); text-decoration: none; padding-block: 4px; display: inline-block; }
 .legal-volver a:hover { color: var(--ink); text-decoration: underline; }
-.legal h1 { font-family: var(--f-display); font-weight: 400; font-size: clamp(2.375rem, 2.4vw + 1.6rem, 3.375rem); line-height: 1; }
+.legal h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.375rem, 2.4vw + 1.6rem, 3.375rem); line-height: 1; }
 .legal-fecha { margin-block-start: 12px; font-family: var(--f-mono); font-size: 0.8125rem; color: var(--ink-2); }
 .legal-resumen { position: relative; overflow: hidden; margin-block: 26px 4px; padding: 20px 22px 18px; background: var(--bg-raised); border: 1px solid var(--line); border-radius: var(--r); }
 .legal-resumen::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--temper); }
 .legal-resumen-t { margin-block-end: 10px; font-family: var(--f-mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--straw); }
 .legal ul { display: grid; gap: 6px; padding-inline-start: 1.2em; list-style: disc; }
 .legal ul li::marker { color: var(--straw); }
-.legal h2 { margin-block: 40px 12px; font-family: var(--f-display); font-weight: 400; font-size: 1.75rem; line-height: 1.05; }
+.legal h2 { margin-block: 40px 12px; font-family: var(--f-display); font-weight: 800; font-size: 1.75rem; line-height: 1.05; }
 .legal h3 { margin-block: 24px 8px; font-size: 1.0625rem; font-weight: 600; }
 .legal p + p, .legal p + ul, .legal ul + p { margin-block-start: 12px; }
 .legal p, .legal li { max-width: 68ch; }
@@ -895,18 +896,14 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   color: var(--ink);
 }
 .hero-temple { height: 5px; margin-block-start: 2.4cqi; background: var(--temper); border-radius: 1px; }
-.hero-editorial .hero-grid { margin-block-start: 36px; align-items: start; }
-/* Editorial device: the closing half of a key line is set in italic (the hero promise, the problem, the closing band) */
-.h1-end, .remate { font-style: italic; }
-.remate { display: block; }
-.final .remate { display: inline; }
-.hero-editorial h1 { font-size: clamp(2.75rem, 3.2vw + 1.25rem, 4.125rem); line-height: 0.98; letter-spacing: -0.012em; }
+.hero-editorial .hero-grid { margin-block-start: 44px; align-items: start; }
+.hero-editorial h1 { font-size: clamp(2.5rem, 2.4vw + 1.25rem, 3.5rem); }
 .hero-editorial .deck { margin-block-start: 6px; }
 @media (max-width: 880px) { .hero-editorial .hero-grid { margin-block-start: 28px; } }
 @media (max-width: 600px) {
   .hero-editorial { padding-block: 24px 40px; }
   .hero-temple { height: 4px; }
-  .hero-editorial h1 { font-size: 2.75rem; }
+  .hero-editorial h1 { font-size: 2.375rem; }
 }
 
 /* Update stamp: the date of the latest log entry, next to the progress and in the footer */
@@ -1111,7 +1108,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     <div class="frame">
       <div class="section-head">
         <p class="label">El problema<span class="dato">3 cosas que te frenan</span></p>
-        <h2>Claude Code trabaja rápido. <em class="remate">El cuello de botella eres tú.</em></h2>
+        <h2>Claude Code trabaja rápido. El cuello de botella eres tú.</h2>
       </div>
       <ul class="pains">
         <li><h3>Hay que estar encima</h3><p>Lanzar una tarea, esperar, revisar y lanzar la siguiente. Si te alejas de la pantalla, todo se detiene.</p></li>
@@ -1416,7 +1413,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
       <div class="final-copy">
         <img class="final-icono" src="marca/irondeck-icono.svg" alt="" width="96" height="96" loading="lazy">
         <div>
-        <h2 id="final-titulo">Menos terminal, <em class="remate">más decisiones.</em></h2>
+        <h2 id="final-titulo">Menos terminal, más decisiones.</h2>
         <p>Apúntate y te aviso primero cuando salga.</p>
 
         </div>

@@ -24,16 +24,17 @@ IDIOMAS = ("es", "en")
 VACIOS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 
 FUENTES = [
-    # (familia, peso, archivo, estilo). Instrument Sans es variable: un archivo para 400 a 700.
-    ("Instrument Sans", "400 700", "instrument-sans-latin-wght-normal.woff2", "normal"),
-    ("Instrument Serif", 400, "instrument-serif-latin-400-normal.woff2", "normal"),
-    ("Instrument Serif", 400, "instrument-serif-latin-400-italic.woff2", "italic"),
-    ("Big Shoulders Stencil Display", 800, "big-shoulders-stencil-display-latin-800-normal.woff2", "normal"),
-    ("IBM Plex Mono", 400, "ibm-plex-mono-latin-400-normal.woff2", "normal"),
-    ("IBM Plex Mono", 500, "ibm-plex-mono-latin-500-normal.woff2", "normal"),
+    ("Inter Tight", 400, "inter-tight-latin-400-normal.woff2"),
+    ("Inter Tight", 500, "inter-tight-latin-500-normal.woff2"),
+    ("Inter Tight", 600, "inter-tight-latin-600-normal.woff2"),
+    ("Big Shoulders Display", 700, "big-shoulders-display-latin-700-normal.woff2"),
+    ("Big Shoulders Display", 800, "big-shoulders-display-latin-800-normal.woff2"),
+    ("Big Shoulders Stencil Display", 800, "big-shoulders-stencil-display-latin-800-normal.woff2"),
+    ("IBM Plex Mono", 400, "ibm-plex-mono-latin-400-normal.woff2"),
+    ("IBM Plex Mono", 500, "ibm-plex-mono-latin-500-normal.woff2"),
 ]
-GOOGLE_FONTS = ("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700"
-                "&family=Instrument+Serif:ital@0;1&family=Big+Shoulders+Stencil+Display:wght@800"
+GOOGLE_FONTS = ("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600"
+                "&family=Big+Shoulders+Display:wght@700;800&family=Big+Shoulders+Stencil+Display:wght@800"
                 "&family=IBM+Plex+Mono:wght@400;500&display=swap")
 
 MESES = {
@@ -202,9 +203,9 @@ def novedades_html(novedades, idioma):
 
 def css_fuentes(prefijo):
     reglas = []
-    for familia, peso, archivo, estilo in FUENTES:
+    for familia, peso, archivo in FUENTES:
         reglas.append(
-            f'@font-face{{font-family:"{familia}";font-style:{estilo};font-weight:{peso};font-display:swap;'
+            f'@font-face{{font-family:"{familia}";font-style:normal;font-weight:{peso};font-display:swap;'
             f'src:url("{prefijo}fuentes/{archivo}") format("woff2")}}')
     return "\n".join(reglas)
 
@@ -347,9 +348,9 @@ def pagina_completa(idioma, sitio, novedades, css, otro_enlace=None):
     contenido = cuerpo(idioma, sitio, novedades, otro_enlace, prefijo)
     e = lambda s: html.escape(s, quote=True)
     imagen = base + seo["imagen"]
-    fuentes = (f'<link rel="preload" href="{prefijo}fuentes/instrument-serif-latin-400-normal.woff2" '
+    fuentes = (f'<link rel="preload" href="{prefijo}fuentes/big-shoulders-display-latin-800-normal.woff2" '
                f'as="font" type="font/woff2" crossorigin>\n'
-               f'<link rel="preload" href="{prefijo}fuentes/instrument-sans-latin-wght-normal.woff2" '
+               f'<link rel="preload" href="{prefijo}fuentes/inter-tight-latin-400-normal.woff2" '
                f'as="font" type="font/woff2" crossorigin>')
     estilo = css_fuentes(prefijo) + "\n" + css
     verificacion = ""
@@ -503,7 +504,7 @@ def pagina_legal(clave, idioma, sitio, css):
 <link rel="icon" href="{prefijo}favicon.ico" sizes="32x32">
 <link rel="icon" href="{prefijo}marca/irondeck-icono-simple.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{prefijo}apple-touch-icon.png">
-<link rel="preload" href="{prefijo}fuentes/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{prefijo}fuentes/inter-tight-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 {css_fuentes(prefijo)}
 {css}
