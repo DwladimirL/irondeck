@@ -9,7 +9,16 @@
     "github": "https://github.com/DwladimirL/irondeck",
     "autor": "https://github.com/DwladimirL"
   },
-  "googleVerificacion": "",
+  "listaEsperaFormulario": {
+    "base": "https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform",
+    "campos": {
+      "entry.1661828274": {
+        "es": "Español",
+        "en": "English"
+      }
+    }
+  },
+  "googleVerificacion": "wvuxBFyBOzx4dstYK6HZPHIpPNe8g9uJr7-BDbTh3PM",
   "analiticaCloudflare": "",
   "legal": {
     "titular": "Wladimir Diaz",

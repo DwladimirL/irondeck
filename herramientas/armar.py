@@ -15,6 +15,7 @@ import html
 import json
 import pathlib
 import re
+import urllib.parse
 import sys
 from html.parser import HTMLParser
 
@@ -244,6 +245,18 @@ def con_legal(sitio):
     return efectivo
 
 
+def lista_prellenada(sitio, idioma):
+    """Enlace al formulario con las respuestas que la página ya sabe (el idioma) marcadas de antemano."""
+    corto = sitio["enlaces"]["listaEspera"]
+    form = sitio.get("listaEsperaFormulario") or {}
+    if not corto or not form.get("base"):
+        return corto
+    pares = [(campo, valores[idioma]) for campo, valores in form.get("campos", {}).items() if valores.get(idioma)]
+    if not pares:
+        return corto
+    return form["base"] + "?usp=pp_url&" + urllib.parse.urlencode(pares)
+
+
 def cuerpo(idioma, sitio, novedades, otro_enlace, raiz=""):
     fuente = (RAIZ / "fuente" / "pagina.html").read_text(encoding="utf-8")
     enlaces = sitio["enlaces"]
@@ -268,6 +281,8 @@ def cuerpo(idioma, sitio, novedades, otro_enlace, raiz=""):
             return html.escape(legal["titular"]) if legal["listo"] else "DwladimirL"
         tipo, nombre = clave.split(":", 1)
         if tipo == "url":
+            if nombre == "listaEspera" and idioma:
+                return html.escape(lista_prellenada(sitio, idioma), quote=True)
             return html.escape(sitio["enlaces"][nombre], quote=True)
         if tipo == "texto":
             return html.escape(sitio["seo"][idioma or "es"][nombre], quote=True)
@@ -299,7 +314,9 @@ def datos_estructurados(idioma, sitio, url, contenido):
             {"@type": "SoftwareApplication", "name": "IronDeck", "url": url, "inLanguage": idioma,
              "applicationCategory": "DeveloperApplication", "operatingSystem": "Windows",
              "description": seo["descripcion"], "image": sitio["base"] + "marca/png/irondeck-512.png",
-             "author": {"@type": "Person", "name": "DwladimirL", "url": sitio["enlaces"]["autor"]},
+             "author": {"@type": "Person", "name": sitio["_legal"]["titular"] or "DwladimirL",
+                        "alternateName": "DwladimirL", "url": sitio["enlaces"]["autor"],
+                        "sameAs": [sitio["enlaces"]["autor"]]},
              "sameAs": [sitio["enlaces"]["github"]]},
         ],
     }
