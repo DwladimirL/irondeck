@@ -125,6 +125,9 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .temper-edge { height: 4px; background: var(--temper); }
 
 .section-head .label::before { content: ""; display: inline-block; width: 22px; height: 2px; margin-inline-end: 0.9em; vertical-align: middle; background: var(--straw); }
+.label .dato { color: var(--ink-2); }
+.label .dato::before { content: "·"; margin-inline: 0.7em; color: var(--straw); }
+.section-head .label { color: var(--ink); }
 .label {
   font-family: var(--f-mono);
   font-size: 0.75rem;
@@ -380,8 +383,9 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .section h2 {
   font-family: var(--f-display);
   font-weight: 800;
-  font-size: clamp(2.125rem, 2.6vw + 1.2rem, 3.125rem);
-  line-height: 1;
+  font-size: clamp(2.375rem, 3.2vw + 1.2rem, 3.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.005em;
 }
 .section-head p { color: var(--ink-2); max-width: 62ch; }
 @media (max-width: 600px) { .section { padding-block: 56px; } }
@@ -442,7 +446,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   background: linear-gradient(var(--straw), var(--line));
   opacity: 0.6;
 }
-.process h3 { font-size: 1.0625rem; font-weight: 600; margin-block-end: 4px; }
+.process h3 { font-size: 1.125rem; font-weight: 600; margin-block-end: 4px; }
 .process p { color: var(--ink-2); }
 @media (max-width: 820px) { .how { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
 @media (max-width: 600px) { .process li { grid-template-columns: 34px minmax(0, 1fr); gap: 12px; } }
@@ -458,8 +462,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 }
 .pillar > h3 { font-family: var(--f-display); font-weight: 800; font-size: 1.875rem; line-height: 1; }
 .feats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 36px; }
-.feat h4 { margin-block-end: 4px; font-size: 1.0625rem; font-weight: 600; }
-.feat p { color: var(--ink-2); font-size: 0.96875rem; }
+.feat h4 { margin-block-end: 4px; font-size: 1.125rem; font-weight: 600; }
+.feat p { color: var(--ink-2); font-size: 0.9375rem; }
 .extra { margin-block-start: 8px; padding-block-start: 22px; border-top: 1px solid var(--line); color: var(--ink-2); }
 @media (max-width: 900px) { .pillar { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 560px) { .feats { grid-template-columns: minmax(0, 1fr); } }
@@ -478,7 +482,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .diff-key::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--temper); }
 .diff-ico { display: inline-grid; place-items: center; width: 40px; height: 40px; margin-block-end: 14px; border: 1px solid var(--line); border-radius: var(--r); color: var(--straw); }
 .diff-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.diff h3 { font-size: 1.0625rem; font-weight: 600; margin-block-end: 6px; }
+.diff h3 { font-size: 1.125rem; font-weight: 600; margin-block-end: 6px; }
 .diff p { color: var(--ink-2); font-size: 0.9375rem; }
 @media (min-width: 561px) {
   .diffs { grid-template-rows: auto auto 1fr; row-gap: 0; }
@@ -583,8 +587,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 }
 .phase:last-child { border-bottom: 1px solid var(--line); }
 .phase .num { font-family: var(--f-mono); font-size: 0.875rem; color: var(--ink-2); }
-.phase h3 { font-size: 1.0625rem; font-weight: 600; }
-.phase p { color: var(--ink-2); font-size: 0.96875rem; margin-block-start: 2px; max-width: 70ch; }
+.phase h3 { font-size: 1.125rem; font-weight: 600; }
+.phase p { color: var(--ink-2); font-size: 0.9375rem; margin-block-start: 2px; max-width: 70ch; }
 .pill {
   justify-self: end;
   font-family: var(--f-mono);
@@ -640,7 +644,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .edition-main h3 { font-size: 2.25rem; }
 .edition .pill { justify-self: auto; }
 .edition .for { font-weight: 500; }
-.edition p:last-child { color: var(--ink-2); font-size: 0.96875rem; }
+.edition p:last-child { color: var(--ink-2); font-size: 0.9375rem; }
 @media (max-width: 900px) { .editions { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
 
 /* About */
@@ -707,7 +711,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .faq details { border-bottom: 1px solid var(--line); }
 .faq summary { padding-block: 18px; }
 .faq summary:hover h3 { color: var(--accent); }
-.faq h3 { font-size: 1.0625rem; font-weight: 600; }
+.faq h3 { font-size: 1.125rem; font-weight: 600; }
 .faq p { color: var(--ink-2); padding-block-end: 20px; max-width: 68ch; }
 
 /* Closing band */
@@ -878,6 +882,51 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   .diff:hover, .edition:hover, .way:hover, .con-pestanas .feat:hover { transform: translateY(-2px); border-color: var(--ink-2); }
 }
 
+/* Editorial cover: the wordmark is the headline, ruled off from the promise by the temper line */
+.hero-editorial { padding-block: 36px 64px; }
+.hero-marca { container-type: inline-size; }
+.hero-palabra {
+  margin: 0;
+  font-family: var(--f-stencil);
+  font-weight: 800;
+  font-size: 28.3cqi;
+  line-height: 0.8;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.hero-temple { height: 5px; margin-block-start: 2.4cqi; background: var(--temper); border-radius: 1px; }
+.hero-editorial .hero-grid { margin-block-start: 44px; align-items: start; }
+.hero-editorial h1 { font-size: clamp(2.5rem, 2.4vw + 1.25rem, 3.5rem); }
+.hero-editorial .deck { margin-block-start: 6px; }
+@media (max-width: 880px) { .hero-editorial .hero-grid { margin-block-start: 28px; } }
+@media (max-width: 600px) {
+  .hero-editorial { padding-block: 24px 40px; }
+  .hero-temple { height: 4px; }
+  .hero-editorial h1 { font-size: 2.375rem; }
+}
+
+/* Update stamp: the date of the latest log entry, next to the progress and in the footer */
+.sello { display: inline-flex; align-items: center; gap: 10px; justify-self: start; padding: 6px 12px 6px 8px; border: 1px solid var(--line); border-radius: 999px; font: 500 0.75rem/1 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+.sello img { width: 20px; height: 20px; }
+
+/* Footer: the wordmark across the full width, cut by the bottom edge */
+.foot { container-type: inline-size; overflow: hidden; padding-block-end: 0; }
+.foot-sello { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin-block-start: 32px; padding-block: 14px; background: linear-gradient(var(--line), var(--line)) center top / calc(100% - 40px) 1px no-repeat; font: 500 0.75rem/1.4 var(--f-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+.foot-palabra {
+  max-width: var(--frame);
+  margin: 8px auto 0;
+  padding-inline: 20px;
+  font-family: var(--f-stencil);
+  font-weight: 800;
+  font-size: calc((min(100cqi, var(--frame)) - 40px) * 0.283);
+  line-height: 0.74;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--ink) 90%, transparent);
+  margin-block-end: -0.1em;
+}
+
 /* Motion: one moment on load (the deck comes alive), tactile buttons, and scroll-linked details where the browser supports them. Everything is readable without it. */
 @media (prefers-reduced-motion: no-preference) {
   .btn, .lang-link {
@@ -984,7 +1033,11 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 
 <main id="contenido">
 
-  <section class="hero" id="inicio">
+  <section class="hero hero-editorial" id="inicio">
+    <div class="frame hero-marca" aria-hidden="true">
+      <p class="hero-palabra">IRONDECK</p>
+      <div class="hero-temple"></div>
+    </div>
     <div class="frame hero-grid">
       <div class="hero-copy">
         <h1><span class="h1-kicker">Orquestador de Claude Code para Windows</span>Tus proyectos avanzan. <span class="h1-end">Tú solo decides.</span></h1>
@@ -1054,7 +1107,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   <section class="section" id="problema">
     <div class="frame">
       <div class="section-head">
-        <p class="label">El problema</p>
+        <p class="label">El problema<span class="dato">3 cosas que te frenan</span></p>
         <h2>Claude Code trabaja rápido. El cuello de botella eres tú.</h2>
       </div>
       <ul class="pains">
@@ -1076,7 +1129,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     <div class="frame how">
       <div class="how-intro">
         <div class="section-head">
-          <p class="label">Método</p>
+          <p class="label">Método<span class="dato">5 pasos</span></p>
           <h2>Cómo funciona</h2>
         </div>
         <p>IronDeck es un programa para tu PC que dirige a Claude Code, el agente de programación de Anthropic. Lo armé para avanzar proyectos largos sin lanzar cada paso a mano.</p>
@@ -1095,7 +1148,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   <section class="section" id="funciones">
     <div class="frame">
       <div class="section-head">
-        <p class="label">Funciones</p>
+        <p class="label">Funciones<span class="dato">12 en 3 grupos</span></p>
         <h2 id="funciones-titulo">Tres trabajos en un solo programa</h2>
         <p>Todo esto ya está en el código, con pruebas automáticas, y se está probando en una PC real. Donde algo todavía falta, lo digo en la misma línea.</p>
       </div>
@@ -1135,7 +1188,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   <section class="section alt" id="tecnico">
     <div class="frame">
       <div class="section-head">
-        <p class="label">Bajo el capó</p>
+        <p class="label">Bajo el capó<span class="dato">12 datos técnicos</span></p>
         <h2>Para quien quiere los detalles</h2>
         <p>Así funciona la versión en desarrollo. Puede cambiar antes del lanzamiento.</p>
       </div>
@@ -1175,8 +1228,9 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   <section class="section" id="avance">
     <div class="frame">
       <div class="section-head">
-        <p class="label">Avance</p>
+        <p class="label">Avance<span class="dato">fase 04 de 06</span></p>
         <h2>En qué va IronDeck</h2>
+        <p class="sello"><img src="marca/irondeck-icono-simple.svg" alt="" width="20" height="20"><span>Actualizado el 11 oct 2026</span></p>
         <p>IronDeck se construye con el mismo método que automatiza: un mapa del proyecto, tandas de trabajo en paralelo, encargos para Claude Code y una revisión independiente de cada entrega.</p>
       </div>
 
@@ -1209,7 +1263,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   <section class="section alt" id="novedades">
     <div class="frame">
       <div class="section-head">
-        <p class="label">Bitácora</p>
+        <p class="label">Bitácora<span class="dato">7 entradas</span></p>
         <h2>Novedades</h2>
       </div>
       <ul class="news">
@@ -1232,7 +1286,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   <section class="section" id="ediciones">
     <div class="frame">
       <div class="section-head">
-        <p class="label">Lo que viene</p>
+        <p class="label">Lo que viene<span class="dato">3 ediciones</span></p>
         <h2>Ediciones</h2>
         <p>Precios y fechas por anunciar. No cobro nada por adelantado.</p>
       </div>
@@ -1290,7 +1344,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   <section class="section" id="preguntas">
     <div class="frame faq-layout">
       <div class="section-head">
-        <p class="label">Dudas</p>
+        <p class="label">Dudas<span class="dato">11 preguntas</span></p>
         <h2>Preguntas frecuentes</h2>
         <p>¿Tu duda no está aquí? Escríbeme a <a href="mailto:irondeck.app@gmail.com">irondeck.app@gmail.com</a>.</p>
       </div>
@@ -1410,6 +1464,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
       </ul>
     </div>
   </div>
+  <div class="frame foot-sello"><span>Actualizado el 11 oct 2026</span><span>Fase 04 de 06</span></div>
+  <p class="foot-palabra" aria-hidden="true">IRONDECK</p>
 </footer>
 
 <script>

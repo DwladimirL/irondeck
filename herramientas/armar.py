@@ -282,6 +282,14 @@ def cuerpo(idioma, sitio, novedades, otro_enlace, raiz=""):
             legal = sitio["_legal"]
             return html.escape(legal["titular"]) if legal["listo"] else "DwladimirL"
         tipo, nombre = clave.split(":", 1)
+        if tipo == "cuenta":
+            if nombre == "novedades":
+                return str(len(novedades))
+            if nombre == "preguntas":
+                return str(fuente.count("<summary><h3>"))
+        if tipo == "fecha" and nombre == "actualizado":
+            fechas = [str(n["fecha"]) for n in novedades if re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(n["fecha"]))]
+            return html.escape(fecha_texto(max(fechas), idioma or "es")) if fechas else ""
         if tipo == "url":
             if nombre == "listaEspera" and idioma:
                 return html.escape(lista_prellenada(sitio, idioma), quote=True)
