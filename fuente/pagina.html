@@ -311,20 +311,34 @@
         <p><span class="es">Soy Wladimir Diaz (DwladimirL), un creador independiente. El código es privado por ahora, pero cada avance, y cada fallo, sale en la bitácora<span data-si="canal"> y en el canal</span>.</span><span class="en">I'm Wladimir Diaz (DwladimirL), an independent maker. The code is private for now, but every step forward, and every failure, goes in the log<span data-si="canal"> and on the channel</span>.</span></p>
         <p><span class="es">Lo construyo para mis propios proyectos, y cada fase se prueba en mi PC con Windows antes de darla por terminada.</span><span class="en">I build it for my own projects, and every phase is tested on my Windows PC before it counts as done.</span></p>
       </div>
-      <div class="about-links">
-        <img class="about-icono" src="{{raiz}}marca/irondeck-icono.svg" alt="" width="72" height="72" loading="lazy">
-        <a class="btn" href="{{url:autor}}" target="_blank" rel="noopener">GitHub · DwladimirL</a>
-        <a class="btn" data-si="canal" href="{{url:canal}}" target="_blank" rel="noopener"><span class="es">Canal de YouTube</span><span class="en">YouTube channel</span></a>
-        <a class="btn" data-si="video" href="{{url:video}}" target="_blank" rel="noopener"><span class="es">El video donde lo presenté</span><span class="en">The video where I introduced it</span></a>
+      <div class="perfil">
+        <div class="perfil-cabeza">
+          <img class="perfil-icono" src="{{raiz}}marca/irondeck-icono.svg" alt="" width="64" height="64" loading="lazy">
+          <div>
+            <p class="perfil-nombre">{{copyright}}</p>
+            <p class="perfil-alias">@DwladimirL · <span class="es">creador independiente</span><span class="en">independent maker</span></p>
+          </div>
+        </div>
+        <ul class="perfil-datos">
+          <li><span class="es">Construye</span><span class="en">Building</span> <strong>IronDeck</strong></li>
+          <li><span class="es">Prueba cada fase en</span><span class="en">Tests every phase on</span> <strong>Windows</strong></li>
+          <li data-si="legal"><span class="es">Contacto</span><span class="en">Contact</span> <a href="mailto:{{correo}}">{{correo}}</a></li>
+        </ul>
+        <div class="perfil-enlaces">
+          <a class="btn" href="{{url:autor}}" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" data-si="canal" href="{{url:canal}}" target="_blank" rel="noopener">YouTube</a>
+          <a class="btn" data-si="video" href="{{url:video}}" target="_blank" rel="noopener"><span class="es">El video</span><span class="en">The video</span></a>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section" id="preguntas">
-    <div class="frame">
+    <div class="frame faq-layout">
       <div class="section-head">
         <p class="label"><span class="es">Dudas</span><span class="en">Questions</span></p>
         <h2><span class="es">Preguntas frecuentes</span><span class="en">Frequently asked questions</span></h2>
+        <p data-si="legal"><span class="es">¿Tu duda no está aquí? Escríbeme a <a href="mailto:{{correo}}">{{correo}}</a>.</span><span class="en">Question not here? Write to me at <a href="mailto:{{correo}}">{{correo}}</a>.</span></p>
       </div>
       <div class="faq">
         <details><summary><h3><span class="es">¿Qué necesito para usarlo?</span><span class="en">What do I need to use it?</span></h3></summary><p><span class="es">Una PC con Windows, Claude Code instalado con tu cuenta y un plan de Claude que lo incluya: Pro o Max, o un plan Team o Enterprise. Además, Git y Node.js. La lista final sale con la primera versión.</span><span class="en">A Windows PC, Claude Code installed with your account, and a Claude plan that includes it: Pro or Max, or a Team or Enterprise plan. Also Git and Node.js. The final list ships with the first release.</span></p></details>

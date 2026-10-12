@@ -276,6 +276,8 @@ def cuerpo(idioma, sitio, novedades, otro_enlace, raiz=""):
             return otro_enlace
         if clave == "raiz":
             return raiz
+        if clave == "correo":
+            return html.escape(sitio["_legal"]["correo"], quote=True)
         if clave == "copyright":
             legal = sitio["_legal"]
             return html.escape(legal["titular"]) if legal["listo"] else "DwladimirL"
