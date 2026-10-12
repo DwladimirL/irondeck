@@ -41,7 +41,7 @@ The logo is a matte steel plate with an anvil cut through it. The heat of temper
 
 ## Typography
 
-The name: Big Shoulders Stencil Display, weight 800, 0.04 em tracking. Website text: Inter Tight and IBM Plex Mono. They live in `fuentes/`, under the SIL Open Font License.
+The name: Big Shoulders Stencil Display, weight 800, 0.04 em tracking. Website text: Big Shoulders Display for headings, Inter for reading text and JetBrains Mono for data and labels. They live in `fuentes/`, under the SIL Open Font License.
 
 ## The anvil
 

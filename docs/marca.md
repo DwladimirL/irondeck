@@ -41,7 +41,7 @@ El logo es una chapa de acero mate con un yunque calado. El calor del temple sub
 
 ## Tipografía
 
-El nombre: Big Shoulders Stencil Display, peso 800, espaciado 0,04 em. Los textos de la página: Inter Tight e IBM Plex Mono. Están en `fuentes/`, con licencia SIL Open Font License.
+El nombre: Big Shoulders Stencil Display, peso 800, espaciado 0,04 em. Los textos de la página: Big Shoulders Display en los titulares, Inter en el texto de lectura y JetBrains Mono en los datos y etiquetas. Están en `fuentes/`, con licencia SIL Open Font License.
 
 ## El yunque
 
