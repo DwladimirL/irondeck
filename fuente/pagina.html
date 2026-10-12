@@ -13,7 +13,19 @@
     </nav>
     <a class="lang-link es" href="{{otro}}" hreflang="en" lang="en">English</a>
     <a class="lang-link en" href="{{otro}}" hreflang="es" lang="es">Español</a>
-    <a class="btn btn-primary" data-si="listaEspera" href="{{url:listaEspera}}" target="_blank" rel="noopener"><span class="es">Lista de espera</span><span class="en">Waitlist</span></a>
+    <a class="btn btn-primary top-cta" data-si="listaEspera" href="{{url:listaEspera}}" target="_blank" rel="noopener"><span class="es">Lista de espera</span><span class="en">Waitlist</span></a>
+    <details class="menu">
+      <summary aria-label="Secciones"><span class="menu-ico" aria-hidden="true"></span></summary>
+      <nav class="menu-panel" aria-label="Secciones">
+        <a href="#como"><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
+        <a href="#funciones"><span class="es">Funciones</span><span class="en">Features</span></a>
+        <a href="#tecnico"><span class="es">Detalles técnicos</span><span class="en">Technical details</span></a>
+        <a href="#avance"><span class="es">Avance</span><span class="en">Progress</span></a>
+        <a href="#novedades"><span class="es">Novedades</span><span class="en">Updates</span></a>
+        <a href="#preguntas"><span class="es">Preguntas</span><span class="en">FAQ</span></a>
+        <a class="btn btn-primary" data-si="listaEspera" href="{{url:listaEspera}}" target="_blank" rel="noopener"><span class="es">Avísame cuando salga</span><span class="en">Notify me at launch</span></a>
+      </nav>
+    </details>
     <a class="btn btn-primary es" data-no="listaEspera" href="{{url:github}}" target="_blank" rel="noopener" aria-label="Seguir IronDeck en GitHub">Seguir</a>
     <a class="btn btn-primary en" data-no="listaEspera" href="{{url:github}}" target="_blank" rel="noopener" aria-label="Follow IronDeck on GitHub">Follow</a>
   </div>
@@ -138,7 +150,7 @@
       </div>
       <div class="pillars">
         <div class="pillar">
-          <h3><span class="es">Dirige tus agentes</span><span class="en">Run your agents</span></h3>
+          <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3M12 15h5"/></svg><span class="es">Dirige tus agentes</span><span class="en">Run your agents</span></h3>
           <div class="feats">
             <div class="feat"><h4><span class="es">Tareas en paralelo</span><span class="en">Parallel tasks</span></h4><p><span class="es">Hasta cuatro a la vez, cada una aislada en su propia copia del proyecto.</span><span class="en">Up to four at once, each isolated in its own copy of the project.</span></p></div>
             <div class="feat"><h4><span class="es">Flujos por pasos</span><span class="en">Step-by-step flows</span></h4><p><span class="es">Con el modelo, el esfuerzo y los permisos de cada paso. Corren en orden, y cada paso recibe lo que entregó el anterior.</span><span class="en">With the model, effort and permissions for each step. They run in order, and each step gets what the previous one delivered.</span></p></div>
@@ -147,7 +159,7 @@
           </div>
         </div>
         <div class="pillar">
-          <h3><span class="es">Controla el gasto</span><span class="en">Control your spend</span></h3>
+          <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l4.5-5"/><circle cx="12" cy="16" r="1.2"/></svg><span class="es">Controla el gasto</span><span class="en">Control your spend</span></h3>
           <div class="feats">
             <div class="feat"><h4><span class="es">Límites a la vista</span><span class="en">Limits in view</span></h4><p><span class="es">Tu límite de 5 horas y el de la semana, con las mismas cifras que ves en claude.ai.</span><span class="en">Your 5-hour and weekly limits, with the same numbers you see on claude.ai.</span></p></div>
             <div class="feat"><h4><span class="es">Pausa y sigue</span><span class="en">Pause and resume</span></h4><p><span class="es">Al llegar al límite pausa sin gastar reintentos, y retoma sola después del reinicio.</span><span class="en">At the limit it pauses without burning retries, and resumes on its own after the reset.</span></p></div>
@@ -156,7 +168,7 @@
           </div>
         </div>
         <div class="pillar">
-          <h3><span class="es">Afina tus skills</span><span class="en">Tune your skills</span></h3>
+          <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 5 9-5"/></svg><span class="es">Afina tus skills</span><span class="en">Tune your skills</span></h3>
           <div class="feats">
             <div class="feat"><h4><span class="es">Biblioteca con versiones</span><span class="en">Versioned library</span></h4><p><span class="es">Guarda tus skills, las instrucciones que le enseñan a Claude a trabajar a tu manera, con todas sus versiones. El número nunca baja y puedes volver a una anterior.</span><span class="en">Keeps your skills, the instructions that teach Claude to work your way, with every version. The number never goes down, and you can go back to an earlier one.</span></p></div>
             <div class="feat"><h4><span class="es">Comparaciones A/B</span><span class="en">A/B comparisons</span></h4><p><span class="es">Compara dos versiones de una skill sobre los mismos casos para quedarte con la que funciona mejor. Cada caso corre tres veces y Opus hace de juez.</span><span class="en">Compare two versions of a skill on the same cases and keep the one that works better. Each case runs three times, with Opus as the judge.</span></p></div>
@@ -219,9 +231,9 @@
 
       <div class="stats">
         <div class="stat"><strong>4 / 6</strong><span><span class="es">fases terminadas</span><span class="en">phases done</span></span></div>
-        <div class="stat"><strong><span class="es">1309</span><span class="en">1,309</span></strong><span><span class="es">pruebas automáticas, más pasadas reales en Windows</span><span class="en">automated tests, plus real runs on Windows</span></span></div>
+        <div class="stat"><strong data-cuenta><span class="es">1309</span><span class="en">1,309</span></strong><span><span class="es">pruebas automáticas, más pasadas reales en Windows</span><span class="en">automated tests, plus real runs on Windows</span></span></div>
         <div class="stat"><strong><span class="es">7 oct</span><span class="en">Oct 7</span></strong><span><span class="es">de 2026, primera instalación real en Windows</span><span class="en">2026, first real install on Windows</span></span></div>
-        <div class="stat"><strong>28 s</strong><span><span class="es">lo que tardó en volver solo a la versión anterior tras una actualización fallida</span><span class="en">to roll itself back after a failed update</span></span></div>
+        <div class="stat"><strong data-cuenta>28 s</strong><span><span class="es">lo que tardó en volver solo a la versión anterior tras una actualización fallida</span><span class="en">to roll itself back after a failed update</span></span></div>
       </div>
 
       <div class="meter" role="img" aria-label="{{texto:avance}}">
@@ -420,3 +432,83 @@
     </div>
   </div>
 </footer>
+
+<script>
+(() => {
+  const menu = document.querySelector('.menu');
+  if (menu) {
+    menu.addEventListener('click', e => { if (e.target.closest('a')) menu.open = false; });
+    document.addEventListener('click', e => { if (menu.open && !menu.contains(e.target)) menu.open = false; });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); } });
+  }
+
+  const pilares = document.querySelector('.pillars');
+  if (pilares) {
+    const paneles = [...pilares.querySelectorAll(':scope > .pillar')];
+    const lista = document.createElement('div');
+    lista.className = 'tabs';
+    lista.setAttribute('role', 'tablist');
+    const botones = paneles.map((panel, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tab';
+      b.id = 'tab-' + i;
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-controls', 'panel-' + i);
+      b.innerHTML = panel.querySelector('h3').innerHTML;
+      panel.id = 'panel-' + i;
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', b.id);
+      panel.tabIndex = 0;
+      lista.append(b);
+      return b;
+    });
+    const elegir = (i, foco) => {
+      botones.forEach((b, j) => {
+        const si = i === j;
+        b.setAttribute('aria-selected', si);
+        b.tabIndex = si ? 0 : -1;
+        paneles[j].hidden = !si;
+      });
+      if (foco) botones[i].focus();
+    };
+    botones.forEach((b, i) => b.addEventListener('click', () => elegir(i)));
+    lista.addEventListener('keydown', e => {
+      const i = botones.indexOf(document.activeElement);
+      if (i < 0) return;
+      const n = botones.length;
+      const destino = { ArrowRight: (i + 1) % n, ArrowLeft: (i - 1 + n) % n, Home: 0, End: n - 1 }[e.key];
+      if (destino !== undefined) { e.preventDefault(); elegir(destino, true); }
+    });
+    pilares.classList.add('con-pestanas');
+    pilares.prepend(lista);
+    elegir(0);
+  }
+
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cifras = document.querySelectorAll('[data-cuenta]');
+  if (!quieto && cifras.length && 'IntersectionObserver' in window) {
+    const contar = el => {
+      const nodos = [];
+      const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      while (w.nextNode()) if (/\d/.test(w.currentNode.data)) nodos.push([w.currentNode, w.currentNode.data]);
+      const t0 = performance.now(), dur = 1100;
+      const paso = t => {
+        const p = Math.min(1, (t - t0) / dur), f = 1 - Math.pow(1 - p, 3);
+        nodos.forEach(([nodo, txt]) => {
+          nodo.data = txt.replace(/\d[\d,]*/, m => {
+            const v = Math.round(parseInt(m.replace(/,/g, ''), 10) * f);
+            return m.includes(',') ? v.toLocaleString('en-US') : String(v);
+          });
+        });
+        if (p < 1) requestAnimationFrame(paso);
+      };
+      requestAnimationFrame(paso);
+    };
+    const obs = new IntersectionObserver(entradas => entradas.forEach(e => {
+      if (e.isIntersecting) { obs.unobserve(e.target); contar(e.target); }
+    }), { threshold: 0.6 });
+    cifras.forEach(c => obs.observe(c));
+  }
+})();
+</script>
