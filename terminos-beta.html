@@ -91,7 +91,8 @@ a:hover { text-decoration-thickness: 2px; }
 .deck :focus-visible, .final :focus-visible { outline-color: var(--deck-blue); }
 
 h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
-p { margin: 0; text-wrap: pretty; }
+p { margin: 0; text-wrap: wrap; }
+@media (min-width: 761px) { p { text-wrap: pretty; } }
 ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .nw { white-space: nowrap; }
@@ -678,7 +679,9 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 @media (max-width: 860px) { .ways { grid-template-columns: minmax(0, 1fr); } }
 .also { margin-block-start: 22px; color: var(--ink-2); }
 @media (max-width: 640px) {
-  .join { grid-template-columns: minmax(0, 1fr); padding: 22px; }
+  .join { grid-template-columns: minmax(0, 1fr); padding: 22px 20px; }
+  .join p, .way p, .diff p, .perfil-datos, .edition p { max-width: none; }
+  .join .btn { justify-content: center; }
 }
 
 /* FAQ: heading on the left (it stays in view), the accordion on the right */
@@ -937,8 +940,29 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   .captura a:hover, .captura-marco:hover { transform: translateY(-3px); border-color: var(--ink-2); }
 }
 @media (max-width: 860px) {
-  .pantallas-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(78%, 1fr); overflow-x: auto; scroll-snap-type: x mandatory; padding-block-end: 8px; scrollbar-width: thin; }
-  .captura { scroll-snap-align: start; }
+  .pantallas-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 80%;
+    gap: 14px;
+    margin-inline: -20px;
+    padding: 6px 10% 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 10%;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .pantallas-grid::-webkit-scrollbar { display: none; }
+  .captura { scroll-snap-align: center; scroll-snap-stop: always; }
+  /* the page script sets --lejos (0 centred, 1 one card away): the side cards shrink and fade */
+  .captura { transform: scale(calc(1 - 0.07 * var(--lejos, 0))); opacity: calc(1 - 0.45 * var(--lejos, 0)); transform-origin: center; will-change: transform; }
+  .pantallas-puntos { display: flex; justify-content: center; gap: 8px; margin-block-start: 14px; }
+  .pantallas-puntos button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 99px; background: var(--line); cursor: pointer; transition: width var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease); }
+  .pantallas-puntos button[aria-current="true"] { width: 24px; background: var(--straw); }
+}
+@media (min-width: 861px) { .pantallas-puntos { display: none; }
 }
 
 /* Motion: one moment on load (the deck comes alive), tactile buttons, and scroll-linked details where the browser supports them. Everything is readable without it. */

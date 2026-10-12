@@ -528,6 +528,40 @@
   }
 
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const carrusel = document.querySelector('.pantallas-grid');
+  if (carrusel) {
+    const fotos = [...carrusel.querySelectorAll('.captura')];
+    const puntos = document.createElement('div');
+    puntos.className = 'pantallas-puntos';
+    const botones = fotos.map((foto, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', (document.documentElement.lang === 'en' ? 'Screenshot ' : 'Captura ') + (i + 1));
+      b.addEventListener('click', () => {
+        carrusel.scrollTo({ left: foto.offsetLeft - (carrusel.clientWidth - foto.offsetWidth) / 2, behavior: quieto ? 'auto' : 'smooth' });
+      });
+      puntos.append(b);
+      return b;
+    });
+    carrusel.after(puntos);
+    let pendiente = false;
+    const medir = () => {
+      pendiente = false;
+      const centro = carrusel.scrollLeft + carrusel.clientWidth / 2;
+      let cerca = 0, mejor = Infinity;
+      fotos.forEach((foto, i) => {
+        const d = Math.abs(foto.offsetLeft + foto.offsetWidth / 2 - centro) / (foto.offsetWidth || 1);
+        if (!quieto) foto.style.setProperty('--lejos', Math.min(d, 1).toFixed(3));
+        if (d < mejor) { mejor = d; cerca = i; }
+      });
+      botones.forEach((b, i) => b.setAttribute('aria-current', i === cerca));
+    };
+    const pedir = () => { if (!pendiente) { pendiente = true; requestAnimationFrame(medir); } };
+    carrusel.addEventListener('scroll', pedir, { passive: true });
+    addEventListener('resize', pedir);
+    medir();
+  }
   const cifras = document.querySelectorAll('[data-cuenta]');
   if (!quieto && cifras.length && 'IntersectionObserver' in window) {
     const contar = el => {
