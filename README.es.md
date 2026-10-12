@@ -2,7 +2,7 @@
 
 # IronDeck: orquestador de Claude Code para Windows
 
-**Deja a Claude Code trabajando. Tú solo decides.**
+**Tus proyectos avanzan. Tú solo decides.**
 
 IronDeck es una app de escritorio para Windows que dirige a Claude Code por ti: corre varios agentes a la vez, retoma cuando algo se corta, vigila el límite de 5 horas y el semanal de tu plan (y solo gasta más allá si tú lo permites), y solo te llama cuando necesita una decisión.
 

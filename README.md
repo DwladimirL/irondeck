@@ -2,7 +2,7 @@
 
 # IronDeck: Claude Code orchestrator for Windows
 
-**Leave Claude Code working. You make the calls.**
+**Your projects move forward. You make the calls.**
 
 IronDeck is a Windows desktop app that drives Claude Code for you: it runs several agents in parallel, picks up after interruptions, watches your plan's 5-hour and weekly limits (and only spends beyond them if you allow it), and only calls you in when it needs a decision.
 
