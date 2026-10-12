@@ -637,25 +637,29 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 }
 .join h3 { font-family: var(--f-display); font-weight: 800; font-size: 1.875rem; line-height: 1; margin-block-end: 8px; }
 .join p { color: var(--ink-2); max-width: 54ch; }
-.support-intro { margin-block: 36px 8px; color: var(--ink-2); max-width: 66ch; }
-.ways { display: grid; }
+.support-intro { margin-block: 36px 18px; color: var(--ink-2); max-width: 66ch; }
+.ways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .way {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px 28px;
-  align-items: center;
-  padding-block: 18px;
-  border-top: 1px solid var(--line);
+  grid-template-rows: auto auto 1fr auto;
+  justify-items: start;
+  gap: 8px;
+  min-width: 0;
+  padding: 22px 20px 20px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
 }
-.way:last-child { border-bottom: 1px solid var(--line); }
-.way h3 { font-size: 1.0625rem; font-weight: 600; margin-block-end: 2px; }
-.way p { color: var(--ink-2); max-width: 58ch; font-size: 0.96875rem; }
-.way .btn, .way .soon { justify-self: end; }
+.way .diff-ico { margin-block-end: 6px; }
+.way-gratis { position: relative; overflow: hidden; }
+.way-gratis::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--temper); }
+.way h3 { font-size: 1.125rem; font-weight: 600; }
+.way p { color: var(--ink-2); font-size: 0.9375rem; }
+.way .btn, .way .soon { margin-block-start: 8px; }
+@media (max-width: 860px) { .ways { grid-template-columns: minmax(0, 1fr); } }
 .also { margin-block-start: 22px; color: var(--ink-2); }
 @media (max-width: 640px) {
   .join { grid-template-columns: minmax(0, 1fr); padding: 22px; }
-  .way { grid-template-columns: minmax(0, 1fr); }
-  .way .btn, .way .soon { justify-self: start; }
 }
 
 /* FAQ: one accordion column */
@@ -678,9 +682,11 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .final .btn:not(.btn-primary) { border-color: var(--deck-ink); color: var(--deck-ink); }
 .final .btn:not(.btn-primary):hover { background: var(--deck-raised); }
 @media (max-width: 700px) {
-  .final-inner { grid-template-columns: minmax(0, 1fr); }
-  .final-copy { gap: 18px; }
-  .final-icono { width: 64px; height: 64px; }
+  .final-inner { grid-template-columns: minmax(0, 1fr); padding-block: 52px; }
+  .final-copy { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .final-icono { width: 56px; height: 56px; }
+  .final h2 { font-size: min(2.125rem, 7.8vw); white-space: nowrap; }
+  .final .btn { justify-content: center; }
 }
 
 /* Footer */
@@ -826,9 +832,9 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 }
 
 /* Cards answer the pointer */
-.diff, .edition, .con-pestanas .feat { transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease); }
+.diff, .edition, .way, .con-pestanas .feat { transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease); }
 @media (hover: hover) {
-  .diff:hover, .edition:hover, .con-pestanas .feat:hover { transform: translateY(-2px); border-color: var(--ink-2); }
+  .diff:hover, .edition:hover, .way:hover, .con-pestanas .feat:hover { transform: translateY(-2px); border-color: var(--ink-2); }
 }
 
 /* Motion: one moment on load (the deck comes alive), tactile buttons, and scroll-linked details where the browser supports them. Everything is readable without it. */

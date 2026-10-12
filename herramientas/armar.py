@@ -249,7 +249,6 @@ def cuerpo(idioma, sitio, novedades, otro_enlace, raiz=""):
     enlaces = sitio["enlaces"]
     condiciones = dict(enlaces, analitica=sitio.get("analiticaCloudflare", ""),
                        legal="si" if sitio["_legal"]["listo"] else "",
-                       aportes="si" if enlaces.get("kofi") or enlaces.get("sponsors") else "",
                        masNovedades="si" if len(novedades) > A_LA_VISTA else "")
     filtro = Filtro(idioma, condiciones)
     filtro.feed(fuente)
