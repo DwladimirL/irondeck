@@ -24,18 +24,15 @@ IDIOMAS = ("es", "en")
 VACIOS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 
 FUENTES = [
-    ("Inter Tight", 400, "inter-tight-latin-400-normal.woff2"),
-    ("Inter Tight", 500, "inter-tight-latin-500-normal.woff2"),
-    ("Inter Tight", 600, "inter-tight-latin-600-normal.woff2"),
+    ("Inter", "400 700", "inter-latin-wght-normal.woff2"),  # variable: un archivo para todos los pesos
     ("Big Shoulders Display", 700, "big-shoulders-display-latin-700-normal.woff2"),
     ("Big Shoulders Display", 800, "big-shoulders-display-latin-800-normal.woff2"),
     ("Big Shoulders Stencil Display", 800, "big-shoulders-stencil-display-latin-800-normal.woff2"),
-    ("IBM Plex Mono", 400, "ibm-plex-mono-latin-400-normal.woff2"),
-    ("IBM Plex Mono", 500, "ibm-plex-mono-latin-500-normal.woff2"),
+    ("JetBrains Mono", "400 600", "jetbrains-mono-latin-wght-normal.woff2"),
 ]
-GOOGLE_FONTS = ("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600"
+GOOGLE_FONTS = ("https://fonts.googleapis.com/css2?family=Inter:wght@400..700"
                 "&family=Big+Shoulders+Display:wght@700;800&family=Big+Shoulders+Stencil+Display:wght@800"
-                "&family=IBM+Plex+Mono:wght@400;500&display=swap")
+                "&family=JetBrains+Mono:wght@400..600&display=swap")
 
 MESES = {
     "es": ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
@@ -179,6 +176,49 @@ def fecha_texto(fecha, idioma):
     return f"{MESES[idioma][mes - 1]} {anio}"
 
 
+# Galería «Así se ve IronDeck»: sitio.json → capturas. Vacía, la galería no se publica.
+# Con --galeria-de-muestra se arma con marcos de muestra, solo para enseñar el diseño en una demo.
+MUESTRA_CAPTURAS = [
+    {"archivo": "", "titulo": {"es": "Bandeja de decisiones", "en": "Decision inbox"}, "etiqueta": {"es": "Decidir", "en": "Decide"}},
+    {"archivo": "", "titulo": {"es": "Un flujo en marcha", "en": "A flow running"}, "etiqueta": {"es": "Construir", "en": "Build"}},
+    {"archivo": "", "titulo": {"es": "Límites del plan", "en": "Plan limits"}, "etiqueta": {"es": "Plan", "en": "Plan"}},
+]
+
+
+def lista_capturas(sitio):
+    capturas = sitio.get("capturas") or []
+    if not capturas and "--galeria-de-muestra" in sys.argv:
+        return MUESTRA_CAPTURAS
+    return capturas
+
+
+def capturas_html(capturas, idioma, raiz):
+    def texto(c, campo, i):
+        return html.escape((c.get(campo) or {}).get(i, ""))
+
+    def dos(c, campo):
+        if idioma:
+            return texto(c, campo, idioma)
+        return "".join(f'<span class="{i}">{texto(c, campo, i)}</span>' for i in IDIOMAS)
+
+    filas = []
+    for c in capturas:
+        pie = f'<figcaption><span>{dos(c, "titulo")}</span><span class="captura-tag">{dos(c, "etiqueta")}</span></figcaption>'
+        if c.get("archivo"):
+            ruta = html.escape(raiz + c["archivo"], quote=True)
+            alt = html.escape((c.get("alt") or c.get("titulo") or {}).get(idioma or "es", ""), quote=True)
+            filas.append(f'        <figure class="captura"><a href="{ruta}" target="_blank" rel="noopener">'
+                         f'<img src="{ruta}" alt="{alt}" width="1600" height="1000" loading="lazy"></a>{pie}</figure>')
+        else:
+            marco = ('<div class="captura-marco" aria-hidden="true"><i></i><i></i><i></i>'
+                     '<span class="es">Captura pendiente</span><span class="en">Screenshot pending</span></div>')
+            if idioma:
+                marco = marco.replace('<span class="es">Captura pendiente</span><span class="en">Screenshot pending</span>',
+                                      "<span>Captura pendiente</span>" if idioma == "es" else "<span>Screenshot pending</span>")
+            filas.append(f'        <figure class="captura captura-pendiente">{marco}{pie}</figure>')
+    return "\n".join(filas)
+
+
 # Novedades que se ven sin abrir «Ver las novedades anteriores»
 A_LA_VISTA = 3
 
@@ -262,13 +302,15 @@ def cuerpo(idioma, sitio, novedades, otro_enlace, raiz=""):
     enlaces = sitio["enlaces"]
     condiciones = dict(enlaces, analitica=sitio.get("analiticaCloudflare", ""),
                        legal="si" if sitio["_legal"]["listo"] else "",
-                       masNovedades="si" if len(novedades) > A_LA_VISTA else "")
+                       masNovedades="si" if len(novedades) > A_LA_VISTA else "",
+                       capturas="si" if lista_capturas(sitio) else "")
     filtro = Filtro(idioma, condiciones)
     filtro.feed(fuente)
     filtro.close()
     texto = "".join(filtro.salida)
     texto = texto.replace("<!--NOVEDADES-->", novedades_html(novedades[:A_LA_VISTA], idioma))
     texto = texto.replace("<!--NOVEDADES-RESTO-->", novedades_html(novedades[A_LA_VISTA:], idioma))
+    texto = texto.replace("<!--CAPTURAS-->", capturas_html(lista_capturas(sitio), idioma, raiz))
 
     def poner(m):
         clave = m.group(1)
@@ -285,6 +327,8 @@ def cuerpo(idioma, sitio, novedades, otro_enlace, raiz=""):
         if tipo == "cuenta":
             if nombre == "novedades":
                 return str(len(novedades))
+            if nombre == "capturas":
+                return str(len(lista_capturas(sitio)))
             if nombre == "preguntas":
                 return str(fuente.count("<summary><h3>"))
         if tipo == "fecha" and nombre == "actualizado":
@@ -350,7 +394,7 @@ def pagina_completa(idioma, sitio, novedades, css, otro_enlace=None):
     imagen = base + seo["imagen"]
     fuentes = (f'<link rel="preload" href="{prefijo}fuentes/big-shoulders-display-latin-800-normal.woff2" '
                f'as="font" type="font/woff2" crossorigin>\n'
-               f'<link rel="preload" href="{prefijo}fuentes/inter-tight-latin-400-normal.woff2" '
+               f'<link rel="preload" href="{prefijo}fuentes/inter-latin-wght-normal.woff2" '
                f'as="font" type="font/woff2" crossorigin>')
     estilo = css_fuentes(prefijo) + "\n" + css
     verificacion = ""
@@ -504,7 +548,7 @@ def pagina_legal(clave, idioma, sitio, css):
 <link rel="icon" href="{prefijo}favicon.ico" sizes="32x32">
 <link rel="icon" href="{prefijo}marca/irondeck-icono-simple.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{prefijo}apple-touch-icon.png">
-<link rel="preload" href="{prefijo}fuentes/inter-tight-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{prefijo}fuentes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 {css_fuentes(prefijo)}
 {css}

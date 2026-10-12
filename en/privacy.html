@@ -13,16 +13,13 @@
 <link rel="icon" href="../favicon.ico" sizes="32x32">
 <link rel="icon" href="../marca/irondeck-icono-simple.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<link rel="preload" href="../fuentes/inter-tight-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fuentes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Inter Tight";font-style:normal;font-weight:400;font-display:swap;src:url("../fuentes/inter-tight-latin-400-normal.woff2") format("woff2")}
-@font-face{font-family:"Inter Tight";font-style:normal;font-weight:500;font-display:swap;src:url("../fuentes/inter-tight-latin-500-normal.woff2") format("woff2")}
-@font-face{font-family:"Inter Tight";font-style:normal;font-weight:600;font-display:swap;src:url("../fuentes/inter-tight-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 700;font-display:swap;src:url("../fuentes/inter-latin-wght-normal.woff2") format("woff2")}
 @font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:700;font-display:swap;src:url("../fuentes/big-shoulders-display-latin-700-normal.woff2") format("woff2")}
 @font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:800;font-display:swap;src:url("../fuentes/big-shoulders-display-latin-800-normal.woff2") format("woff2")}
 @font-face{font-family:"Big Shoulders Stencil Display";font-style:normal;font-weight:800;font-display:swap;src:url("../fuentes/big-shoulders-stencil-display-latin-800-normal.woff2") format("woff2")}
-@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url("../fuentes/ibm-plex-mono-latin-400-normal.woff2") format("woff2")}
-@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url("../fuentes/ibm-plex-mono-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400 600;font-display:swap;src:url("../fuentes/jetbrains-mono-latin-wght-normal.woff2") format("woff2")}
 /* Layout: a control deck. An instrument header, a hero split between the promise and a sample deck panel, a spec strip, then sections that alternate paper and raised paper on a 1120px frame. The temper colors (straw to blue, the colors steel takes as it is tempered) are the one signature: top edge, the underline of the hero's last line, the deck's top rule, the reading thread and the progress bar. */
 :root {
   --bg: #e8ecf0;
@@ -49,8 +46,8 @@
 
   --f-display: "Big Shoulders Display", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --f-stencil: "Big Shoulders Stencil Display", "Big Shoulders Display", "Arial Narrow", Arial, sans-serif;
-  --f-body: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
-  --f-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --f-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
 
   --dur-fast: 0.18s;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -907,6 +904,41 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   white-space: nowrap;
   color: color-mix(in srgb, var(--ink) 90%, transparent);
   margin-block-end: -0.1em;
+}
+
+/* Screenshot gallery: 16:10 frames with a caption and a tag, like the thumbnails of a deck library */
+.pantallas { margin-block-start: 64px; }
+.pantallas-head { display: grid; gap: 10px; margin-block-end: 24px; }
+.pantallas-head .label { color: var(--ink); }
+.pantallas-head h3 { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.875rem, 1.6vw + 1.2rem, 2.5rem); line-height: 1; }
+.pantallas-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.captura { margin: 0; min-width: 0; }
+.captura a { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.captura img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+.captura figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-block-start: 12px; font-weight: 600; }
+.captura-tag { flex: none; font: 500 0.6875rem/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--line); border-radius: 3px; padding: 4px 7px; }
+.captura-marco {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--deck-bg);
+  border: 1px solid var(--deck-line);
+  display: grid;
+  align-content: start;
+  gap: 8%;
+  padding: 14% 10% 0;
+}
+.captura-marco::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--temper); }
+.captura-marco i { display: block; height: 0; padding-block-end: 9%; border-radius: 4px; background: var(--deck-raised); }
+.captura-marco span { position: absolute; left: 10%; bottom: 9%; font: 500 0.6875rem/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--deck-muted); }
+@media (hover: hover) {
+  .captura a, .captura-marco { transition: transform var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease); }
+  .captura a:hover, .captura-marco:hover { transform: translateY(-3px); border-color: var(--ink-2); }
+}
+@media (max-width: 860px) {
+  .pantallas-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(78%, 1fr); overflow-x: auto; scroll-snap-type: x mandatory; padding-block-end: 8px; scrollbar-width: thin; }
+  .captura { scroll-snap-align: start; }
 }
 
 /* Motion: one moment on load (the deck comes alive), tactile buttons, and scroll-linked details where the browser supports them. Everything is readable without it. */
