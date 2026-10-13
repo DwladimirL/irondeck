@@ -3,7 +3,14 @@
 
 <header class="top">
   <div class="frame top-inner">
-    <a class="mark" href="#inicio" aria-label="IronDeck"><img class="mark-icono" src="{{raiz}}marca/irondeck-icono-simple.svg" alt="" width="28" height="28">IRONDECK</a>
+    <a class="mark" href="#inicio" aria-label="IronDeck"><img class="mark-icono" src="{{raiz}}marca/irondeck-icono-simple.svg" alt="" width="28" height="28"><span class="mark-texto">IRONDECK</span></a>
+    <button class="brujula" type="button" aria-expanded="false" aria-controls="desplegable" hidden>
+      <span class="brujula-pila" aria-hidden="true">
+        <span class="brujula-rot"><span class="es">Estás en</span><span class="en">You’re in</span></span>
+        <span class="brujula-linea"><span class="brujula-num">01/11</span><span class="brujula-nombre"><span></span></span></span>
+      </span>
+      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>
+    </button>
     <span class="sr-only" id="nav-nombre"><span class="es">Secciones</span><span class="en">Sections</span></span>
     <nav class="nav" aria-labelledby="nav-nombre">
       <a href="#como"><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
@@ -16,19 +23,43 @@
     <a class="lang-link en" href="{{otro}}" hreflang="es" lang="es">Español</a>
     <a class="btn btn-primary btn-avisame top-cta" data-si="listaEspera" href="{{url:listaEspera}}" target="_blank" rel="noopener"><span class="es">Lista de espera</span><span class="en">Waitlist</span></a>
     <details class="menu">
-      <summary><span class="menu-ico" aria-hidden="true"></span><span class="sr-only"><span class="es">Secciones</span><span class="en">Sections</span></span></summary>
-      <nav class="menu-panel" aria-labelledby="nav-nombre">
-        <a href="#como"><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
-        <a href="#funciones"><span class="es">Funciones</span><span class="en">Features</span></a>
-        <a href="#tecnico"><span class="es">Detalles técnicos</span><span class="en">Technical details</span></a>
-        <a href="#avance"><span class="es">Avance</span><span class="en">Progress</span></a>
-        <a href="#novedades"><span class="es">Novedades</span><span class="en">Updates</span></a>
-        <a href="#preguntas"><span class="es">Preguntas</span><span class="en">FAQ</span></a>
+      <summary><span class="menu-ico" aria-hidden="true"></span><span class="sr-only"><span class="es">Enlaces</span><span class="en">Links</span></span></summary>
+      <div class="menu-panel">
+        <p class="label menu-titulo"><span class="es">Síguelo y apóyalo</span><span class="en">Follow and back it</span></p>
         <a class="btn btn-primary btn-avisame" data-si="listaEspera" href="{{url:listaEspera}}" target="_blank" rel="noopener"><span class="es">Avísame cuando salga</span><span class="en">Notify me at launch</span></a>
-      </nav>
+        <p class="menu-nota" data-si="listaEspera"><span class="es">Lista de espera · formulario de Google</span><span class="en">Waitlist · Google form</span></p>
+        <ul class="menu-enlaces">
+          <li data-si="kofi"><a href="{{url:kofi}}" target="_blank" rel="noopener"><span class="menu-caja" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1 1 1.5 1 2.5"/><path d="M12 3.5c0 1 1 1.5 1 2.5"/></svg></span><span class="menu-txt"><strong><span class="es">Apoyar en Ko-fi</span><span class="en">Support on Ko-fi</span></strong><small><span class="es">Aporte único o mensual</span><span class="en">One-time or monthly</span></small></span><svg class="menu-fuera" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5h5.5V8M9.5 2.5 3 9"/></svg></a></li>
+          <li data-si="sponsors"><a href="{{url:sponsors}}" target="_blank" rel="noopener"><span class="menu-caja" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span class="menu-txt"><strong>GitHub Sponsors</strong><small><span class="es">Patrocina desde tu cuenta de GitHub</span><span class="en">Sponsor from your GitHub account</span></small></span><svg class="menu-fuera" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5h5.5V8M9.5 2.5 3 9"/></svg></a></li>
+          <li><a href="{{url:github}}" target="_blank" rel="noopener"><span class="menu-caja" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></svg></span><span class="menu-txt"><strong>GitHub</strong><small><span class="es">Dale una estrella y sigue el avance</span><span class="en">Star it and follow the progress</span></small></span><svg class="menu-fuera" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2.5h5.5V8M9.5 2.5 3 9"/></svg></a></li>
+          <li class="menu-contacto" data-si="legal"><a href="mailto:{{correo}}"><span class="menu-caja" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6 7.5-6"/></svg></span><span class="menu-txt"><strong><span class="es">Contacto</span><span class="en">Contact</span></strong><small>{{correo}}</small></span></a><button class="menu-copiar" type="button" data-copiar="{{correo}}"><svg class="menu-copiar-a" viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 5.5v-1a1 1 0 0 0-1-1h-9a2 2 0 0 0-2 2v9a1 1 0 0 0 1 1h1"/></svg><svg class="menu-copiar-b" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span class="sr-only"><span class="es">Copiar el correo</span><span class="en">Copy the email</span></span></button></li>
+        </ul>
+      </div>
     </details>
     <a class="btn btn-primary es" data-no="listaEspera" href="{{url:github}}" target="_blank" rel="noopener" aria-label="Seguir IronDeck en GitHub">Seguir</a>
     <a class="btn btn-primary en" data-no="listaEspera" href="{{url:github}}" target="_blank" rel="noopener" aria-label="Follow IronDeck on GitHub">Follow</a>
+  </div>
+  <div class="desplegable" id="desplegable" hidden>
+    <div class="desplegable-fondo"></div>
+    <nav class="desplegable-panel" aria-labelledby="nav-nombre">
+      <div class="frame">
+        <div class="desplegable-cab"><span class="label"><span class="es">Secciones · 11</span><span class="en">Sections · 11</span></span><span class="desplegable-pct"><span class="es">Llevas el <b>0</b> %</span><span class="en"><b>0</b>% read</span></span></div>
+        <ol>
+          <li><a href="#inicio"><span class="n">01</span><span class="t"><span class="es">Inicio</span><span class="en">Top</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#problema"><span class="n">02</span><span class="t"><span class="es">El problema</span><span class="en">The problem</span></span><span class="corto" hidden><span class="es">Problema</span><span class="en">Problem</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#como"><span class="n">03</span><span class="t"><span class="es">Cómo funciona</span><span class="en">How it works</span></span><span class="corto" hidden><span class="es">Método</span><span class="en">Method</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#funciones"><span class="n">04</span><span class="t"><span class="es">Funciones</span><span class="en">Features</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#tecnico"><span class="n">05</span><span class="t"><span class="es">Detalles técnicos</span><span class="en">Technical details</span></span><span class="corto" hidden><span class="es">Técnico</span><span class="en">Specs</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#avance"><span class="n">06</span><span class="t"><span class="es">Avance</span><span class="en">Progress</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#novedades"><span class="n">07</span><span class="t"><span class="es">Novedades</span><span class="en">Updates</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#ediciones"><span class="n">08</span><span class="t"><span class="es">Ediciones</span><span class="en">Editions</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#autor"><span class="n">09</span><span class="t"><span class="es">Quién está detrás</span><span class="en">Who’s behind it</span></span><span class="corto" hidden><span class="es">Autor</span><span class="en">About</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#preguntas"><span class="n">10</span><span class="t"><span class="es">Preguntas</span><span class="en">FAQ</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#apoya"><span class="n">11</span><span class="t"><span class="es">Apoya</span><span class="en">Support</span></span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+        </ol>
+        <small class="aqui" hidden><span class="es">Estás aquí</span><span class="en">You are here</span></small>
+      </div>
+    </nav>
   </div>
 </header>
 
@@ -668,6 +699,113 @@
       if (e.isIntersecting) { obs.unobserve(e.target); contar(e.target); }
     }), { threshold: 0.6 });
     cifras.forEach(c => obs.observe(c));
+  }
+
+  const copiar = document.querySelector('.menu-copiar');
+  if (copiar) {
+    copiar.addEventListener('click', () => {
+      const listo = () => { copiar.classList.add('hecho'); setTimeout(() => copiar.classList.remove('hecho'), 1600); };
+      const aMano = () => {
+        const sel = getSelection(), r = document.createRange();
+        r.selectNodeContents(copiar.parentElement.querySelector('small'));
+        sel.removeAllRanges(); sel.addRange(r);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(copiar.dataset.copiar).then(listo, aMano);
+      else aMano();
+    });
+  }
+
+  /* Section compass: from the second section on, the header says where you are; tapping it drops the list out of the header */
+  const cabecera = document.querySelector('.top'), brujula = document.querySelector('.brujula'), des = document.getElementById('desplegable');
+  if (cabecera && brujula && des) {
+    const filas = [...des.querySelectorAll('ol a')];
+    const S = filas.map(a => {
+      const t = a.querySelector('.t').textContent.trim(), corto = a.querySelector('.corto');
+      return { a, el: document.querySelector(a.getAttribute('href')), nombre: t, corto: corto ? corto.textContent.trim() : t };
+    }).filter(s => s.el);
+    const rotulo = brujula.querySelector('.brujula-rot').textContent.trim();
+    const titulo = document.getElementById('nav-nombre').textContent.trim();
+    const num = brujula.querySelector('.brujula-num'), caja = brujula.querySelector('.brujula-nombre');
+    const aqui = des.querySelector('.aqui'), pct = des.querySelector('.desplegable-pct b'), panel = des.querySelector('.desplegable-panel');
+    const dos = n => String(n).padStart(2, '0');
+    let alto = 1, actual = -1;
+    brujula.hidden = false;
+
+    const medir = () => {
+      alto = document.documentElement.scrollHeight;
+      S.forEach(s => { s.top = s.el.getBoundingClientRect().top + scrollY; s.h = s.el.offsetHeight; });
+      const max = Math.max(...S.map(s => s.h));
+      S.forEach(s => { s.a.querySelector('.largo i').style.width = Math.max(8, s.h / max * 100) + '%'; });
+    };
+    const cual = () => {
+      if (innerHeight + scrollY >= alto - 4) return S.length - 1;
+      const y = scrollY + innerHeight * 0.35;
+      let i = 0;
+      S.forEach((s, k) => { if (s.top <= y) i = k; });
+      return i;
+    };
+    const pintar = (i, antes) => {
+      cabecera.classList.toggle('con-brujula', i > 0);
+      num.textContent = dos(i + 1) + '/' + dos(S.length);
+      brujula.setAttribute('aria-label', `${titulo}. ${rotulo}: ${S[i].nombre}`);
+      const viejo = caja.lastElementChild;
+      if (quieto || antes < 0 || !viejo.textContent) { viejo.textContent = S[i].corto; return; }
+      const nuevo = document.createElement('span');
+      nuevo.textContent = S[i].corto;
+      nuevo.className = i > antes ? 'entra' : 'sale';
+      caja.appendChild(nuevo);
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        viejo.className = i > antes ? 'sale' : 'entra';
+        nuevo.className = '';
+        setTimeout(() => viejo.remove(), 420);
+      }));
+    };
+    const abrir = () => {
+      const i = cual();
+      S.forEach((s, k) => s.a.setAttribute('aria-current', k === i ? 'location' : 'false'));
+      aqui.hidden = false;
+      S[i].a.querySelector('.t').appendChild(aqui);
+      const leido = Math.min(1, (scrollY + innerHeight) / alto);
+      pct.textContent = Math.round(leido * 100);
+      panel.style.setProperty('--leido', leido * 100 + '%');
+      if (menu) menu.open = false;
+      des.hidden = false;
+      brujula.setAttribute('aria-expanded', 'true');
+      cabecera.classList.add('abierta');
+      requestAnimationFrame(() => requestAnimationFrame(() => des.classList.add('abierta')));
+      setTimeout(() => S[i].a.focus({ preventScroll: true }), quieto ? 0 : 250);
+    };
+    const cerrar = (devolver = true) => {
+      des.classList.remove('abierta');
+      brujula.setAttribute('aria-expanded', 'false');
+      cabecera.classList.remove('abierta');
+      setTimeout(() => { if (!des.classList.contains('abierta')) des.hidden = true; }, quieto ? 0 : 450);
+      if (devolver) brujula.focus({ preventScroll: true });
+    };
+    brujula.addEventListener('click', () => (des.hidden ? abrir() : cerrar()));
+    des.querySelector('.desplegable-fondo').addEventListener('click', () => cerrar());
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !des.hidden) cerrar(); });
+    if (menu) menu.addEventListener('toggle', () => { if (menu.open && !des.hidden) cerrar(false); });
+    des.querySelector('ol').addEventListener('click', e => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      e.preventDefault();
+      cerrar(false);
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' });
+    });
+
+    let pendiente = false;
+    const mover = () => {
+      pendiente = false;
+      const i = cual();
+      if (i !== actual) { pintar(i, actual); actual = i; }
+    };
+    const rehacer = () => { medir(); mover(); };
+    addEventListener('scroll', () => { if (!pendiente) { pendiente = true; requestAnimationFrame(mover); } }, { passive: true });
+    addEventListener('resize', rehacer);
+    addEventListener('load', rehacer);
+    document.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => setTimeout(rehacer, 60)));
+    rehacer();
   }
 })();
 </script>

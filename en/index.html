@@ -183,10 +183,9 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 }
 .lang-link:hover { background: color-mix(in srgb, var(--ink) 5%, var(--bg-raised)); }
 .top .btn { min-height: 38px; padding: 0 16px; font-size: 0.875rem; }
-@media (max-width: 960px) {
-  .nav { display: none; }
-  .lang-link { margin-inline-start: auto; }
-}
+/* The sections live in the compass and the links in the menu, at every width: the bar no longer carries the section links */
+.nav { display: none; }
+.lang-link { margin-inline-start: auto; }
 @media (max-width: 400px) {
   .top-inner { gap: 10px; }
   .mark { font-size: 1.35rem; }
@@ -810,8 +809,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .legal-seccion { padding-block-start: 40px; }
 .legal-seccion + .legal-seccion { margin-block-start: 48px; border-top: 1px solid var(--line); }
 
-/* Section menu for widths without the nav bar */
-.menu { display: none; position: relative; }
+/* Links menu for widths without the nav bar: waitlist, support, GitHub and contact (the sections live in the compass) */
+.menu { display: block; position: relative; }
 .menu > summary { list-style: none; cursor: pointer; display: grid; place-items: center; width: 40px; height: 38px; background: var(--bg-raised); border: 1px solid var(--line); border-block-end-color: color-mix(in srgb, var(--ink) 22%, var(--line)); border-radius: 4px; }
 .menu > summary::-webkit-details-marker { display: none; }
 .menu > summary:hover { border-color: var(--ink-2); }
@@ -828,17 +827,79 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   right: 0;
   top: calc(100% + 10px);
   display: grid;
-  min-width: 230px;
-  padding: 8px;
-  background: var(--bg-raised);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  box-shadow: 0 18px 40px -18px rgba(8, 12, 18, 0.55);
+  gap: 10px;
+  width: min(320px, calc(100vw - 40px));
+  padding: 24px 20px 14px;
+  --carta: #ffffff;
+  background: var(--carta);
+  border: 1px solid color-mix(in srgb, var(--ink) 24%, var(--line));
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(8, 12, 18, 0.1), 0 14px 28px -8px rgba(8, 12, 18, 0.28), 0 40px 80px -24px rgba(8, 12, 18, 0.5);
+  overflow: hidden;
 }
-.menu-panel a:not(.btn) { padding: 10px 12px; border-radius: var(--r); color: var(--ink); text-decoration: none; font-weight: 500; }
-.menu-panel a:not(.btn):hover { background: var(--bg); }
-.menu-panel .btn { margin-block-start: 6px; justify-content: center; }
-@media (max-width: 960px) { .menu { display: block; } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .menu-panel { --carta: #212a35; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 14px 28px -8px rgba(0, 0, 0, 0.6), 0 40px 80px -24px rgba(0, 0, 0, 0.85); } }
+:root[data-theme="dark"] .menu-panel { --carta: #212a35; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 14px 28px -8px rgba(0, 0, 0, 0.6), 0 40px 80px -24px rgba(0, 0, 0, 0.85); }
+.menu-panel::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--temper); }
+/* invitation-card keyline: a fine straw frame set inside the edge */
+.menu-panel::after { content: ""; position: absolute; inset: 10px; border: 1px solid color-mix(in srgb, var(--straw) 45%, transparent); border-radius: 7px; pointer-events: none; }
+.menu-titulo { color: var(--ink); }
+.menu-titulo::before { content: ""; display: inline-block; width: 22px; height: 2px; margin-inline-end: 0.9em; vertical-align: middle; background: var(--straw); }
+.menu-panel .btn { justify-content: center; }
+.menu-nota { margin-block-start: -4px; font-size: 0.8125rem; text-align: center; color: var(--ink-2); }
+.menu-enlaces { display: grid; padding-block-start: 4px; border-top: 1px solid var(--line); }
+.menu-enlaces li + li { border-top: 1px solid color-mix(in srgb, var(--line) 60%, transparent); }
+.menu-enlaces a {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 12px;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 8px;
+  margin-inline: -8px;
+  border-radius: var(--r);
+  color: var(--ink);
+  text-decoration: none;
+}
+.menu-enlaces a:hover { background: var(--bg); }
+.menu-caja { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: var(--r); color: var(--straw); }
+.menu-caja svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.menu-txt { min-width: 0; }
+.menu-txt strong { display: block; font-weight: 500; font-size: 0.9375rem; line-height: 1.3; }
+.menu-txt small { display: block; font-size: 0.8125rem; line-height: 1.35; color: var(--ink-2); overflow-wrap: anywhere; }
+.menu-fuera { width: 12px; height: 12px; fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.menu-contacto { display: flex; align-items: center; gap: 8px; }
+.menu-contacto a { flex: 1 1 auto; grid-template-columns: 40px minmax(0, 1fr); margin-inline-end: 0; }
+.menu-copiar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: var(--ink-2);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-block-end-color: color-mix(in srgb, var(--ink) 22%, var(--line));
+  border-radius: 4px;
+  cursor: pointer;
+}
+.menu-copiar:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, var(--bg)); }
+.menu-copiar svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.menu-copiar-b, .menu-copiar.hecho .menu-copiar-a { display: none; }
+.menu-copiar.hecho .menu-copiar-b { display: block; color: var(--straw); }
+.menu-contacto small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 359px) { .menu-contacto small { font-size: 0.75rem; } }
+@media (prefers-reduced-motion: no-preference) {
+  .menu[open] .menu-panel { animation: menu-baja 0.3s var(--ease) both; }
+  .menu[open] .menu-panel > *, .menu[open] .menu-enlaces li { animation: menu-baja 0.35s var(--ease) both; }
+  .menu[open] .menu-panel > :nth-child(2) { animation-delay: 30ms; }
+  .menu[open] .menu-panel > :nth-child(3) { animation-delay: 50ms; }
+  .menu[open] .menu-enlaces li:nth-child(1) { animation-delay: 80ms; }
+  .menu[open] .menu-enlaces li:nth-child(2) { animation-delay: 110ms; }
+  .menu[open] .menu-enlaces li:nth-child(3) { animation-delay: 140ms; }
+  .menu[open] .menu-enlaces li:nth-child(4) { animation-delay: 170ms; }
+  @keyframes menu-baja { from { opacity: 0; transform: translateY(-6px); } }
+}
 @media (max-width: 600px) { .top-cta { display: none; } }
 
 /* Hero: a faint dot grid behind the promise, fading out toward the edges */
@@ -1163,6 +1224,115 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   }
 }
 
+/* Section compass: on phones and tablets, from the second section on, the header shows where you are; tapping it drops the section list out of the header itself */
+.mark-texto { display: inline-block; overflow: hidden; max-width: 8em; transition: max-width 0.45s var(--ease), opacity 0.25s var(--ease); }
+.brujula { display: inline-flex; }
+.desplegable { display: block; }
+.top.con-brujula .mark-texto { max-width: 0; opacity: 0; }
+.top.con-brujula .mark { gap: 0; }
+.top.con-brujula .top-inner { gap: 12px; }
+.brujula {
+  align-items: center; gap: 8px;
+  min-width: 0; min-height: 38px; flex: 0 1 auto;
+  margin-inline-start: -14px; padding: 0 10px 0 4px;
+  color: var(--ink); text-align: start;
+  background: none; border: 0; border-radius: 4px; cursor: pointer;
+  opacity: 0; transform: translateY(6px); visibility: hidden;
+  transition: opacity 0.25s var(--ease), transform 0.45s var(--ease), margin 0.45s var(--ease), background-color var(--dur-fast) var(--ease), visibility 0s linear 0.45s;
+}
+.top.con-brujula .brujula { opacity: 1; transform: none; visibility: visible; margin-inline-start: 0; transition-delay: 0s; }
+.brujula:hover { background: color-mix(in srgb, var(--ink) 5%, transparent); }
+/* caption on its own line above the number and name; [data-rotulo="abajo"] puts it below */
+.brujula-pila { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+[data-rotulo="abajo"] .brujula-pila { flex-direction: column-reverse; }
+.brujula-rot { display: inline-flex; align-items: center; gap: 6px; font: 500 0.625rem/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); white-space: nowrap; }
+.brujula-rot::before { content: ""; flex: none; width: 5px; height: 5px; border-radius: 50%; background: var(--straw); box-shadow: 0 0 0 3px color-mix(in srgb, var(--straw) 18%, transparent); }
+.brujula-linea { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.brujula-num { flex: none; font: 500 0.75rem/1 var(--f-mono); letter-spacing: 0.04em; color: var(--straw); font-variant-numeric: tabular-nums; }
+.brujula-nombre { position: relative; display: inline-grid; overflow: hidden; height: 1.25em; min-width: 0; font: 500 0.9375rem/1 var(--f-body); }
+.brujula-nombre > span { grid-area: 1 / 1; line-height: 1.25em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: transform 0.4s var(--ease), opacity 0.3s var(--ease); }
+.brujula-nombre > span.sale { transform: translateY(-100%); opacity: 0; }
+.brujula-nombre > span.entra { transform: translateY(100%); opacity: 0; }
+.brujula svg { flex: none; width: 12px; height: 12px; fill: none; stroke: var(--ink-2); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--dur-fast) var(--ease); }
+.brujula[aria-expanded="true"] svg { transform: rotate(180deg); }
+@media (max-width: 359px) {
+  .top.con-brujula .top-inner { gap: 8px; }
+  .brujula-num { display: none; }
+  .brujula-nombre { font-size: 0.875rem; }
+}
+
+/* The list drops out of the header: same ground, the header's border and progress line move to its lower edge */
+.desplegable { position: absolute; left: 0; right: 0; top: 100%; }
+.desplegable-fondo { position: absolute; left: 0; right: 0; top: 0; height: 100vh; height: 100dvh; background: color-mix(in srgb, var(--sombra) 40%, transparent); opacity: 0; transition: opacity 0.3s var(--ease); }
+.desplegable-panel {
+  position: relative;
+  max-height: calc(100vh - 140px); max-height: calc(100dvh - 140px); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.45s var(--ease);
+}
+.desplegable-panel::after { content: ""; position: sticky; display: block; bottom: 0; height: 2px; width: var(--leido, 0%); background: var(--temper); }
+.desplegable-panel .frame { padding-block: 6px 14px; }
+.top.abierta { border-bottom-color: transparent; }
+.top.abierta::after { opacity: 0; }
+.desplegable.abierta .desplegable-fondo { opacity: 1; }
+.desplegable.abierta .desplegable-panel { clip-path: inset(0 0 0 0); }
+.desplegable-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-block: 8px 10px; border-bottom: 1px solid var(--line); }
+.desplegable-cab .label { color: var(--ink); }
+.desplegable-cab .label::before { content: ""; display: inline-block; width: 22px; height: 2px; margin-inline-end: 0.9em; vertical-align: middle; background: var(--straw); }
+.desplegable-pct { font: 500 0.75rem/1 var(--f-mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.desplegable li { opacity: 0; transform: translateY(-6px); transition: opacity 0.3s var(--ease), transform 0.4s var(--ease); transition-delay: calc(var(--k) * 22ms); }
+.desplegable.abierta li { opacity: 1; transform: none; }
+.desplegable li a {
+  display: grid; grid-template-columns: 2.4ch minmax(0, 1fr) 72px; align-items: center; gap: 12px;
+  min-height: 46px; padding-inline: 8px; margin-inline: -8px; border-radius: 4px;
+  color: var(--ink); text-decoration: none; position: relative;
+}
+.desplegable li a:hover { background: color-mix(in srgb, var(--ink) 5%, transparent); }
+.desplegable li + li a { border-top: 1px solid color-mix(in srgb, var(--line) 60%, transparent); border-radius: 0; }
+.desplegable .n { font: 500 0.75rem/1 var(--f-mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.desplegable .t { font-weight: 500; font-size: 0.9375rem; min-width: 0; }
+.desplegable .aqui { display: block; font: 500 0.625rem/1.4 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--straw); }
+.desplegable .largo { height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--line) 45%, transparent); overflow: hidden; }
+.desplegable .largo i { display: block; height: 100%; background: var(--line); }
+.desplegable a[aria-current="location"] .n { color: var(--straw); }
+.desplegable a[aria-current="location"] .largo i { background: var(--straw); }
+.desplegable a[aria-current="location"]::before { content: ""; position: absolute; left: -12px; top: 11px; bottom: 11px; width: 3px; border-radius: 0 2px 2px 0; background: var(--straw); }
+
+@media (prefers-reduced-motion: reduce) {
+  .mark-texto, .brujula, .brujula-nombre > span, .desplegable-fondo, .desplegable-panel, .desplegable li { transition: none !important; }
+}
+
+/* Phone layout: a little smaller type and boxes, a little more air between sections */
+@media (max-width: 600px) {
+  body { font-size: 1rem; line-height: 1.6; }
+  .section { padding-block: 72px; }
+  .section-head { gap: 10px; margin-block-end: 28px; }
+  .section h2 { font-size: 2.125rem; line-height: 0.98; }
+  .hero-editorial h1 { font-size: 2.25rem; }
+  .lede { font-size: 1rem; }
+  .pains { gap: 26px; }
+  .pains li:first-child h3 { font-size: 1.75rem; }
+  .pains li:first-child p { font-size: 1.0625rem; }
+  .pains h3, .process h3, .feat h4, .diff h3, .phase h3, .news h3, .way h3, .faq h3 { font-size: 1.0625rem; }
+  .pains p, .process p, .news p, .faq p, .about > div:first-child > p { font-size: 0.9375rem; }
+  .diff p, .feat p, .way p, .phase p, .spec dd, .stat > span, .edition p:last-child { font-size: 0.875rem; }
+  .answer { margin-block-start: 36px; font-size: 1.625rem; }
+  .process li { padding-block: 16px; }
+  .diffs, .con-pestanas .feats, .ways, .editions { gap: 12px; }
+  .stats { gap: 22px 16px; margin-block-end: 32px; }
+  .stat strong { font-size: 2rem; }
+  .phase { padding-block: 14px; }
+  .news li { padding-block: 18px; }
+  .edition { padding: 18px; }
+  .edition h3 { font-size: 1.5rem; }
+  .edition-main h3 { font-size: 1.875rem; }
+  .join h3 { font-size: 1.625rem; }
+  .way { padding: 18px 16px 16px; }
+  .faq summary { padding-block: 16px; }
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dwladimirl.github.io/irondeck/#sitio","url":"https://dwladimirl.github.io/irondeck/","name":"IronDeck","inLanguage":["es","en"],"image":"https://dwladimirl.github.io/irondeck/marca/png/irondeck-512.png"},{"@type":"SoftwareApplication","name":"IronDeck","url":"https://dwladimirl.github.io/irondeck/en/","inLanguage":"en","applicationCategory":"DeveloperApplication","operatingSystem":"Windows","description":"Run several Claude Code tasks at once with your own account, and keep your plan limits and extra spend under control. A Windows desktop app in development.","image":"https://dwladimirl.github.io/irondeck/marca/png/irondeck-512.png","author":{"@type":"Person","name":"Wladimir Diaz","alternateName":"DwladimirL","url":"https://github.com/DwladimirL","sameAs":["https://github.com/DwladimirL"]},"sameAs":["https://github.com/DwladimirL/irondeck"]},{"@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"What do I need to use it?","acceptedAnswer":{"@type":"Answer","text":"A Windows PC, Claude Code installed with your account, and a Claude plan that includes it: Pro or Max, or a Team or Enterprise plan. Also Git and Node.js. The final list ships with the first release."}},{"@type":"Question","name":"Do I need to know how to code?","acceptedAnswer":{"@type":"Answer","text":"Not to use it: you describe the work and approve the result. It does help when reviewing what it delivers, just as with Claude Code on its own."}},{"@type":"Question","name":"Can it break something on my PC?","acceptedAnswer":{"@type":"Answer","text":"Each task works in a copy of your project and can only use the tools its step allows. Its changes reach your project when you approve them, but commands you allow, such as publishing or installing packages, act outside that copy. It's a version in development: use it with Git and backups."}},{"@type":"Question","name":"Which account does it use?","acceptedAnswer":{"@type":"Answer","text":"Yours. IronDeck runs your own Claude Code installation on your PC. It doesn't ask you to sign in, doesn't store your password, and doesn't route your session through any server. What it uses comes out of your plan and, only if you turn it on, your account's extra usage."}},{"@type":"Question","name":"Does using IronDeck go against Anthropic's terms?","acceptedAnswer":{"@type":"Answer","text":"IronDeck doesn't change how you use Claude Code: it runs your own official installation, with your account, on your PC. It doesn't share accounts, doesn't resell access, and respects your plan's limits: when it hits one, it pauses. Your Claude plan's terms still apply as always; check them if you have questions about your case."}},{"@type":"Question","name":"Can it spend beyond my plan?","acceptedAnswer":{"@type":"Answer","text":"Only if extra usage is turned on in your Anthropic account; without it, it can't. If it is on, IronDeck stops a task by default as soon as Claude Code reports extra usage, and what was used up to that point is billed. If you'd rather it not stop, you'll be able to turn on your account's extra usage with a spending cap; that mode arrives before launch. You also decide how much of your week IronDeck uses."}},{"@type":"Question","name":"What leaves my PC?","acceptedAnswer":{"@type":"Answer","text":"IronDeck has no server on the internet: its server runs only on your PC. What leaves is what Claude Code sends to Anthropic while working, checks to GitHub for updates, whatever your tasks do with the permissions you grant them, and the backup of your library to your own GitHub account. None of it goes through me."}},{"@type":"Question","name":"Is IronDeck made by Anthropic?","acceptedAnswer":{"@type":"Answer","text":"No. It's an independent project that works with Claude Code. Anthropic doesn't sponsor or endorse it."}},{"@type":"Question","name":"When does it ship, and what does it cost?","acceptedAnswer":{"@type":"Answer","text":"There's no date or price yet. I don't charge anything in advance, and the waitlist hears first."}},{"@type":"Question","name":"Does it run on Mac or Linux?","acceptedAnswer":{"@type":"Answer","text":"For now, Windows only."}},{"@type":"Question","name":"Is the code open source?","acceptedAnswer":{"@type":"Answer","text":"It's private for now. This site and its repository show the progress, the guides and the updates."}}]}]}</script>
 </head>
@@ -1172,7 +1342,14 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 
 <header class="top">
   <div class="frame top-inner">
-    <a class="mark" href="#inicio" aria-label="IronDeck"><img class="mark-icono" src="../marca/irondeck-icono-simple.svg" alt="" width="28" height="28">IRONDECK</a>
+    <a class="mark" href="#inicio" aria-label="IronDeck"><img class="mark-icono" src="../marca/irondeck-icono-simple.svg" alt="" width="28" height="28"><span class="mark-texto">IRONDECK</span></a>
+    <button class="brujula" type="button" aria-expanded="false" aria-controls="desplegable" hidden>
+      <span class="brujula-pila" aria-hidden="true">
+        <span class="brujula-rot">You’re in</span>
+        <span class="brujula-linea"><span class="brujula-num">01/11</span><span class="brujula-nombre"><span></span></span></span>
+      </span>
+      <svg viewbox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" /></svg>
+    </button>
     <span class="sr-only" id="nav-nombre">Sections</span>
     <nav class="nav" aria-labelledby="nav-nombre">
       <a href="#como">How it works</a>
@@ -1185,18 +1362,42 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     <a class="lang-link" href="../index.html" hreflang="es" lang="es">Español</a>
     <a class="btn btn-primary btn-avisame top-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Waitlist</a>
     <details class="menu">
-      <summary><span class="menu-ico" aria-hidden="true"></span><span class="sr-only">Sections</span></summary>
-      <nav class="menu-panel" aria-labelledby="nav-nombre">
-        <a href="#como">How it works</a>
-        <a href="#funciones">Features</a>
-        <a href="#tecnico">Technical details</a>
-        <a href="#avance">Progress</a>
-        <a href="#novedades">Updates</a>
-        <a href="#preguntas">FAQ</a>
+      <summary><span class="menu-ico" aria-hidden="true"></span><span class="sr-only">Links</span></summary>
+      <div class="menu-panel">
+        <p class="label menu-titulo">Follow and back it</p>
         <a class="btn btn-primary btn-avisame" href="https://docs.google.com/forms/d/e/1FAIpQLSeocO6yBUubfJuUUrxxV9245ReozbLcxDC6gUGqDXpph-zDhw/viewform?usp=pp_url&amp;entry.1661828274=English" target="_blank" rel="noopener">Notify me at launch</a>
-      </nav>
+        <p class="menu-nota">Waitlist · Google form</p>
+        <ul class="menu-enlaces">
+          <li><a href="https://ko-fi.com/irondeck" target="_blank" rel="noopener"><span class="menu-caja" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z" /><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16" /><path d="M8 3.5c0 1 1 1.5 1 2.5" /><path d="M12 3.5c0 1 1 1.5 1 2.5" /></svg></span><span class="menu-txt"><strong>Support on Ko-fi</strong><small>One-time or monthly</small></span><svg class="menu-fuera" viewbox="0 0 12 12" aria-hidden="true"><path d="M4 2.5h5.5V8M9.5 2.5 3 9" /></svg></a></li>
+
+          <li><a href="https://github.com/DwladimirL/irondeck" target="_blank" rel="noopener"><span class="menu-caja" aria-hidden="true"><svg viewbox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z" /></svg></span><span class="menu-txt"><strong>GitHub</strong><small>Star it and follow the progress</small></span><svg class="menu-fuera" viewbox="0 0 12 12" aria-hidden="true"><path d="M4 2.5h5.5V8M9.5 2.5 3 9" /></svg></a></li>
+          <li class="menu-contacto"><a href="mailto:irondeck.app@gmail.com"><span class="menu-caja" aria-hidden="true"><svg viewbox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2" /><path d="m4.5 7 7.5 6 7.5-6" /></svg></span><span class="menu-txt"><strong>Contact</strong><small>irondeck.app@gmail.com</small></span></a><button class="menu-copiar" type="button" data-copiar="irondeck.app@gmail.com"><svg class="menu-copiar-a" viewbox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="8.5" width="11" height="11" rx="2" /><path d="M15.5 5.5v-1a1 1 0 0 0-1-1h-9a2 2 0 0 0-2 2v9a1 1 0 0 0 1 1h1" /></svg><svg class="menu-copiar-b" viewbox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg><span class="sr-only">Copy the email</span></button></li>
+        </ul>
+      </div>
     </details>
 
+  </div>
+  <div class="desplegable" id="desplegable" hidden>
+    <div class="desplegable-fondo"></div>
+    <nav class="desplegable-panel" aria-labelledby="nav-nombre">
+      <div class="frame">
+        <div class="desplegable-cab"><span class="label">Sections · 11</span><span class="desplegable-pct"><b>0</b>% read</span></div>
+        <ol>
+          <li><a href="#inicio"><span class="n">01</span><span class="t">Top</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#problema"><span class="n">02</span><span class="t">The problem</span><span class="corto" hidden>Problem</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#como"><span class="n">03</span><span class="t">How it works</span><span class="corto" hidden>Method</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#funciones"><span class="n">04</span><span class="t">Features</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#tecnico"><span class="n">05</span><span class="t">Technical details</span><span class="corto" hidden>Specs</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#avance"><span class="n">06</span><span class="t">Progress</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#novedades"><span class="n">07</span><span class="t">Updates</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#ediciones"><span class="n">08</span><span class="t">Editions</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#autor"><span class="n">09</span><span class="t">Who’s behind it</span><span class="corto" hidden>About</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#preguntas"><span class="n">10</span><span class="t">FAQ</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+          <li><a href="#apoya"><span class="n">11</span><span class="t">Support</span><span class="largo" aria-hidden="true"><i></i></span></a></li>
+        </ol>
+        <small class="aqui" hidden>You are here</small>
+      </div>
+    </nav>
   </div>
 </header>
 
@@ -1832,6 +2033,113 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
       if (e.isIntersecting) { obs.unobserve(e.target); contar(e.target); }
     }), { threshold: 0.6 });
     cifras.forEach(c => obs.observe(c));
+  }
+
+  const copiar = document.querySelector('.menu-copiar');
+  if (copiar) {
+    copiar.addEventListener('click', () => {
+      const listo = () => { copiar.classList.add('hecho'); setTimeout(() => copiar.classList.remove('hecho'), 1600); };
+      const aMano = () => {
+        const sel = getSelection(), r = document.createRange();
+        r.selectNodeContents(copiar.parentElement.querySelector('small'));
+        sel.removeAllRanges(); sel.addRange(r);
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(copiar.dataset.copiar).then(listo, aMano);
+      else aMano();
+    });
+  }
+
+  /* Section compass: from the second section on, the header says where you are; tapping it drops the list out of the header */
+  const cabecera = document.querySelector('.top'), brujula = document.querySelector('.brujula'), des = document.getElementById('desplegable');
+  if (cabecera && brujula && des) {
+    const filas = [...des.querySelectorAll('ol a')];
+    const S = filas.map(a => {
+      const t = a.querySelector('.t').textContent.trim(), corto = a.querySelector('.corto');
+      return { a, el: document.querySelector(a.getAttribute('href')), nombre: t, corto: corto ? corto.textContent.trim() : t };
+    }).filter(s => s.el);
+    const rotulo = brujula.querySelector('.brujula-rot').textContent.trim();
+    const titulo = document.getElementById('nav-nombre').textContent.trim();
+    const num = brujula.querySelector('.brujula-num'), caja = brujula.querySelector('.brujula-nombre');
+    const aqui = des.querySelector('.aqui'), pct = des.querySelector('.desplegable-pct b'), panel = des.querySelector('.desplegable-panel');
+    const dos = n => String(n).padStart(2, '0');
+    let alto = 1, actual = -1;
+    brujula.hidden = false;
+
+    const medir = () => {
+      alto = document.documentElement.scrollHeight;
+      S.forEach(s => { s.top = s.el.getBoundingClientRect().top + scrollY; s.h = s.el.offsetHeight; });
+      const max = Math.max(...S.map(s => s.h));
+      S.forEach(s => { s.a.querySelector('.largo i').style.width = Math.max(8, s.h / max * 100) + '%'; });
+    };
+    const cual = () => {
+      if (innerHeight + scrollY >= alto - 4) return S.length - 1;
+      const y = scrollY + innerHeight * 0.35;
+      let i = 0;
+      S.forEach((s, k) => { if (s.top <= y) i = k; });
+      return i;
+    };
+    const pintar = (i, antes) => {
+      cabecera.classList.toggle('con-brujula', i > 0);
+      num.textContent = dos(i + 1) + '/' + dos(S.length);
+      brujula.setAttribute('aria-label', `${titulo}. ${rotulo}: ${S[i].nombre}`);
+      const viejo = caja.lastElementChild;
+      if (quieto || antes < 0 || !viejo.textContent) { viejo.textContent = S[i].corto; return; }
+      const nuevo = document.createElement('span');
+      nuevo.textContent = S[i].corto;
+      nuevo.className = i > antes ? 'entra' : 'sale';
+      caja.appendChild(nuevo);
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        viejo.className = i > antes ? 'sale' : 'entra';
+        nuevo.className = '';
+        setTimeout(() => viejo.remove(), 420);
+      }));
+    };
+    const abrir = () => {
+      const i = cual();
+      S.forEach((s, k) => s.a.setAttribute('aria-current', k === i ? 'location' : 'false'));
+      aqui.hidden = false;
+      S[i].a.querySelector('.t').appendChild(aqui);
+      const leido = Math.min(1, (scrollY + innerHeight) / alto);
+      pct.textContent = Math.round(leido * 100);
+      panel.style.setProperty('--leido', leido * 100 + '%');
+      if (menu) menu.open = false;
+      des.hidden = false;
+      brujula.setAttribute('aria-expanded', 'true');
+      cabecera.classList.add('abierta');
+      requestAnimationFrame(() => requestAnimationFrame(() => des.classList.add('abierta')));
+      setTimeout(() => S[i].a.focus({ preventScroll: true }), quieto ? 0 : 250);
+    };
+    const cerrar = (devolver = true) => {
+      des.classList.remove('abierta');
+      brujula.setAttribute('aria-expanded', 'false');
+      cabecera.classList.remove('abierta');
+      setTimeout(() => { if (!des.classList.contains('abierta')) des.hidden = true; }, quieto ? 0 : 450);
+      if (devolver) brujula.focus({ preventScroll: true });
+    };
+    brujula.addEventListener('click', () => (des.hidden ? abrir() : cerrar()));
+    des.querySelector('.desplegable-fondo').addEventListener('click', () => cerrar());
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !des.hidden) cerrar(); });
+    if (menu) menu.addEventListener('toggle', () => { if (menu.open && !des.hidden) cerrar(false); });
+    des.querySelector('ol').addEventListener('click', e => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      e.preventDefault();
+      cerrar(false);
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: quieto ? 'auto' : 'smooth', block: 'start' });
+    });
+
+    let pendiente = false;
+    const mover = () => {
+      pendiente = false;
+      const i = cual();
+      if (i !== actual) { pintar(i, actual); actual = i; }
+    };
+    const rehacer = () => { medir(); mover(); };
+    addEventListener('scroll', () => { if (!pendiente) { pendiente = true; requestAnimationFrame(mover); } }, { passive: true });
+    addEventListener('resize', rehacer);
+    addEventListener('load', rehacer);
+    document.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => setTimeout(rehacer, 60)));
+    rehacer();
   }
 })();
 </script>
