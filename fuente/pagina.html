@@ -817,5 +817,38 @@
     s.textContent = otraPestana;
     a.appendChild(s);
   });
+
+  /* The note under the cover buttons reads as an inverted pyramid on phones: its first line reaches the button edges and each line is
+     shorter than the one above. It tries sizes around the 13px set in CSS, nearest first; without a match it keeps the CSS size */
+  const nota = document.querySelector('.cta-nota');
+  if (nota) {
+    const lineas = () => {
+      const anchos = {}, r = document.createRange(), w = document.createTreeWalker(nota, NodeFilter.SHOW_TEXT);
+      while (w.nextNode()) {
+        const t = w.currentNode;
+        for (let i = 0; i < t.length; i++) {
+          r.setStart(t, i); r.setEnd(t, i + 1);
+          const b = r.getBoundingClientRect();
+          if (!b.width) continue;
+          const k = Math.round(b.top), a = anchos[k] || (anchos[k] = [b.left, b.right]);
+          a[0] = Math.min(a[0], b.left); a[1] = Math.max(a[1], b.right);
+        }
+      }
+      return Object.keys(anchos).sort((x, y) => x - y).map(k => anchos[k][1] - anchos[k][0]);
+    };
+    const ajustar = () => {
+      nota.style.fontSize = '';
+      if (!matchMedia('(max-width: 600px)').matches) return;
+      for (const f of [13, 12.75, 13.25, 12.5, 13.5, 12.25, 13.75, 12, 14]) {
+        nota.style.fontSize = f + 'px';
+        const l = lineas();
+        if (l.length >= 2 && l.length <= 4 && l[0] >= nota.clientWidth * 0.9 && l.every((a, i) => i === 0 || a <= l[i - 1] - 8)) return;
+      }
+      nota.style.fontSize = '';
+    };
+    let espera;
+    addEventListener('resize', () => { clearTimeout(espera); espera = setTimeout(ajustar, 120); });
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(ajustar);
+  }
 })();
 </script>
