@@ -74,6 +74,9 @@
 
   --frame: 1120px;
   --r: 6px;
+  --r-chapa: 10px;
+  --aire-seccion: 128px 120px;
+  --aire-seccion-tel: 104px 96px;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -398,7 +401,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 }
 
 /* Sections */
-.section { --surface: var(--bg); padding-block: 80px; }
+.section { --surface: var(--bg); padding-block: var(--aire-seccion); }
 .section.alt { --surface: var(--bg-raised); background: var(--bg-raised); }
 .section:not(.alt) + .section:not(.alt) { border-top: 1px solid var(--line); }
 .section-head { display: grid; gap: 12px; margin-block-end: 36px; }
@@ -1178,8 +1181,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     transform-origin: left;
     animation: llena 1.4s var(--ease) 0.5s both;
   }
-  .step[data-s="run"] .dot { animation: brillo 2.4s ease-in-out 3; }
-  .deck-shell::after { opacity: 1; animation: giro 7s linear 3; }
+  .step[data-s="run"] .dot { animation: brillo 2.4s ease-in-out 2; }
+  .deck-shell::after { opacity: 1; animation: giro 4.5s linear 1; }
   @keyframes giro { to { --giro: 360deg; } }
   .menu-ico::before, .menu-ico::after { transition: transform var(--dur-fast) var(--ease), top var(--dur-fast) var(--ease); }
   @keyframes llena { from { transform: scaleX(0); } }
@@ -1225,10 +1228,11 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 }
 
 /* Section compass: on phones and tablets, from the second section on, the header shows where you are; tapping it drops the section list out of the header itself */
-.mark-texto { display: inline-block; overflow: hidden; max-width: 8em; transition: max-width 0.45s var(--ease), opacity 0.25s var(--ease); }
+.mark-texto { transition: opacity 0.25s var(--ease); }
 .brujula { display: inline-flex; }
 .desplegable { display: block; }
-.top.con-brujula .mark-texto { max-width: 0; opacity: 0; }
+.top.con-brujula .mark-texto { position: absolute; opacity: 0; pointer-events: none; }
+.top:not(.con-brujula) .brujula { position: absolute; }
 .top.con-brujula .mark { gap: 0; }
 .top.con-brujula .top-inner { gap: 12px; }
 .brujula {
@@ -1249,8 +1253,8 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 .brujula-rot::before { content: ""; flex: none; width: 5px; height: 5px; border-radius: 50%; background: var(--straw); box-shadow: 0 0 0 3px color-mix(in srgb, var(--straw) 18%, transparent); }
 .brujula-linea { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
 .brujula-num { flex: none; font: 500 0.75rem/1 var(--f-mono); letter-spacing: 0.04em; color: var(--straw); font-variant-numeric: tabular-nums; }
-.brujula-nombre { position: relative; display: inline-grid; overflow: hidden; height: 1.25em; min-width: 0; font: 500 0.9375rem/1 var(--f-body); }
-.brujula-nombre > span { grid-area: 1 / 1; line-height: 1.25em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: transform 0.4s var(--ease), opacity 0.3s var(--ease); }
+.brujula-nombre { position: relative; display: inline-grid; overflow: hidden; height: 1lh; min-width: 0; font: 500 0.9375rem/1.25 var(--f-body); }
+.brujula-nombre > span { grid-area: 1 / 1; line-height: inherit; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: transform 0.4s var(--ease), opacity 0.3s var(--ease); }
 .brujula-nombre > span.sale { transform: translateY(-100%); opacity: 0; }
 .brujula-nombre > span.entra { transform: translateY(100%); opacity: 0; }
 .brujula svg { flex: none; width: 12px; height: 12px; fill: none; stroke: var(--ink-2); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--dur-fast) var(--ease); }
@@ -1304,34 +1308,83 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
   .mark-texto, .brujula, .brujula-nombre > span, .desplegable-fondo, .desplegable-panel, .desplegable li { transition: none !important; }
 }
 
-/* Phone layout: a little smaller type and boxes, a little more air between sections */
+/* Phone layout, chapters: each section opens with air, a hairline and its number (the same one the compass shows); item headings
+   take the display face so the page reads in clear levels; buttons are a little narrower, centred, with the logo plate's corner */
 @media (max-width: 600px) {
   body { font-size: 1rem; line-height: 1.6; }
-  .section { padding-block: 72px; }
-  .section-head { gap: 10px; margin-block-end: 28px; }
-  .section h2 { font-size: 2.125rem; line-height: 0.98; }
+  main { counter-reset: capitulo 1; }
+  .section { counter-increment: capitulo; padding-block: var(--aire-seccion-tel); border-top: 1px solid var(--line); }
+  .section-head { gap: 12px; margin-block-end: 44px; }
+  .section-head::before {
+    content: counter(capitulo, decimal-leading-zero);
+    content: counter(capitulo, decimal-leading-zero) / "";
+    justify-self: end;
+    margin-block-end: -4px;
+    font: 800 5.5rem/0.78 var(--f-display);
+    letter-spacing: -0.01em;
+    color: var(--line);
+    font-variant-numeric: tabular-nums;
+  }
+  .section h2 { font-size: 2.625rem; line-height: 0.92; }
+  .section-head p:not(.label) { font-size: 0.9375rem; }
+  .section-head .label { text-wrap: balance; }
   .hero-editorial h1 { font-size: 2.25rem; }
   .lede { font-size: 1rem; }
-  .pains { gap: 26px; }
-  .pains li:first-child h3 { font-size: 1.75rem; }
+  .ctas { flex-direction: column; align-items: center; gap: 12px; margin-block-start: 40px; }
+  .ctas .btn { flex: none; width: min(90%, 20rem); }
+  .cta-nota { width: min(90%, 20rem); margin-inline: auto; font-size: 0.8125rem; line-height: 1.5; text-align: center; text-wrap: balance; }
+  .btn, .lang-link, .menu > summary, .plegable > summary, .menu-copiar { border-radius: var(--r-chapa); }
+  .pains { gap: 40px; }
+  .pains li:first-child h3 { font-size: 2.125rem; }
   .pains li:first-child p { font-size: 1.0625rem; }
-  .pains h3, .process h3, .feat h4, .diff h3, .phase h3, .news h3, .way h3, .faq h3 { font-size: 1.0625rem; }
+  .pains h3, .process h3, .diff h3, .feat h4, .way h3, .phase h3 { font-family: var(--f-display); font-weight: 800; font-size: 1.5rem; line-height: 1; }
+  .pains h3 { margin-block-end: 10px; }
+  .process h3, .diff h3, .feat h4, .phase h3 { margin-block-end: 6px; }
+  .news h3, .faq h3 { font-size: 1.0625rem; }
   .pains p, .process p, .news p, .faq p, .about > div:first-child > p { font-size: 0.9375rem; }
   .diff p, .feat p, .way p, .phase p, .spec dd, .stat > span, .edition p:last-child { font-size: 0.875rem; }
-  .answer { margin-block-start: 36px; font-size: 1.625rem; }
-  .process li { padding-block: 16px; }
-  .diffs, .con-pestanas .feats, .ways, .editions { gap: 12px; }
-  .stats { gap: 22px 16px; margin-block-end: 32px; }
-  .stat strong { font-size: 2rem; }
-  .phase { padding-block: 14px; }
-  .news li { padding-block: 18px; }
-  .edition { padding: 18px; }
-  .edition h3 { font-size: 1.5rem; }
-  .edition-main h3 { font-size: 1.875rem; }
-  .join h3 { font-size: 1.625rem; }
-  .way { padding: 18px 16px 16px; }
-  .faq summary { padding-block: 16px; }
+  .answer { margin-block-start: 56px; font-size: 2rem; line-height: 1; }
+  .process li { padding-block: 24px; }
+  .diffs, .con-pestanas .feats, .ways, .editions { gap: 14px; }
+  .stats { gap: 32px 16px; margin-block-end: 44px; }
+  .stat strong { font-size: 2.75rem; }
+  .phase { padding-block: 20px; }
+  .news li { padding-block: 24px; }
+  .edition { padding: 20px 18px; }
+  .edition h3 { font-size: 1.625rem; }
+  .edition-main h3 { font-size: 2rem; }
+  .join h3 { font-size: 1.875rem; }
+  .join .btn { margin-block-start: 12px; justify-self: center; width: min(90%, 20rem); }
+  .way { padding: 20px 16px 18px; }
+  .way .btn, .way .soon { margin-block-start: 16px; }
+  .faq summary { padding-block: 18px; }
+  .final-inner { row-gap: 32px; }
+  .final .btn { justify-self: center; width: min(90%, 20rem); }
+  .final-copy { display: grid; grid-template-columns: 68px minmax(0, 1fr); align-items: center; gap: 0 16px; }
+  .final-copy > div { display: contents; }
+  .final p { grid-column: 1 / -1; margin-block-start: 18px; font-size: 0.9375rem; }
 }
+
+/* Support cards stacked in one column: the icon sits beside the title and text */
+@media (max-width: 860px) {
+  .way { grid-template-columns: 40px minmax(0, 1fr); grid-template-rows: none; column-gap: 16px; row-gap: 6px; align-items: start; }
+  .way > * { grid-column: 2; }
+  .way .diff-ico { grid-column: 1; grid-row: 1 / span 2; margin: 0; }
+}
+
+/* Links card (☰): stronger contrast inside the invitation card — the links sit on their own ground, lines and small text darker */
+.menu-panel { --carta-suave: color-mix(in srgb, var(--ink) 80%, var(--carta)); --carta-linea: color-mix(in srgb, var(--ink) 20%, var(--carta)); --carta-fondo: color-mix(in srgb, var(--ink) 5%, var(--carta)); }
+.menu-nota { color: var(--carta-suave); }
+.menu-enlaces { padding: 2px 6px; background: var(--carta-fondo); border: 1px solid var(--carta-linea); border-radius: var(--r); }
+.menu-enlaces li + li { border-top-color: var(--carta-linea); }
+.menu-enlaces a:hover { background: color-mix(in srgb, var(--ink) 9%, var(--carta)); }
+.menu-caja { background: color-mix(in srgb, var(--straw) 12%, var(--carta)); border-color: color-mix(in srgb, var(--straw) 50%, var(--carta)); }
+.menu-txt strong { font-weight: 600; }
+.menu-txt small { color: var(--carta-suave); }
+.menu-fuera { stroke: var(--carta-suave); }
+.menu-copiar { width: 32px; height: 32px; color: var(--ink); background: var(--carta); border-color: var(--carta-linea); border-block-end-color: color-mix(in srgb, var(--ink) 35%, var(--carta)); }
+.menu-contacto a { padding-inline-end: 4px; }
+@media (max-width: 359px) { .menu-panel { padding-inline: 14px; } .menu-enlaces { padding-inline: 4px; } }
 
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dwladimirl.github.io/irondeck/#sitio","url":"https://dwladimirl.github.io/irondeck/","name":"IronDeck","inLanguage":["es","en"],"image":"https://dwladimirl.github.io/irondeck/marca/png/irondeck-512.png"},{"@type":"SoftwareApplication","name":"IronDeck","url":"https://dwladimirl.github.io/irondeck/","inLanguage":"es","applicationCategory":"DeveloperApplication","operatingSystem":"Windows","description":"Corre varias tareas de Claude Code a la vez con tu propia cuenta y controla los límites de tu plan y el gasto extra. App para Windows, en desarrollo.","image":"https://dwladimirl.github.io/irondeck/marca/png/irondeck-512.png","author":{"@type":"Person","name":"Wladimir Diaz","alternateName":"DwladimirL","url":"https://github.com/DwladimirL","sameAs":["https://github.com/DwladimirL"]},"sameAs":["https://github.com/DwladimirL/irondeck"]},{"@type":"FAQPage","inLanguage":"es","mainEntity":[{"@type":"Question","name":"¿Qué necesito para usarlo?","acceptedAnswer":{"@type":"Answer","text":"Una PC con Windows, Claude Code instalado con tu cuenta y un plan de Claude que lo incluya: Pro o Max, o un plan Team o Enterprise. Además, Git y Node.js. La lista final sale con la primera versión."}},{"@type":"Question","name":"¿Necesito saber programar?","acceptedAnswer":{"@type":"Answer","text":"No para usarlo: describes el trabajo y apruebas el resultado. Sí ayuda para revisar lo que entrega, igual que con Claude Code solo."}},{"@type":"Question","name":"¿Puede romper algo en mi PC?","acceptedAnswer":{"@type":"Answer","text":"Cada tarea trabaja en una copia de tu proyecto y solo puede usar las herramientas que permite su paso. Sus cambios entran a tu proyecto cuando los apruebas, pero los comandos que permitas, como publicar o instalar paquetes, actúan fuera de esa copia. Es una versión en desarrollo: úsala con Git y copias de seguridad."}},{"@type":"Question","name":"¿Qué cuenta usa?","acceptedAnswer":{"@type":"Answer","text":"La tuya. IronDeck lanza tu propia instalación de Claude Code en tu PC. No te pide iniciar sesión, no guarda tu contraseña y no pasa tu sesión por ningún servidor. Lo que gasta sale de tu plan y, solo si lo activas, del uso extra de tu cuenta."}},{"@type":"Question","name":"¿Usar IronDeck va contra los términos de Anthropic?","acceptedAnswer":{"@type":"Answer","text":"IronDeck no cambia cómo usas Claude Code: lanza tu propia instalación oficial, con tu cuenta y en tu PC. No comparte cuentas, no revende acceso y respeta los límites de tu plan: al llegar a uno, pausa. Los términos de tu plan de Claude siguen aplicando igual que siempre; revísalos si tienes dudas sobre tu caso."}},{"@type":"Question","name":"¿Puede gastar más allá de mi plan?","acceptedAnswer":{"@type":"Answer","text":"Solo si tienes activado el uso extra en tu cuenta de Anthropic; sin él, no puede. Si lo tienes activado, por defecto IronDeck detiene la tarea en cuanto Claude Code informa uso extra, y lo consumido hasta ese aviso se cobra. Si prefieres que no se detenga, podrás activar el uso extra de tu cuenta con un tope en dinero; ese modo llega antes del lanzamiento. Además decides cuánto de tu semana usa IronDeck."}},{"@type":"Question","name":"¿Qué sale de mi PC?","acceptedAnswer":{"@type":"Answer","text":"IronDeck no tiene un servidor en internet: su servidor corre solo en tu PC. Sale lo que Claude Code envía a Anthropic al trabajar, las consultas a GitHub para buscar actualizaciones, lo que hagan tus tareas con los permisos que les des y el respaldo de tu biblioteca en tu propia cuenta de GitHub. Nada de eso pasa por mí."}},{"@type":"Question","name":"¿IronDeck es de Anthropic?","acceptedAnswer":{"@type":"Answer","text":"No. Es un proyecto independiente que trabaja con Claude Code. Anthropic no lo patrocina ni lo respalda."}},{"@type":"Question","name":"¿Cuándo sale y cuánto cuesta?","acceptedAnswer":{"@type":"Answer","text":"Todavía no tiene fecha ni precio. No cobro nada por adelantado, y la lista de espera se entera primero."}},{"@type":"Question","name":"¿Funciona en Mac o Linux?","acceptedAnswer":{"@type":"Answer","text":"Por ahora, solo en Windows."}},{"@type":"Question","name":"¿El código es abierto?","acceptedAnswer":{"@type":"Answer","text":"Por ahora es privado. Este sitio y su repositorio muestran el avance, las guías y las novedades."}}]}]}</script>
@@ -1417,7 +1470,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
 
           <a class="btn btn-lg" href="#como">Ver cómo funciona</a>
         </div>
-        <p class="cta-nota">Te pido el correo y el idioma · te das de baja cuando quieras · <a href="privacidad.html">Privacidad</a></p>
+        <p class="cta-nota">En desarrollo, sin fecha ni precio · te pido el correo y el idioma · te das de baja cuando quieras · <a href="privacidad.html">Privacidad</a></p>
         <ul class="proof">
           <li>Ya corre tareas reales de Claude Code en Windows</li>
           <li>4 de 6 fases listas</li>
@@ -1469,7 +1522,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     <dl class="frame strip-grid">
       <div><dt>Para quién</dt><dd>Quien usa Claude Code en Windows, o quiere empezar</dd></div>
       <div><dt>Tu cuenta</dt><dd>Tu Claude Code y tu plan de Claude (Pro, Max, Team o Enterprise), sin servidor intermedio</dd></div>
-      <div><dt>Gasto</dt><dd>Solo tu plan; con uso extra y tope, antes del lanzamiento</dd></div>
+      <div><dt>Gasto</dt><dd>Solo tu plan. El uso extra con tope llega antes del lanzamiento.</dd></div>
       <div><dt>Estado</dt><dd>En desarrollo, todavía sin fecha ni precio</dd></div>
     </dl>
   </div>
@@ -1507,7 +1560,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
       </div>
       <ol class="process">
         <li><div><h3>Describes el trabajo por pasos</h3><p>Por ejemplo: investigar, diseñar, construir y revisar. Cada paso usa el modelo de Claude que le conviene: uno ágil para leer, uno más fuerte para construir.</p></div></li>
-        <li><div><h3>IronDeck lo pone en marcha</h3><p>Lanza Claude Code en tu PC, cada tarea en su propia copia del proyecto para que no se pisen, hasta cuatro a la vez.</p></div></li>
+        <li><div><h3>IronDeck lo pone en marcha</h3><p>Con un clic lanzas la tanda entera: Claude Code corre en tu PC, cada tarea en su propia copia del proyecto para que no se pisen, hasta cuatro a la vez.</p></div></li>
         <li><div><h3>Te pregunta solo lo necesario</h3><p>Si algo necesita tu decisión, espera en la bandeja y te llega un aviso de Windows. Respondes y sigue.</p></div></li>
         <li><div><h3>Apruebas lo terminado</h3><p>Los cambios entran a tu proyecto solo cuando das el visto bueno.</p></div></li>
         <li><div><h3>Tus skills, con historial</h3><p>Las instrucciones que le enseñan a Claude a trabajar a tu manera quedan guardadas con todas sus versiones.</p></div></li>
@@ -1592,14 +1645,14 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
         </dl></div>
       </div>
       </details>
-      <p class="not-yet"><strong>Todavía no:</strong> el modo con uso extra y la capa autónoma. Están en la hoja de ruta.</p>
+      <p class="not-yet"><strong>Todavía no:</strong> el modo con uso extra, y que Claude redacte tus encargos y flujos para que, una vez que los apruebes, se lancen solos cuando hagan falta. Están en la hoja de ruta.</p>
     </div>
   </section>
 
   <section class="section" id="avance">
     <div class="frame">
       <div class="section-head">
-        <p class="label">Avance<span class="dato">fase 04 de 06</span></p>
+        <p class="label">Avance<span class="dato">fase 04 en curso · 4 de 6 listas</span></p>
         <h2>En qué va IronDeck</h2>
         <p class="sello"><img src="marca/irondeck-icono-simple.svg" alt="" width="20" height="20"><span>Actualizado el 11 oct 2026</span></p>
         <p>IronDeck se construye con el mismo método que automatiza: un mapa del proyecto, tandas de trabajo en paralelo, encargos para Claude Code y una revisión independiente de cada entrega.</p>
@@ -1625,7 +1678,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
         <li class="phase"><span class="num">01</span><div><h3>Funciones principales</h3><p>Versiones, plantillas, ventana, motor de tareas, control del plan y verificación de skills.</p></div><span class="pill" data-st="done">Terminada</span></li>
         <li class="phase"><span class="num">02</span><div><h3>Conexión con Claude Code real</h3><p>Todo conectado: flujos, comparaciones, exportación e instalador para Windows.</p></div><span class="pill" data-st="done">Terminada</span></li>
         <li class="phase"><span class="num">03</span><div><h3>Uso real en Windows</h3><p>Instalado y funcionando en una PC real: se actualiza solo y vuelve atrás si algo falla, pasa el resultado de un paso al siguiente y respalda tu biblioteca en tu GitHub.</p></div><span class="pill" data-st="done">Terminada</span></li>
-        <li class="phase"><span class="num">04</span><div><h3>Autonomía</h3><p>Primero, ver cómo va cada proyecto: sus fases, sus tareas y lo que espera por ti. Después, un chat central que reparte el trabajo, revisión automática de lo terminado y conexión con otros agentes.</p></div><span class="pill" data-st="doing">En curso</span></li>
+        <li class="phase"><span class="num">04</span><div><h3>Autonomía</h3><p>Primero, ver cómo va cada proyecto: sus fases, sus tareas y lo que espera por ti. Después, un chat central que redacta los encargos y flujos: los apruebas la primera vez y luego se lanzan solos cuando hacen falta, con revisión automática de lo terminado y conexión con otros agentes.</p></div><span class="pill" data-st="doing">En curso</span></li>
         <li class="phase"><span class="num">05</span><div><h3>Lanzamiento</h3><p>La edición base, los kits y la versión para equipos.</p></div><span class="pill" data-st="later">Después</span></li>
       </ol>
     </div>
@@ -1836,7 +1889,7 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
       </ul>
     </div>
   </div>
-  <div class="frame foot-sello"><span>Actualizado el 11 oct 2026</span><span>Fase 04 de 06</span></div>
+  <div class="frame foot-sello"><span>Actualizado el 11 oct 2026</span><span>Fase 04 en curso</span></div>
   <p class="foot-palabra" aria-hidden="true">IRONDECK</p>
 </footer>
 
@@ -2142,6 +2195,16 @@ code { font-family: var(--f-mono); font-size: 0.9em; white-space: nowrap; }
     document.querySelectorAll('details').forEach(d => d.addEventListener('toggle', () => setTimeout(rehacer, 60)));
     rehacer();
   }
+
+  /* Links that open another tab say so to screen readers (the label is added here so every new link gets it) */
+  const otraPestana = document.documentElement.lang === 'en' ? ' (opens in a new tab)' : ' (se abre en otra pestaña)';
+  document.querySelectorAll('a[target="_blank"]').forEach(a => {
+    if (a.hasAttribute('aria-label')) return;
+    const s = document.createElement('span');
+    s.className = 'sr-only';
+    s.textContent = otraPestana;
+    a.appendChild(s);
+  });
 })();
 </script>
 
